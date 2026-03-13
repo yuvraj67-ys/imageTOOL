@@ -6,10 +6,9 @@
 const AdManager = {
   // Global scripts (Social bar / Popunder alternatives)
   injectGlobalScripts() {
-    const scripts = [
-      "https://pl28909652.effectivegatecpm.com/35/57/dc/3557dc9a4979db83d89e9b839c6217af.js",
-      "https://pl28909637.effectivegatecpm.com/59/ea/cd/59eacdeea647b832856e053547384824.js"
-    ];
+    // ❌ REMOVED: These scripts were causing aggressive pop-unders and invisible overlays 
+    // that hijack user clicks. Removing them to dramatically improve user experience.
+    const scripts = [];
 
     scripts.forEach(src => {
       const s = document.createElement('script');
