@@ -66,9 +66,11 @@ app.use((req, res) => {
   res.status(404).redirect('/');
 });
 
-// ── Start Server ──
-app.listen(PORT, () => {
-  console.log(`🚀 ImgAURA Server running on port ${PORT}`);
-});
+// ── Start Server (Local only, ignored by Vercel) ──
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`🚀 ImgAURA Server running on port ${PORT}`);
+  });
+}
 
 module.exports = app;
