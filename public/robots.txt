@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://your-domain.vercel.app/sitemap.xml
+
+# AI Image Tools — Free browser-based image processing
+# All processing happens client-side. No user data is collected.

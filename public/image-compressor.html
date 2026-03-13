@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Image Compressor Online - Reduce File Size | ImgAURA</title>
+  <meta name="description" content="Compress images to target file size. See compression ratio, savings. Batch compress with ZIP download. 100% free, browser-based.">
+  <link rel="canonical" href="https://your-domain.vercel.app/image-compressor.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/global.css">
+</head>
+<body data-page-type="tool">
+  <nav class="navbar"><div class="container"><a href="/" class="navbar-logo">✦ ImgAURA</a><ul class="navbar-links" id="nav-links"><li><a href="/bg-remover.html">BG Remover</a></li><li><a href="/image-enhancer.html">Enhancer</a></li><li><a href="/object-detector.html">Detector</a></li><li><a href="/image-converter.html">Converter</a></li><li><a href="/image-compressor.html" style="color:var(--neon-blue);">Compressor</a></li><li><a href="/face-blur.html">Face Blur</a></li></ul><button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button></div></nav>
+
+  <div class="container"><nav class="breadcrumb" aria-label="breadcrumb"><a href="/">Home</a><span class="breadcrumb-sep">›</span><a href="/#tools-grid">Tools</a><span class="breadcrumb-sep">›</span><span style="color:var(--text-primary);">Image Compressor</span></nav></div>
+
+
+  <section class="section" style="padding-top:1rem;">
+    <div class="container">
+      <h1 style="font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;"><span class="neon-text">Image Compressor</span></h1>
+      <p style="color:var(--text-secondary);margin-bottom:2rem;">Compress images to target size with exact savings & ratio display.</p>
+      <div class="tool-layout">
+        <div class="tool-main">
+          <div class="upload-zone" id="upload-zone"><span class="upload-zone-icon">📦</span><p class="upload-zone-text"><strong>Drag & drop</strong> or click — up to 20 images</p><input type="file" id="file-input" accept="image/*" multiple></div>
+          <div class="status-bar" id="status-bar" style="display:none;margin-top:1rem;"><span class="status-dot" id="status-dot"></span><span id="status-text">Ready</span><div class="progress-bar-wrapper" style="flex:1;max-width:200px;"><div class="progress-bar" id="progress-bar"></div></div></div>
+
+          <div id="options" style="margin-top:1.5rem;">
+            <div class="panel" style="display:grid;gap:1rem;">
+              <div style="display:flex;gap:0.75rem;">
+                <button class="btn-secondary btn-sm mode-btn active" data-mode="auto" style="border-color:var(--neon-blue);">🎯 Auto Target</button>
+                <button class="btn-secondary btn-sm mode-btn" data-mode="manual">🎚️ Manual</button>
+              </div>
+              <div id="auto-s"><label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">Target (KB):<input type="number" id="target-size" value="200" min="10" style="width:80px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:0.4rem;color:var(--text-primary);"></label></div>
+              <div id="manual-s" style="display:none;"><label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">Quality<input type="range" class="range-slider" id="quality" min="1" max="100" value="75" style="flex:1;"><span id="q-val">75%</span></label></div>
+              <div style="display:flex;gap:0.5rem;">
+                <button class="btn-secondary btn-sm fmt active" data-f="image/jpeg" style="border-color:var(--neon-blue);">JPEG</button>
+                <button class="btn-secondary btn-sm fmt" data-f="image/webp">WEBP</button>
+                <button class="btn-secondary btn-sm fmt" data-f="image/png">PNG</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="results-section" style="display:none;margin-top:1.5rem;">
+            <div class="panel" id="stats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;text-align:center;margin-bottom:1rem;">
+              <div><div style="font-size:1.5rem;font-weight:700;color:var(--neon-green);" id="s-saved">0</div><div style="font-size:0.75rem;color:var(--text-muted);">Saved</div></div>
+              <div><div style="font-size:1.5rem;font-weight:700;color:var(--neon-blue);" id="s-ratio">0%</div><div style="font-size:0.75rem;color:var(--text-muted);">Reduction</div></div>
+              <div><div style="font-size:1.5rem;font-weight:700;color:var(--accent-purple);" id="s-files">0</div><div style="font-size:0.75rem;color:var(--text-muted);">Files</div></div>
+            </div>
+            <div id="results-list" style="display:grid;gap:0.5rem;"></div>
+            <button class="btn-primary" id="dl-all" style="margin-top:1rem;">📦 Download All as ZIP</button>
+          </div>
+
+
+          <div style="margin-top:2rem;"><h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Related Tools</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;"><a href="/image-converter.html" class="panel" style="text-decoration:none;padding:1rem;">🔄 Converter</a><a href="/image-enhancer.html" class="panel" style="text-decoration:none;padding:1rem;">✨ Enhancer</a><a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;">🖼️ BG Remover</a></div></div>
+          <div style="margin-top:2.5rem;"><h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1rem;">FAQ</h2><div class="faq-list"><div class="faq-item"><button class="faq-question">How does auto compression work? <span class="faq-icon">▼</span></button><div class="faq-answer">Binary search finds the optimal quality to get under your target size while maximizing visual quality.</div></div><div class="faq-item"><button class="faq-question">Best format for compression? <span class="faq-icon">▼</span></button><div class="faq-answer">WEBP offers the best ratio. JPEG is widely supported. PNG is lossless but larger.</div></div></div></div>
+        </div>
+        <div class="tool-sidebar"></div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer"><div class="container"><div class="footer-bottom"><p>© 2024 ImgAURA &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a> &bull; <a href="/contact.html">Contact</a></p></div></div></footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="/js/utils.js"></script><script src="/js/analytics.js"></script>
+  <script>
+  (() => {
+    let mode='auto',fmt='image/jpeg',blobs=[];
+    const pBar=document.getElementById('progress-bar');
+    const sList=document.getElementById('results-list');
+
+    function status(t,s='ready'){document.getElementById('status-bar').style.display='flex';document.getElementById('status-text').textContent=t;document.getElementById('status-dot').className='status-dot'+(s==='processing'?' processing':'');}
+
+    document.querySelectorAll('.mode-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.mode-btn').forEach(x=>{x.classList.remove('active');x.style.borderColor='';});b.classList.add('active');b.style.borderColor='var(--neon-blue)';mode=b.dataset.mode;document.getElementById('auto-s').style.display=mode==='auto'?'block':'none';document.getElementById('manual-s').style.display=mode==='manual'?'block':'none';}));
+    document.querySelectorAll('.fmt').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.fmt').forEach(x=>{x.classList.remove('active');x.style.borderColor='';});b.classList.add('active');b.style.borderColor='var(--neon-blue)';fmt=b.dataset.f;}));
+    document.getElementById('quality').addEventListener('input',e=>{document.getElementById('q-val').textContent=e.target.value+'%';});
+
+    setupDragDrop(document.getElementById('upload-zone'),handleFiles);
+    document.getElementById('file-input').addEventListener('change',e=>handleFiles(e.target.files));
+
+    async function handleFiles(files){
+      if(!files.length)return;
+      const arr=Array.from(files).slice(0,20);blobs=[];sList.innerHTML='';
+      document.getElementById('results-section').style.display='block';
+      let tOrig=0,tComp=0;
+      for(let i=0;i<arr.length;i++){
+        status(`Compressing ${i+1}/${arr.length}...`,'processing');pBar.style.width=`${(i/arr.length)*100}%`;
+        const f=arr[i],img=await loadImage(await readFileAsDataURL(f));
+        const c=document.createElement('canvas');c.width=img.naturalWidth;c.height=img.naturalHeight;c.getContext('2d').drawImage(img,0,0);
+        let blob;
+        if(mode==='auto'){const tk=(parseInt(document.getElementById('target-size').value)||200)*1024;blob=await autoCompress(c,fmt,tk);}
+        else{blob=await canvasToBlob(c,fmt,parseInt(document.getElementById('quality').value)/100);}
+        const ext=fmt.split('/')[1].replace('jpeg','jpg');const nm=f.name.replace(/\.[^.]+$/,'')+'-compressed.'+ext;
+        blobs.push({blob,name:nm});tOrig+=f.size;tComp+=blob.size;
+        const saved=f.size-blob.size,pct=Math.round((saved/f.size)*100);
+        const row=document.createElement('div');row.className='panel';row.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem;';
+        row.innerHTML=`<div style="min-width:0;flex:1;"><div style="font-size:0.85rem;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${f.name}</div><div style="font-size:0.75rem;color:var(--text-muted);">${formatFileSize(f.size)} → <span style="color:var(--neon-green);">${formatFileSize(blob.size)}</span> (${pct>0?'-':''}${Math.abs(pct)}%)</div></div><button class="btn-secondary btn-sm" onclick="downloadBlob(blobs[${i}].blob,blobs[${i}].name);showToast('Downloaded!','success');">📥</button>`;
+        sList.appendChild(row);pBar.style.width=`${((i+1)/arr.length)*100}%`;
+      }
+      const ts=tOrig-tComp;document.getElementById('s-saved').textContent=formatFileSize(Math.max(0,ts));
+      document.getElementById('s-ratio').textContent=Math.round((ts/tOrig)*100)+'%';
+      document.getElementById('s-files').textContent=arr.length;
+      status(`${arr.length} files compressed!`);trackToolUsage('image-compressor');
+    }
+
+    async function autoCompress(canvas,format,target){
+      let lo=0.01,hi=1,best=null;
+      for(let i=0;i<8;i++){const mid=(lo+hi)/2;const b=await canvasToBlob(canvas,format,mid);if(b.size<=target){best=b;lo=mid;}else hi=mid;}
+      return best||await canvasToBlob(canvas,format,0.01);
+    }
+
+    window.blobs=blobs; // expose for inline onclick
+    document.getElementById('dl-all').addEventListener('click',async()=>{
+      if(!blobs.length)return;status('Creating ZIP...','processing');
+      const zip=new JSZip();const folder=zip.folder('compressed');
+      blobs.forEach(x=>folder.file(x.name,x.blob));
+      const c=await zip.generateAsync({type:'blob'});downloadBlob(c,'compressed-images.zip');
+      status('Done!');showToast('ZIP downloaded!','success');
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Image Format Converter - PNG JPEG WEBP BMP | ImgAURA</title>
+  <meta name="description" content="Convert images between PNG, JPEG, WEBP, BMP formats. Resize, strip EXIF metadata, batch convert. 100% free, browser-based, no signup.">
+  <meta name="keywords" content="image converter free, png to jpeg, webp converter, image format converter online, strip exif">
+  <link rel="canonical" href="https://your-domain.vercel.app/image-converter.html">
+  <meta name="robots" content="index, follow">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ImgAURA Image Converter","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"applicationCategory":"MultimediaApplication"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/global.css">
+</head>
+<body data-page-type="tool">
+  <nav class="navbar"><div class="container"><a href="/" class="navbar-logo">✦ ImgAURA</a><ul class="navbar-links" id="nav-links"><li><a href="/bg-remover.html">BG Remover</a></li><li><a href="/image-enhancer.html">Enhancer</a></li><li><a href="/object-detector.html">Detector</a></li><li><a href="/image-converter.html" style="color:var(--neon-blue);">Converter</a></li><li><a href="/image-compressor.html">Compressor</a></li><li><a href="/face-blur.html">Face Blur</a></li></ul><button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button></div></nav>
+
+  <div class="container"><nav class="breadcrumb" aria-label="breadcrumb"><a href="/">Home</a><span class="breadcrumb-sep">›</span><a href="/#tools-grid">Tools</a><span class="breadcrumb-sep">›</span><span style="color:var(--text-primary);">Image Converter</span></nav></div>
+
+
+
+  <section class="section" style="padding-top:1rem;">
+    <div class="container">
+      <h1 style="font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;"><span class="neon-text">Image Format Converter</span></h1>
+      <p style="color:var(--text-secondary);margin-bottom:2rem;">Convert between PNG, JPEG, WEBP, and BMP. Resize, strip EXIF, batch process.</p>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          <div class="upload-zone" id="upload-zone">
+            <span class="upload-zone-icon">🔄</span>
+            <p class="upload-zone-text"><strong>Drag & drop files</strong> or click to upload</p>
+            <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;">Up to 20 images — PNG, JPEG, WEBP, BMP</p>
+            <input type="file" id="file-input" accept="image/*" multiple>
+          </div>
+
+          <div class="status-bar" id="status-bar" style="display:none;margin-top:1rem;"><span class="status-dot" id="status-dot"></span><span id="status-text">Ready</span>
+            <div class="progress-bar-wrapper" style="flex:1;margin-left:auto;max-width:200px;" id="progress-wrapper"><div class="progress-bar" id="progress-bar"></div></div>
+          </div>
+
+          <!-- Conversion Options -->
+          <div id="options" style="margin-top:1.5rem;">
+            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Conversion Settings</h3>
+            <div class="panel" style="display:grid;gap:1rem;">
+              <div>
+                <span style="font-size:0.85rem;font-weight:500;color:var(--text-primary);display:block;margin-bottom:0.5rem;">Output Format</span>
+                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                  <button class="btn-secondary btn-sm format-btn active" data-format="image/png" style="border-color:var(--neon-blue);">PNG</button>
+                  <button class="btn-secondary btn-sm format-btn" data-format="image/jpeg">JPEG</button>
+                  <button class="btn-secondary btn-sm format-btn" data-format="image/webp">WEBP</button>
+                  <button class="btn-secondary btn-sm format-btn" data-format="image/bmp">BMP</button>
+                </div>
+              </div>
+              <div id="quality-row">
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">Quality (JPEG/WEBP)<input type="range" class="range-slider" id="quality" min="1" max="100" value="92" style="flex:1;"><span id="quality-val" style="min-width:35px;text-align:right;">92%</span></label>
+              </div>
+              <div>
+                <span style="font-size:0.85rem;font-weight:500;color:var(--text-primary);display:block;margin-bottom:0.5rem;">Resize (Optional)</span>
+                <div style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;">
+                  <select id="resize-mode" style="background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:0.4rem 0.6rem;color:var(--text-primary);font-size:0.85rem;">
+                    <option value="none">No Resize</option>
+                    <option value="scale">Scale %</option>
+                    <option value="exact">Exact W×H</option>
+                    <option value="fit">Fit Within</option>
+                  </select>
+                  <div id="resize-params" style="display:none;gap:0.5rem;align-items:center;">
+                    <input type="number" id="resize-w" placeholder="Width" min="1" style="width:80px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:0.4rem;color:var(--text-primary);font-size:0.85rem;">
+                    <span style="color:var(--text-muted);">×</span>
+                    <input type="number" id="resize-h" placeholder="Height" min="1" style="width:80px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:0.4rem;color:var(--text-primary);font-size:0.85rem;">
+                  </div>
+                  <div id="resize-scale-param" style="display:none;">
+                    <input type="number" id="resize-scale" placeholder="50" min="1" max="400" value="50" style="width:70px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:0.4rem;color:var(--text-primary);font-size:0.85rem;">
+                    <span style="color:var(--text-muted);font-size:0.85rem;">%</span>
+                  </div>
+                </div>
+              </div>
+              <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">
+                <input type="checkbox" id="strip-exif" checked style="accent-color:var(--neon-blue);">
+                Strip EXIF metadata (privacy protection)
+              </label>
+            </div>
+          </div>
+
+          <!-- Results List -->
+          <div id="results-section" style="display:none;margin-top:1.5rem;">
+            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Converted Files</h3>
+            <div id="results-list" style="display:grid;gap:0.5rem;"></div>
+            <div style="display:flex;gap:0.75rem;margin-top:1rem;">
+              <button class="btn-primary" id="download-all-btn">📦 Download All as ZIP</button>
+            </div>
+          </div>
+
+
+
+          <div style="margin-top:2rem;"><h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Related Tools</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;"><a href="/image-compressor.html" class="panel" style="text-decoration:none;padding:1rem;"><span style="font-size:1.2rem;">📦</span><span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">Compressor</span></a><a href="/image-enhancer.html" class="panel" style="text-decoration:none;padding:1rem;"><span style="font-size:1.2rem;">✨</span><span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">Enhancer</span></a><a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;"><span style="font-size:1.2rem;">🖼️</span><span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">BG Remover</span></a></div></div>
+
+          <div style="margin-top:2.5rem;"><h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.25rem;font-family:var(--font-heading);">FAQ</h2><div class="faq-list"><div class="faq-item"><button class="faq-question">What formats are supported? <span class="faq-icon">▼</span></button><div class="faq-answer">You can convert between PNG, JPEG, WEBP, and BMP. All conversions happen in your browser.</div></div><div class="faq-item"><button class="faq-question">What does stripping EXIF do? <span class="faq-icon">▼</span></button><div class="faq-answer">EXIF data contains metadata like camera model, GPS location, and date. Stripping it protects your privacy when sharing images online.</div></div><div class="faq-item"><button class="faq-question">Can I batch convert? <span class="faq-icon">▼</span></button><div class="faq-answer">Yes! Select up to 20 files at once. All converted files can be downloaded as a single ZIP.</div></div></div></div>
+
+
+        </div>
+        <div class="tool-sidebar"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-bottom"><p>© 2024 ImgAURA &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a> &bull; <a href="/contact.html">Contact</a></p></div></div></footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/analytics.js"></script>
+
+
+  <script>
+  (() => {
+    let outputFormat = 'image/png';
+    let convertedBlobs = [];
+    const fileInput = document.getElementById('file-input');
+    const statusBar = document.getElementById('status-bar');
+    const statusDot = document.getElementById('status-dot');
+    const statusText = document.getElementById('status-text');
+    const progressBar = document.getElementById('progress-bar');
+
+    function updateStatus(text, state = 'ready') {
+      statusBar.style.display = 'flex';
+      statusText.textContent = text;
+      statusDot.className = 'status-dot' + (state === 'processing' ? ' processing' : '');
+    }
+
+    // Format buttons
+    document.querySelectorAll('.format-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.format-btn').forEach(b => { b.classList.remove('active'); b.style.borderColor = ''; });
+        btn.classList.add('active');
+        btn.style.borderColor = 'var(--neon-blue)';
+        outputFormat = btn.dataset.format;
+        // Show/hide quality for JPEG/WEBP
+        document.getElementById('quality-row').style.display = (outputFormat === 'image/jpeg' || outputFormat === 'image/webp') ? 'block' : 'none';
+      });
+    });
+
+    // Quality slider
+    document.getElementById('quality').addEventListener('input', (e) => {
+      document.getElementById('quality-val').textContent = e.target.value + '%';
+    });
+
+    // Resize mode
+    document.getElementById('resize-mode').addEventListener('change', (e) => {
+      const mode = e.target.value;
+      document.getElementById('resize-params').style.display = (mode === 'exact' || mode === 'fit') ? 'flex' : 'none';
+      document.getElementById('resize-scale-param').style.display = mode === 'scale' ? 'inline-flex' : 'none';
+    });
+
+    // File handling
+    setupDragDrop(document.getElementById('upload-zone'), handleFiles);
+    fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+    async function handleFiles(files) {
+      if (!files.length) return;
+      const fileArray = Array.from(files).slice(0, 20);
+      convertedBlobs = [];
+      const resultsList = document.getElementById('results-list');
+      resultsList.innerHTML = '';
+      document.getElementById('results-section').style.display = 'block';
+
+      for (let i = 0; i < fileArray.length; i++) {
+        updateStatus(`Converting ${i + 1}/${fileArray.length}...`, 'processing');
+        progressBar.style.width = `${((i) / fileArray.length) * 100}%`;
+        
+        const file = fileArray[i];
+        const img = await loadImage(await readFileAsDataURL(file));
+        const canvas = document.createElement('canvas');
+
+        // Handle resize
+        let w = img.naturalWidth, h = img.naturalHeight;
+        const resizeMode = document.getElementById('resize-mode').value;
+        if (resizeMode === 'scale') {
+          const scale = parseInt(document.getElementById('resize-scale').value) / 100;
+          w = Math.round(w * scale);
+          h = Math.round(h * scale);
+        } else if (resizeMode === 'exact') {
+          w = parseInt(document.getElementById('resize-w').value) || w;
+          h = parseInt(document.getElementById('resize-h').value) || h;
+        } else if (resizeMode === 'fit') {
+          const maxW = parseInt(document.getElementById('resize-w').value) || w;
+          const maxH = parseInt(document.getElementById('resize-h').value) || h;
+          const ratio = Math.min(maxW / w, maxH / h, 1);
+          w = Math.round(w * ratio);
+          h = Math.round(h * ratio);
+        }
+
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, 0, 0, w, h);
+
+        const quality = parseInt(document.getElementById('quality').value) / 100;
+        const blob = await canvasToBlob(canvas, outputFormat, quality);
+        const ext = outputFormat.split('/')[1].replace('jpeg', 'jpg');
+        const baseName = file.name.replace(/\.[^.]+$/, '');
+        const newName = `${baseName}.${ext}`;
+
+        convertedBlobs.push({ blob, name: newName });
+
+        // Show result row
+        const row = document.createElement('div');
+        row.className = 'panel';
+        row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem;';
+        row.innerHTML = `
+          <div style="display:flex;align-items:center;gap:0.75rem;min-width:0;">
+            <span style="font-size:1.2rem;">📄</span>
+            <div style="min-width:0;">
+              <div style="font-size:0.85rem;font-weight:500;color:var(--text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${newName}</div>
+              <div style="font-size:0.75rem;color:var(--text-muted);">${formatFileSize(file.size)} → ${formatFileSize(blob.size)} &bull; ${w} × ${h}</div>
+            </div>
+          </div>
+          <button class="btn-secondary btn-sm download-single" data-idx="${i}">📥</button>
+        `;
+        resultsList.appendChild(row);
+
+        progressBar.style.width = `${((i + 1) / fileArray.length) * 100}%`;
+      }
+
+      updateStatus(`${fileArray.length} files converted!`, 'ready');
+      trackToolUsage('image-converter');
+
+      // Single download buttons
+      document.querySelectorAll('.download-single').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.dataset.idx);
+          downloadBlob(convertedBlobs[idx].blob, convertedBlobs[idx].name);
+          showToast('Downloaded!', 'success');
+        });
+      });
+    }
+
+    // Download All as ZIP
+    document.getElementById('download-all-btn').addEventListener('click', async () => {
+      if (!convertedBlobs.length) return;
+      updateStatus('Creating ZIP...', 'processing');
+      const zip = new JSZip();
+      const folder = zip.folder('converted-images');
+      convertedBlobs.forEach(item => folder.file(item.name, item.blob));
+      const content = await zip.generateAsync({ type: 'blob' });
+      downloadBlob(content, 'converted-images.zip');
+      updateStatus('ZIP downloaded!', 'ready');
+      showToast('ZIP downloaded!', 'success');
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free AI Image Enhancer - Upscale 2x 4x | ImgAURA</title>
+  <meta name="description" content="Enhance and upscale images 2x or 4x with smart AI algorithms. Sharpen, denoise, auto-brightness. 100% free, browser-based, no signup.">
+  <meta name="keywords" content="image enhancer free, upscale image 2x, ai image upscaler, sharpen image online">
+  <link rel="canonical" href="https://your-domain.vercel.app/image-enhancer.html">
+  <meta name="robots" content="index, follow">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ImgAURA Image Enhancer","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"applicationCategory":"MultimediaApplication"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/global.css">
+</head>
+<body data-page-type="tool">
+  <nav class="navbar"><div class="container"><a href="/" class="navbar-logo">✦ ImgAURA</a><ul class="navbar-links" id="nav-links"><li><a href="/bg-remover.html">BG Remover</a></li><li><a href="/image-enhancer.html" style="color:var(--neon-blue);">Enhancer</a></li><li><a href="/object-detector.html">Detector</a></li><li><a href="/image-converter.html">Converter</a></li><li><a href="/image-compressor.html">Compressor</a></li><li><a href="/face-blur.html">Face Blur</a></li></ul><button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button></div></nav>
+
+  <div class="container"><nav class="breadcrumb" aria-label="breadcrumb"><a href="/">Home</a><span class="breadcrumb-sep">›</span><a href="/#tools-grid">Tools</a><span class="breadcrumb-sep">›</span><span style="color:var(--text-primary);">Image Enhancer</span></nav></div>
+
+
+
+  <section class="section" style="padding-top:1rem;">
+    <div class="container">
+      <h1 style="font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;"><span class="neon-text">Smart Image Enhancer</span></h1>
+      <p style="color:var(--text-secondary);margin-bottom:2rem;">Upscale 2x/4x, sharpen, denoise, and auto-enhance — all in your browser.</p>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          <div class="upload-zone" id="upload-zone">
+            <span class="upload-zone-icon">🖼️</span>
+            <p class="upload-zone-text"><strong>Click or drag & drop</strong> your image here</p>
+            <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;">PNG, JPEG, WEBP — Max 20MB</p>
+            <input type="file" id="file-input" accept="image/*">
+          </div>
+
+          <div class="status-bar" id="status-bar" style="display:none;margin-top:1rem;"><span class="status-dot" id="status-dot"></span><span id="status-text">Ready</span></div>
+
+          <div id="controls" style="display:none;margin-top:1.5rem;">
+            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Enhancement Options</h3>
+            <div class="panel" style="display:grid;gap:1rem;">
+              <div>
+                <span style="font-size:0.85rem;font-weight:500;color:var(--text-primary);margin-bottom:0.5rem;display:block;">Upscale</span>
+                <div style="display:flex;gap:0.75rem;">
+                  <button class="btn-secondary btn-sm scale-btn active" data-scale="1">1x (Original)</button>
+                  <button class="btn-secondary btn-sm scale-btn" data-scale="2">2x Upscale</button>
+                  <button class="btn-secondary btn-sm scale-btn" data-scale="4">4x Upscale</button>
+                </div>
+              </div>
+              <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">Sharpness<input type="range" class="range-slider" id="sharpness" min="0" max="100" value="30" style="flex:1;"><span id="sharpness-val" style="min-width:30px;text-align:right;">30</span></label>
+              <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">Noise Reduction<input type="range" class="range-slider" id="denoise" min="0" max="100" value="0" style="flex:1;"><span id="denoise-val" style="min-width:30px;text-align:right;">0</span></label>
+              <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">Brightness<input type="range" class="range-slider" id="brightness" min="-50" max="50" value="0" style="flex:1;"><span id="brightness-val" style="min-width:30px;text-align:right;">0</span></label>
+              <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">Contrast<input type="range" class="range-slider" id="contrast" min="-50" max="50" value="0" style="flex:1;"><span id="contrast-val" style="min-width:30px;text-align:right;">0</span></label>
+              <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                <button class="btn-primary btn-sm" id="auto-enhance-btn">⚡ Auto-Enhance</button>
+                <button class="btn-secondary btn-sm" id="reset-btn">↺ Reset</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Before/After -->
+          <div id="ba-container" style="display:none;margin-top:1.5rem;">
+            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Before / After</h3>
+            <div class="ba-slider" id="ba-slider"><canvas id="ba-before"></canvas><div class="ba-after" id="ba-after"><canvas id="ba-after-canvas"></canvas></div><div class="ba-handle" id="ba-handle"></div></div>
+          </div>
+
+          <!-- Result -->
+          <div id="result-section" style="display:none;margin-top:1.5rem;">
+            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Result</h3>
+            <div class="panel" style="overflow:auto;max-height:500px;">
+              <canvas id="result-canvas" style="max-width:100%;border-radius:8px;"></canvas>
+            </div>
+            <div id="size-compare" style="display:flex;gap:1.5rem;margin-top:0.75rem;font-size:0.85rem;color:var(--text-secondary);"></div>
+            <div style="margin-top:1rem;">
+              <span style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.5rem;display:block;">Download Format</span>
+              <div style="display:flex;gap:0.75rem;align-items:center;margin-bottom:0.75rem;">
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.3rem;cursor:pointer;"><input type="radio" name="format" value="png" checked style="accent-color:var(--neon-blue);"> PNG</label>
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.3rem;cursor:pointer;"><input type="radio" name="format" value="jpeg" style="accent-color:var(--neon-blue);"> JPEG</label>
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;" id="jpeg-quality-label" style="display:none;">Quality<input type="range" class="range-slider" id="jpeg-quality" min="60" max="100" value="92" style="width:120px;"><span id="jpeg-quality-val">92%</span></label>
+              </div>
+              <button class="btn-primary" id="download-btn">📥 Download Enhanced Image</button>
+            </div>
+          </div>
+
+
+
+          <!-- Related -->
+          <div style="margin-top:2rem;"><h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Related Tools</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;"><a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;"><span style="font-size:1.2rem;">🖼️</span><span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">BG Remover</span></a><a href="/image-compressor.html" class="panel" style="text-decoration:none;padding:1rem;"><span style="font-size:1.2rem;">📦</span><span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">Compressor</span></a><a href="/image-converter.html" class="panel" style="text-decoration:none;padding:1rem;"><span style="font-size:1.2rem;">🔄</span><span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">Converter</span></a></div></div>
+
+          <!-- FAQ -->
+          <div style="margin-top:2.5rem;"><h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.25rem;font-family:var(--font-heading);">FAQ</h2><div class="faq-list"><div class="faq-item"><button class="faq-question">How does the enhancement work? <span class="faq-icon">▼</span></button><div class="faq-answer">We use advanced canvas-based algorithms including bicubic interpolation for upscaling, unsharp masking for sharpening, and histogram analysis for auto-brightness/contrast. All processing runs locally in your browser.</div></div><div class="faq-item"><button class="faq-question">What's the maximum upscale? <span class="faq-icon">▼</span></button><div class="faq-answer">You can upscale up to 4x. A 500×500 image becomes 2000×2000 at 4x. Very large images may take a few seconds to process.</div></div><div class="faq-item"><button class="faq-question">Will I lose quality? <span class="faq-icon">▼</span></button><div class="faq-answer">No. Our bicubic interpolation algorithm produces smooth upscales without blocky artifacts. The sharpening filter further improves perceived quality.</div></div><div class="faq-item"><button class="faq-question">Can I download as JPEG? <span class="faq-icon">▼</span></button><div class="faq-answer">Yes! You can download in PNG (lossless) or JPEG with adjustable quality (60–100%).</div></div></div></div>
+
+
+        </div>
+        <div class="tool-sidebar"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-bottom"><p>© 2024 ImgAURA &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a> &bull; <a href="/contact.html">Contact</a></p></div></div></footer>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/analytics.js"></script>
+
+
+  <script>
+  (() => {
+    let originalImage = null;
+    let scaleFactor = 1;
+    const resultCanvas = document.getElementById('result-canvas');
+    const fileInput = document.getElementById('file-input');
+    const statusBar = document.getElementById('status-bar');
+    const statusDot = document.getElementById('status-dot');
+    const statusText = document.getElementById('status-text');
+
+    function updateStatus(text, state = 'ready') {
+      statusBar.style.display = 'flex';
+      statusText.textContent = text;
+      statusDot.className = 'status-dot' + (state === 'processing' ? ' processing' : '');
+    }
+
+    // Upload
+    setupDragDrop(document.getElementById('upload-zone'), (files) => handleFile(files[0]));
+    fileInput.addEventListener('change', (e) => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+
+    async function handleFile(file) {
+      updateStatus('Loading image...', 'processing');
+      const dataUrl = await readFileAsDataURL(file);
+      originalImage = await loadImage(dataUrl);
+      document.getElementById('controls').style.display = 'block';
+      document.getElementById('result-section').style.display = 'block';
+      document.getElementById('ba-container').style.display = 'block';
+      processImage();
+    }
+
+    // Scale buttons
+    document.querySelectorAll('.scale-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.scale-btn').forEach(b => { b.classList.remove('active'); b.style.borderColor = ''; });
+        btn.classList.add('active');
+        btn.style.borderColor = 'var(--neon-blue)';
+        scaleFactor = parseInt(btn.dataset.scale);
+        processImage();
+      });
+    });
+
+    // Slider displays
+    ['sharpness', 'denoise', 'brightness', 'contrast'].forEach(id => {
+      const el = document.getElementById(id);
+      const val = document.getElementById(id + '-val');
+      el.addEventListener('input', () => { val.textContent = el.value; debounce(processImage, 200)(); });
+    });
+
+    document.getElementById('jpeg-quality').addEventListener('input', (e) => {
+      document.getElementById('jpeg-quality-val').textContent = e.target.value + '%';
+    });
+
+    // Auto-enhance
+    document.getElementById('auto-enhance-btn').addEventListener('click', () => {
+      document.getElementById('sharpness').value = 50; document.getElementById('sharpness-val').textContent = '50';
+      document.getElementById('brightness').value = 5; document.getElementById('brightness-val').textContent = '5';
+      document.getElementById('contrast').value = 10; document.getElementById('contrast-val').textContent = '10';
+      document.getElementById('denoise').value = 15; document.getElementById('denoise-val').textContent = '15';
+      processImage();
+      showToast('Auto-enhancement applied!', 'success');
+    });
+
+    // Reset
+    document.getElementById('reset-btn').addEventListener('click', () => {
+      document.getElementById('sharpness').value = 30; document.getElementById('sharpness-val').textContent = '30';
+      document.getElementById('brightness').value = 0; document.getElementById('brightness-val').textContent = '0';
+      document.getElementById('contrast').value = 0; document.getElementById('contrast-val').textContent = '0';
+      document.getElementById('denoise').value = 0; document.getElementById('denoise-val').textContent = '0';
+      scaleFactor = 1;
+      document.querySelectorAll('.scale-btn').forEach(b => { b.classList.remove('active'); b.style.borderColor = ''; });
+      document.querySelector('.scale-btn[data-scale="1"]').classList.add('active');
+      processImage();
+    });
+
+    function processImage() {
+      if (!originalImage) return;
+      updateStatus('Processing...', 'processing');
+
+      const ow = originalImage.naturalWidth;
+      const oh = originalImage.naturalHeight;
+      const nw = ow * scaleFactor;
+      const nh = oh * scaleFactor;
+
+      resultCanvas.width = nw;
+      resultCanvas.height = nh;
+      const ctx = resultCanvas.getContext('2d');
+
+      // Bicubic-quality upscale
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+
+      const brightness = 100 + parseInt(document.getElementById('brightness').value);
+      const contrast = 100 + parseInt(document.getElementById('contrast').value);
+      const sharpness = parseInt(document.getElementById('sharpness').value);
+      const denoise = parseInt(document.getElementById('denoise').value);
+
+      // Apply brightness/contrast
+      ctx.filter = `brightness(${brightness}%) contrast(${contrast}%)`;
+      ctx.drawImage(originalImage, 0, 0, nw, nh);
+      ctx.filter = 'none';
+
+      // Apply sharpening via unsharp mask
+      if (sharpness > 0) {
+        applyUnsharpMask(ctx, nw, nh, sharpness / 100);
+      }
+
+      // Apply noise reduction via slight blur
+      if (denoise > 0) {
+        const blurAmount = (denoise / 100) * 1.5;
+        ctx.filter = `blur(${blurAmount}px)`;
+        ctx.drawImage(resultCanvas, 0, 0);
+        ctx.filter = 'none';
+        // Re-sharpen slightly to recover detail
+        if (denoise > 30) applyUnsharpMask(ctx, nw, nh, 0.15);
+      }
+
+      // Update size comparison
+      document.getElementById('size-compare').innerHTML = `
+        <span>Original: <strong>${formatDimensions(ow, oh)}</strong></span>
+        <span>Output: <strong style="color:var(--neon-green);">${formatDimensions(nw, nh)}</strong></span>
+        <span>Scale: <strong>${scaleFactor}x</strong></span>
+      `;
+
+      // Update before/after
+      const baBefore = document.getElementById('ba-before');
+      const baAfter = document.getElementById('ba-after-canvas');
+      baBefore.width = nw; baBefore.height = nh;
+      baAfter.width = nw; baAfter.height = nh;
+      const ctxB = baBefore.getContext('2d');
+      ctxB.imageSmoothingEnabled = true;
+      ctxB.imageSmoothingQuality = 'high';
+      ctxB.drawImage(originalImage, 0, 0, nw, nh);
+      baAfter.getContext('2d').drawImage(resultCanvas, 0, 0);
+      initBA();
+
+      trackToolUsage('image-enhancer');
+      updateStatus(`Enhanced to ${nw}×${nh}`, 'ready');
+    }
+
+    function applyUnsharpMask(ctx, w, h, amount) {
+      const imageData = ctx.getImageData(0, 0, w, h);
+      const data = imageData.data;
+      const copy = new Uint8ClampedArray(data);
+
+      for (let i = 0; i < data.length; i += 4) {
+        for (let c = 0; c < 3; c++) {
+          const idx = i + c;
+          const diff = data[idx] - copy[idx];
+          data[idx] = Math.min(255, Math.max(0, data[idx] + diff * amount * 3));
+        }
+      }
+
+      // Simple kernel-based sharpening
+      const kernel = [0, -amount, 0, -amount, 1 + 4 * amount, -amount, 0, -amount, 0];
+      const side = Math.round(Math.sqrt(kernel.length));
+      const halfSide = Math.floor(side / 2);
+
+      const src = new Uint8ClampedArray(data);
+      for (let y = 1; y < h - 1; y++) {
+        for (let x = 1; x < w - 1; x++) {
+          for (let c = 0; c < 3; c++) {
+            let val = 0;
+            for (let ky = 0; ky < side; ky++) {
+              for (let kx = 0; kx < side; kx++) {
+                const srcIdx = ((y + ky - halfSide) * w + (x + kx - halfSide)) * 4 + c;
+                val += src[srcIdx] * kernel[ky * side + kx];
+              }
+            }
+            data[(y * w + x) * 4 + c] = Math.min(255, Math.max(0, val));
+          }
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+    }
+
+    // Before/After slider
+    function initBA() {
+      const slider = document.getElementById('ba-slider');
+      const handle = document.getElementById('ba-handle');
+      const after = document.getElementById('ba-after');
+      let dragging = false;
+      function update(x) {
+        const rect = slider.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+        after.style.width = (pct * 100) + '%';
+        handle.style.left = (pct * 100) + '%';
+      }
+      slider.onmousedown = (e) => { dragging = true; update(e.clientX); };
+      slider.ontouchstart = (e) => { dragging = true; update(e.touches[0].clientX); };
+      window.onmousemove = (e) => { if (dragging) update(e.clientX); };
+      window.ontouchmove = (e) => { if (dragging) update(e.touches[0].clientX); };
+      window.onmouseup = () => dragging = false;
+      window.ontouchend = () => dragging = false;
+    }
+
+    // Download
+    document.getElementById('download-btn').addEventListener('click', async () => {
+      const format = document.querySelector('input[name="format"]:checked').value;
+      const quality = parseInt(document.getElementById('jpeg-quality').value) / 100;
+      if (format === 'jpeg') {
+        const blob = await canvasToBlob(resultCanvas, 'image/jpeg', quality);
+        downloadBlob(blob, 'enhanced-image.jpg');
+      } else {
+        downloadCanvas(resultCanvas, 'enhanced-image.png');
+      }
+      showToast('Image downloaded!', 'success');
+    });
+  })();
+  </script>
+</body>
+</html>

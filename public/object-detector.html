@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Object Detector Online - AI Powered | ImgAURA</title>
+  <meta name="description" content="Detect 80+ objects in images with AI. Bounding boxes, labels, confidence scores. Webcam support. 100% free, browser-based.">
+  <meta name="keywords" content="object detection online, ai object detector, detect objects in image, coco ssd online">
+  <link rel="canonical" href="https://your-domain.vercel.app/object-detector.html">
+  <meta name="robots" content="index, follow">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ImgAURA Object Detector","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"applicationCategory":"MultimediaApplication"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/global.css">
+</head>
+<body data-page-type="tool">
+  <nav class="navbar"><div class="container"><a href="/" class="navbar-logo">✦ ImgAURA</a><ul class="navbar-links" id="nav-links"><li><a href="/bg-remover.html">BG Remover</a></li><li><a href="/image-enhancer.html">Enhancer</a></li><li><a href="/object-detector.html" style="color:var(--neon-blue);">Detector</a></li><li><a href="/image-converter.html">Converter</a></li><li><a href="/image-compressor.html">Compressor</a></li><li><a href="/face-blur.html">Face Blur</a></li></ul><button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button></div></nav>
+
+  <div class="container"><nav class="breadcrumb" aria-label="breadcrumb"><a href="/">Home</a><span class="breadcrumb-sep">›</span><a href="/#tools-grid">Tools</a><span class="breadcrumb-sep">›</span><span style="color:var(--text-primary);">Object Detector</span></nav></div>
+
+
+
+  <section class="section" style="padding-top:1rem;">
+    <div class="container">
+      <h1 style="font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;"><span class="neon-text">AI Object Detector</span></h1>
+      <p style="color:var(--text-secondary);margin-bottom:2rem;">Detect 80+ object types with bounding boxes, labels, and confidence scores.</p>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          <!-- Mode Toggle -->
+          <div style="display:flex;gap:0.75rem;margin-bottom:1rem;">
+            <button class="btn-primary btn-sm" id="mode-image" style="flex:1;">📷 Image Upload</button>
+            <button class="btn-secondary btn-sm" id="mode-webcam" style="flex:1;">🎥 Webcam (Live)</button>
+          </div>
+
+          <!-- Upload Zone -->
+          <div class="upload-zone" id="upload-zone">
+            <span class="upload-zone-icon">🔍</span>
+            <p class="upload-zone-text"><strong>Click or drag & drop</strong> your image here</p>
+            <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;">PNG, JPEG, WEBP</p>
+            <input type="file" id="file-input" accept="image/*">
+          </div>
+
+          <!-- Webcam -->
+          <div id="webcam-section" style="display:none;">
+            <video id="webcam" autoplay playsinline style="width:100%;border-radius:var(--radius-lg);background:#000;"></video>
+            <div style="margin-top:0.5rem;display:flex;gap:0.5rem;">
+              <button class="btn-primary btn-sm" id="capture-btn">📸 Capture & Detect</button>
+              <button class="btn-secondary btn-sm" id="stop-webcam">⏹ Stop</button>
+            </div>
+          </div>
+
+          <div class="status-bar" id="status-bar" style="display:none;margin-top:1rem;"><span class="status-dot" id="status-dot"></span><span id="status-text">Ready</span></div>
+
+          <!-- Confidence Slider -->
+          <div style="margin-top:1rem;">
+            <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">Min Confidence<input type="range" class="range-slider" id="confidence" min="30" max="95" value="50" style="flex:1;"><span id="confidence-val" style="min-width:35px;text-align:right;">50%</span></label>
+          </div>
+
+          <!-- Result -->
+          <div id="result-section" style="display:none;margin-top:1.5rem;">
+            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Detection Result</h3>
+            <div class="panel" style="position:relative;overflow:hidden;">
+              <canvas id="result-canvas" style="max-width:100%;border-radius:8px;"></canvas>
+            </div>
+
+            <!-- Detection Table -->
+            <div style="margin-top:1rem;">
+              <h4 style="font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;">Detected Objects</h4>
+              <div style="overflow-x:auto;">
+                <table id="detection-table" style="width:100%;border-collapse:collapse;font-size:0.85rem;">
+                  <thead><tr style="border-bottom:1px solid var(--border-color);"><th style="text-align:left;padding:0.5rem;color:var(--text-secondary);">Class</th><th style="text-align:left;padding:0.5rem;color:var(--text-secondary);">Confidence</th><th style="text-align:left;padding:0.5rem;color:var(--text-secondary);">Count</th></tr></thead>
+                  <tbody id="detection-body"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;">
+              <button class="btn-primary btn-sm" id="download-btn">📥 Download Annotated</button>
+              <button class="btn-secondary btn-sm" id="copy-json-btn">📋 Copy as JSON</button>
+            </div>
+          </div>
+
+
+
+          <div style="margin-top:2rem;"><h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Related Tools</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;"><a href="/face-blur.html" class="panel" style="text-decoration:none;padding:1rem;"><span style="font-size:1.2rem;">😶</span><span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">Face Blur</span></a><a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;"><span style="font-size:1.2rem;">🖼️</span><span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">BG Remover</span></a><a href="/image-enhancer.html" class="panel" style="text-decoration:none;padding:1rem;"><span style="font-size:1.2rem;">✨</span><span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">Enhancer</span></a></div></div>
+
+          <div style="margin-top:2.5rem;"><h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.25rem;font-family:var(--font-heading);">FAQ</h2><div class="faq-list"><div class="faq-item"><button class="faq-question">What objects can it detect? <span class="faq-icon">▼</span></button><div class="faq-answer">The COCO-SSD model can detect 80+ object classes including people, cars, animals, furniture, electronics, food items, and more.</div></div><div class="faq-item"><button class="faq-question">Does it work with webcam? <span class="faq-icon">▼</span></button><div class="faq-answer">Yes! Click the "Webcam" button to enable live camera mode. You can capture frames and detect objects in real-time.</div></div><div class="faq-item"><button class="faq-question">How accurate is it? <span class="faq-icon">▼</span></button><div class="faq-answer">COCO-SSD is a well-tested model by TensorFlow. Accuracy varies by object type but is generally 70-95% for common objects.</div></div></div></div>
+
+
+        </div>
+        <div class="tool-sidebar"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-bottom"><p>© 2024 ImgAURA &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a> &bull; <a href="/contact.html">Contact</a></p></div></div></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/analytics.js"></script>
+
+
+  <script>
+  (() => {
+    let model = null;
+    let currentDetections = [];
+    let webcamStream = null;
+    const resultCanvas = document.getElementById('result-canvas');
+    const statusBar = document.getElementById('status-bar');
+    const statusDot = document.getElementById('status-dot');
+    const statusText = document.getElementById('status-text');
+
+    function updateStatus(text, state = 'ready') {
+      statusBar.style.display = 'flex';
+      statusText.textContent = text;
+      statusDot.className = 'status-dot' + (state === 'processing' ? ' processing' : '');
+    }
+
+    // Load model
+    async function loadModel() {
+      updateStatus('Loading AI model (first time may take a moment)...', 'processing');
+      model = await cocoSsd.load();
+      updateStatus('AI model ready', 'ready');
+    }
+
+    // Confidence slider
+    const confSlider = document.getElementById('confidence');
+    confSlider.addEventListener('input', () => {
+      document.getElementById('confidence-val').textContent = confSlider.value + '%';
+    });
+
+    // File upload
+    setupDragDrop(document.getElementById('upload-zone'), (files) => handleFile(files[0]));
+    document.getElementById('file-input').addEventListener('change', (e) => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+
+    async function handleFile(file) {
+      if (!model) await loadModel();
+      updateStatus('Detecting objects...', 'processing');
+      const dataUrl = await readFileAsDataURL(file);
+      const img = await loadImage(dataUrl);
+      await detectObjects(img);
+    }
+
+    async function detectObjects(img) {
+      const minConf = parseInt(confSlider.value) / 100;
+      const predictions = await model.detect(img);
+      currentDetections = predictions.filter(p => p.score >= minConf);
+
+      const w = img.naturalWidth || img.width;
+      const h = img.naturalHeight || img.height;
+      resultCanvas.width = w;
+      resultCanvas.height = h;
+      const ctx = resultCanvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+
+      // Color palette for different classes
+      const colors = ['#00d4ff', '#00ff88', '#ff006e', '#ffe066', '#a78bfa', '#ff8a3d', '#f472b6', '#34d399', '#60a5fa', '#fbbf24'];
+      const classColors = {};
+      let colorIndex = 0;
+
+      currentDetections.forEach(det => {
+        if (!classColors[det.class]) {
+          classColors[det.class] = colors[colorIndex % colors.length];
+          colorIndex++;
+        }
+        const color = classColors[det.class];
+        const [x, y, bw, bh] = det.bbox;
+
+        // Draw box
+        ctx.strokeStyle = color;
+        ctx.lineWidth = Math.max(2, w / 400);
+        ctx.strokeRect(x, y, bw, bh);
+
+        // Label background
+        const label = `${det.class} ${Math.round(det.score * 100)}%`;
+        ctx.font = `bold ${Math.max(14, w / 50)}px Inter, sans-serif`;
+        const textWidth = ctx.measureText(label).width;
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y - Math.max(20, w / 40), textWidth + 10, Math.max(20, w / 40));
+
+        // Label text
+        ctx.fillStyle = '#000';
+        ctx.fillText(label, x + 5, y - 5);
+      });
+
+      // Update table
+      updateTable();
+      document.getElementById('result-section').style.display = 'block';
+      trackToolUsage('object-detector');
+      updateStatus(`Detected ${currentDetections.length} objects`, 'ready');
+    }
+
+    function updateTable() {
+      const body = document.getElementById('detection-body');
+      const counts = {};
+      currentDetections.forEach(d => { counts[d.class] = (counts[d.class] || 0) + 1; });
+      
+      body.innerHTML = '';
+      const seen = {};
+      currentDetections.forEach(d => {
+        if (seen[d.class]) return;
+        seen[d.class] = true;
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid var(--border-color)';
+        tr.innerHTML = `<td style="padding:0.5rem;color:var(--text-primary);">${d.class}</td><td style="padding:0.5rem;color:var(--neon-green);">${Math.round(d.score * 100)}%</td><td style="padding:0.5rem;color:var(--text-primary);">${counts[d.class]}</td>`;
+        body.appendChild(tr);
+      });
+
+      if (currentDetections.length === 0) {
+        body.innerHTML = '<tr><td colspan="3" style="padding:0.5rem;color:var(--text-muted);">No objects detected. Try lowering confidence threshold.</td></tr>';
+      }
+    }
+
+    // Webcam
+    document.getElementById('mode-webcam').addEventListener('click', async () => {
+      document.getElementById('upload-zone').style.display = 'none';
+      document.getElementById('webcam-section').style.display = 'block';
+      try {
+        webcamStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+        document.getElementById('webcam').srcObject = webcamStream;
+      } catch (err) {
+        showToast('Camera access denied', 'error');
+      }
+    });
+
+    document.getElementById('mode-image').addEventListener('click', () => {
+      document.getElementById('upload-zone').style.display = 'block';
+      document.getElementById('webcam-section').style.display = 'none';
+      stopWebcam();
+    });
+
+    document.getElementById('capture-btn').addEventListener('click', async () => {
+      if (!model) await loadModel();
+      const video = document.getElementById('webcam');
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0);
+      const img = await loadImage(canvas.toDataURL());
+      await detectObjects(img);
+    });
+
+    document.getElementById('stop-webcam').addEventListener('click', () => {
+      stopWebcam();
+      document.getElementById('upload-zone').style.display = 'block';
+      document.getElementById('webcam-section').style.display = 'none';
+    });
+
+    function stopWebcam() {
+      if (webcamStream) {
+        webcamStream.getTracks().forEach(t => t.stop());
+        webcamStream = null;
+      }
+    }
+
+    // Download
+    document.getElementById('download-btn').addEventListener('click', () => {
+      downloadCanvas(resultCanvas, 'detected-objects.png');
+      showToast('Annotated image downloaded!', 'success');
+    });
+
+    // Copy JSON
+    document.getElementById('copy-json-btn').addEventListener('click', () => {
+      const json = JSON.stringify(currentDetections.map(d => ({
+        class: d.class,
+        confidence: Math.round(d.score * 100) / 100,
+        bbox: { x: Math.round(d.bbox[0]), y: Math.round(d.bbox[1]), width: Math.round(d.bbox[2]), height: Math.round(d.bbox[3]) }
+      })), null, 2);
+      copyToClipboard(json);
+    });
+
+    // Pre-load model
+    loadModel();
+  })();
+  </script>
+</body>
+</html>

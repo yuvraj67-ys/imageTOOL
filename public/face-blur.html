@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Face Blur Tool - Auto Detect & Blur Faces | ImgAURA</title>
+  <meta name="description" content="Automatically detect and blur faces for privacy. Blur, pixelate, or emoji options. Manual draw mode. 100% free, browser-based.">
+  <link rel="canonical" href="https://your-domain.vercel.app/face-blur.html">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/global.css">
+</head>
+<body data-page-type="tool">
+  <nav class="navbar"><div class="container"><a href="/" class="navbar-logo">✦ ImgAURA</a><ul class="navbar-links" id="nav-links"><li><a href="/bg-remover.html">BG Remover</a></li><li><a href="/image-enhancer.html">Enhancer</a></li><li><a href="/object-detector.html">Detector</a></li><li><a href="/image-converter.html">Converter</a></li><li><a href="/image-compressor.html">Compressor</a></li><li><a href="/face-blur.html" style="color:var(--neon-blue);">Face Blur</a></li></ul><button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button></div></nav>
+
+  <div class="container"><nav class="breadcrumb" aria-label="breadcrumb"><a href="/">Home</a><span class="breadcrumb-sep">›</span><a href="/#tools-grid">Tools</a><span class="breadcrumb-sep">›</span><span style="color:var(--text-primary);">Face Blur</span></nav></div>
+
+
+  <section class="section" style="padding-top:1rem;">
+    <div class="container">
+      <h1 style="font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;"><span class="neon-text">Face Blur / Privacy Tool</span></h1>
+      <p style="color:var(--text-secondary);margin-bottom:2rem;">Auto-detect faces and apply blur, pixelation, or emoji. Manual draw mode available.</p>
+      <div class="tool-layout">
+        <div class="tool-main">
+          <div class="upload-zone" id="upload-zone"><span class="upload-zone-icon">😶</span><p class="upload-zone-text"><strong>Click or drag & drop</strong> your image</p><p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;">PNG, JPEG, WEBP</p><input type="file" id="file-input" accept="image/*"></div>
+
+          <div class="status-bar" id="status-bar" style="display:none;margin-top:1rem;"><span class="status-dot" id="status-dot"></span><span id="status-text">Ready</span></div>
+
+          <div id="controls" style="display:none;margin-top:1.5rem;">
+            <div class="panel" style="display:grid;gap:1rem;">
+              <div>
+                <span style="font-size:0.85rem;font-weight:500;display:block;margin-bottom:0.5rem;">Blur Effect</span>
+                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                  <button class="btn-secondary btn-sm effect-btn active" data-effect="blur" style="border-color:var(--neon-blue);">🔵 Blur</button>
+                  <button class="btn-secondary btn-sm effect-btn" data-effect="pixelate">🟩 Pixelate</button>
+                  <button class="btn-secondary btn-sm effect-btn" data-effect="emoji">😀 Emoji</button>
+                </div>
+              </div>
+              <div id="blur-level-row">
+                <span style="font-size:0.85rem;font-weight:500;display:block;margin-bottom:0.5rem;">Intensity</span>
+                <div style="display:flex;gap:0.5rem;">
+                  <button class="btn-secondary btn-sm level-btn" data-level="10">Light</button>
+                  <button class="btn-secondary btn-sm level-btn active" data-level="20" style="border-color:var(--neon-blue);">Medium</button>
+                  <button class="btn-secondary btn-sm level-btn" data-level="35">Heavy</button>
+                </div>
+              </div>
+              <div id="emoji-row" style="display:none;">
+                <span style="font-size:0.85rem;font-weight:500;display:block;margin-bottom:0.5rem;">Emoji</span>
+                <div style="display:flex;gap:0.5rem;">
+                  <button class="btn-secondary btn-sm emoji-btn active" data-emoji="😀" style="font-size:1.2rem;border-color:var(--neon-blue);">😀</button>
+                  <button class="btn-secondary btn-sm emoji-btn" data-emoji="🟡" style="font-size:1.2rem;">🟡</button>
+                  <button class="btn-secondary btn-sm emoji-btn" data-emoji="⬛" style="font-size:1.2rem;">⬛</button>
+                  <button class="btn-secondary btn-sm emoji-btn" data-emoji="😎" style="font-size:1.2rem;">😎</button>
+                  <button class="btn-secondary btn-sm emoji-btn" data-emoji="🤖" style="font-size:1.2rem;">🤖</button>
+                </div>
+              </div>
+              <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                <button class="btn-primary btn-sm" id="blur-all-btn">🔒 Blur All Faces</button>
+                <button class="btn-secondary btn-sm" id="manual-mode-btn">✏️ Manual Draw</button>
+                <button class="btn-secondary btn-sm" id="reset-btn">↺ Reset</button>
+              </div>
+              <div id="manual-hint" style="display:none;font-size:0.8rem;color:var(--neon-blue);padding:0.5rem;background:rgba(0,212,255,0.05);border-radius:var(--radius-sm);">
+                ✏️ Click and drag on the image to draw blur regions. Click "Blur All Faces" to switch back to auto mode.
+              </div>
+            </div>
+          </div>
+
+          <div id="result-section" style="display:none;margin-top:1.5rem;">
+            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Result <span id="face-count" style="font-size:0.8rem;color:var(--text-secondary);font-family:var(--font-body);"></span></h3>
+            <div class="panel" style="position:relative;cursor:crosshair;" id="canvas-wrapper">
+              <canvas id="result-canvas" style="max-width:100%;border-radius:8px;display:block;"></canvas>
+            </div>
+            <button class="btn-primary" id="download-btn" style="margin-top:1rem;">📥 Download Result</button>
+          </div>
+
+
+          <div style="margin-top:2rem;"><h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Related Tools</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;"><a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;">🖼️ BG Remover</a><a href="/object-detector.html" class="panel" style="text-decoration:none;padding:1rem;">🔍 Detector</a><a href="/image-compressor.html" class="panel" style="text-decoration:none;padding:1rem;">📦 Compressor</a></div></div>
+          <div style="margin-top:2.5rem;"><h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1rem;">FAQ</h2><div class="faq-list"><div class="faq-item"><button class="faq-question">How does face detection work? <span class="faq-icon">▼</span></button><div class="faq-answer">We use Google's MediaPipe Face Detection model that runs in your browser. It detects face regions which are then blurred, pixelated, or covered with emoji.</div></div><div class="faq-item"><button class="faq-question">Can I manually select regions? <span class="faq-icon">▼</span></button><div class="faq-answer">Yes! Enable manual draw mode and click-drag on the image to create custom blur regions.</div></div><div class="faq-item"><button class="faq-question">Is it accurate for group photos? <span class="faq-icon">▼</span></button><div class="faq-answer">MediaPipe handles multiple faces well. All detected faces are blurred simultaneously.</div></div></div></div>
+        </div>
+        <div class="tool-sidebar"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-bottom"><p>© 2024 ImgAURA &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a> &bull; <a href="/contact.html">Contact</a></p></div></div></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/face_detection.js" crossorigin="anonymous"></script>
+  <script src="/js/utils.js"></script><script src="/js/analytics.js"></script>
+
+  <script>
+  (() => {
+    let detector=null, originalImage=null, detections=[], effect='blur', blurLevel=20, selectedEmoji='😀', manualMode=false, manualRects=[];
+    const canvas=document.getElementById('result-canvas'), ctx=canvas.getContext('2d');
+
+    function status(t,s='ready'){document.getElementById('status-bar').style.display='flex';document.getElementById('status-text').textContent=t;document.getElementById('status-dot').className='status-dot'+(s==='processing'?' processing':'');}
+
+    async function initDetector(){
+      status('Loading face detection model...','processing');
+      detector=new FaceDetection({locateFile:f=>`https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/${f}`});
+      detector.setOptions({model:'short',minDetectionConfidence:0.5});
+      detector.onResults(onResults);
+      status('Model ready');
+    }
+
+    // Effect buttons
+    document.querySelectorAll('.effect-btn').forEach(b=>b.addEventListener('click',()=>{
+      document.querySelectorAll('.effect-btn').forEach(x=>{x.classList.remove('active');x.style.borderColor='';});
+      b.classList.add('active');b.style.borderColor='var(--neon-blue)';
+      effect=b.dataset.effect;
+      document.getElementById('blur-level-row').style.display=effect!=='emoji'?'block':'none';
+      document.getElementById('emoji-row').style.display=effect==='emoji'?'block':'none';
+      if(originalImage)renderResult();
+    }));
+
+    // Level buttons
+    document.querySelectorAll('.level-btn').forEach(b=>b.addEventListener('click',()=>{
+      document.querySelectorAll('.level-btn').forEach(x=>{x.classList.remove('active');x.style.borderColor='';});
+      b.classList.add('active');b.style.borderColor='var(--neon-blue)';
+      blurLevel=parseInt(b.dataset.level);if(originalImage)renderResult();
+    }));
+
+    // Emoji buttons
+    document.querySelectorAll('.emoji-btn').forEach(b=>b.addEventListener('click',()=>{
+      document.querySelectorAll('.emoji-btn').forEach(x=>{x.classList.remove('active');x.style.borderColor='';});
+      b.classList.add('active');b.style.borderColor='var(--neon-blue)';
+      selectedEmoji=b.dataset.emoji;if(originalImage)renderResult();
+    }));
+
+    // Upload
+    setupDragDrop(document.getElementById('upload-zone'),files=>handleFile(files[0]));
+    document.getElementById('file-input').addEventListener('change',e=>{if(e.target.files[0])handleFile(e.target.files[0]);});
+
+    async function handleFile(file){
+      if(!detector)await initDetector();
+      status('Detecting faces...','processing');
+      originalImage=await loadImage(await readFileAsDataURL(file));
+      manualRects=[];
+      await detector.send({image:originalImage});
+    }
+
+    function onResults(results){
+      const w=originalImage.naturalWidth,h=originalImage.naturalHeight;
+      detections=[];
+      if(results.detections){
+        results.detections.forEach(d=>{
+          const bb=d.boundingBox;
+          detections.push({x:bb.xCenter-bb.width/2,y:bb.yCenter-bb.height/2,w:bb.width,h:bb.height,
+            xPx:(bb.xCenter-bb.width/2)*w,yPx:(bb.yCenter-bb.height/2)*h,wPx:bb.width*w,hPx:bb.height*h});
+        });
+      }
+      document.getElementById('controls').style.display='block';
+      document.getElementById('result-section').style.display='block';
+      document.getElementById('face-count').textContent=`(${detections.length} face${detections.length!==1?'s':''} detected)`;
+      renderResult();
+      trackToolUsage('face-blur');
+      status(`${detections.length} face(s) detected`);
+    }
+
+    function renderResult(){
+      if(!originalImage)return;
+      const w=originalImage.naturalWidth,h=originalImage.naturalHeight;
+      canvas.width=w;canvas.height=h;
+      ctx.clearRect(0,0,w,h);ctx.drawImage(originalImage,0,0,w,h);
+
+      const allRects=[...detections.map(d=>({x:d.xPx,y:d.yPx,w:d.wPx,h:d.hPx})),...manualRects];
+      allRects.forEach(r=>applyEffect(r.x,r.y,r.w,r.h));
+    }
+
+    function applyEffect(x,y,w,h){
+      // Add padding
+      const pad=0.15;
+      const px=Math.max(0,x-w*pad),py=Math.max(0,y-h*pad);
+      const pw=Math.min(canvas.width-px,w*(1+2*pad)),ph=Math.min(canvas.height-py,h*(1+2*pad));
+
+      if(effect==='blur'){
+        // Save region, blur, draw back
+        ctx.save();
+        ctx.beginPath();
+        ctx.ellipse(px+pw/2,py+ph/2,pw/2,ph/2,0,0,Math.PI*2);
+        ctx.clip();
+        ctx.filter=`blur(${blurLevel}px)`;
+        ctx.drawImage(canvas,0,0);
+        ctx.filter='none';
+        ctx.restore();
+      } else if(effect==='pixelate'){
+        const size=Math.max(4,blurLevel/2);
+        const imgData=ctx.getImageData(px,py,pw,ph);
+        for(let iy=0;iy<ph;iy+=size){
+          for(let ix=0;ix<pw;ix+=size){
+            const idx=(Math.floor(iy)*Math.floor(pw)+Math.floor(ix))*4;
+            const r=imgData.data[idx],g=imgData.data[idx+1],b=imgData.data[idx+2];
+            ctx.fillStyle=`rgb(${r},${g},${b})`;
+            ctx.fillRect(px+ix,py+iy,size,size);
+          }
+        }
+      } else if(effect==='emoji'){
+        const fontSize=Math.max(pw,ph)*1.1;
+        ctx.font=`${fontSize}px serif`;
+        ctx.textAlign='center';ctx.textBaseline='middle';
+        ctx.fillText(selectedEmoji,px+pw/2,py+ph/2);
+      }
+    }
+
+    // Blur All
+    document.getElementById('blur-all-btn').addEventListener('click',()=>{manualMode=false;document.getElementById('manual-hint').style.display='none';renderResult();});
+
+    // Manual mode
+    document.getElementById('manual-mode-btn').addEventListener('click',()=>{
+      manualMode=true;document.getElementById('manual-hint').style.display='block';
+      showToast('Draw on the image to add blur regions','info');
+    });
+
+    // Reset
+    document.getElementById('reset-btn').addEventListener('click',()=>{
+      manualRects=[];manualMode=false;document.getElementById('manual-hint').style.display='none';
+      if(originalImage){canvas.width=originalImage.naturalWidth;canvas.height=originalImage.naturalHeight;ctx.drawImage(originalImage,0,0);}
+    });
+
+    // Manual draw
+    let drawing=false,startX=0,startY=0;
+    const wrapper=document.getElementById('canvas-wrapper');
+    wrapper.addEventListener('mousedown',e=>{if(!manualMode)return;drawing=true;const r=canvas.getBoundingClientRect();const sx=canvas.width/r.width;startX=(e.clientX-r.left)*sx;startY=(e.clientY-r.top)*sx;});
+    wrapper.addEventListener('mousemove',e=>{if(!drawing)return;const r=canvas.getBoundingClientRect();const sx=canvas.width/r.width;const cx=(e.clientX-r.left)*sx,cy=(e.clientY-r.top)*sx;
+      renderResult();ctx.strokeStyle='var(--neon-blue)';ctx.lineWidth=2;ctx.setLineDash([5,5]);ctx.strokeRect(startX,startY,cx-startX,cy-startY);ctx.setLineDash([]);
+    });
+    wrapper.addEventListener('mouseup',e=>{if(!drawing)return;drawing=false;const r=canvas.getBoundingClientRect();const sx=canvas.width/r.width;
+      const cx=(e.clientX-r.left)*sx,cy=(e.clientY-r.top)*sx;
+      const rx=Math.min(startX,cx),ry=Math.min(startY,cy),rw=Math.abs(cx-startX),rh=Math.abs(cy-startY);
+      if(rw>5&&rh>5){manualRects.push({x:rx,y:ry,w:rw,h:rh});renderResult();}
+    });
+
+    // Download
+    document.getElementById('download-btn').addEventListener('click',()=>{downloadCanvas(canvas,'face-blurred.png');showToast('Downloaded!','success');});
+
+    initDetector();
+  })();
+  </script>
+</body>
+</html>
