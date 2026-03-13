@@ -141,11 +141,6 @@
             <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Post-Processing</h3>
             <div class="panel" style="display:grid;gap:0.75rem;">
               <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">
-                Edge Smoothness
-                <input type="range" class="range-slider" id="edge-smooth" min="0" max="10" value="2" style="flex:1;">
-                <span id="edge-value" style="min-width:20px;text-align:right;">2</span>
-              </label>
-              <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">
                 Brightness
                 <input type="range" class="range-slider" id="brightness" min="-50" max="50" value="0" style="flex:1;">
                 <span id="brightness-value" style="min-width:20px;text-align:right;">0</span>
@@ -233,7 +228,7 @@
           <div style="margin-top:2.5rem;">
             <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.25rem;font-family:var(--font-heading);">FAQ</h2>
             <div class="faq-list">
-              <div class="faq-item"><button class="faq-question">How does the background removal work? <span class="faq-icon">▼</span></button><div class="faq-answer">We use Google's MediaPipe Selfie Segmentation model which runs entirely in your browser. It creates a pixel-level segmentation mask to separate the foreground from the background.</div></div>
+              <div class="faq-item"><button class="faq-question">How does the background removal work? <span class="faq-icon">▼</span></button><div class="faq-answer">We use a high-quality AI model (@imgly) that runs entirely in your browser. It performs professional-grade alpha matting without uploading your images to any server.</div></div>
               <div class="faq-item"><button class="faq-question">Can I process multiple images at once? <span class="faq-icon">▼</span></button><div class="faq-answer">Yes! Enable "Batch Mode" to process up to 10 images at once. You can download all results as a ZIP file.</div></div>
               <div class="faq-item"><button class="faq-question">What background options are available? <span class="faq-icon">▼</span></button><div class="faq-answer">You can choose transparent, solid color, gradient (12 presets), custom image, or blurred original background.</div></div>
               <div class="faq-item"><button class="faq-question">Are my images uploaded anywhere? <span class="faq-icon">▼</span></button><div class="faq-answer">No. All processing happens locally in your browser. Your images never leave your device.</div></div>
@@ -243,8 +238,7 @@
 
 
         </div>
-
-
+        <div class="tool-sidebar"><div id="ad-native-container" style="margin-top:2rem;"></div></div>
       </div>
     </div>
   </section>
@@ -252,6 +246,7 @@
 
 
   <!-- FOOTER -->
+    <div id="ad-banner-bottom" style="margin: 2rem auto; max-width: 728px; text-align: center; display: flex; justify-content: center; overflow: hidden;"></div>
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
@@ -260,9 +255,8 @@
     </div>
   </footer>
 
-  <!-- MediaPipe -->
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/selfie_segmentation.js" crossorigin="anonymous"></script>
-  <!-- JSZip for batch download -->
+  <!-- Imgly Background Removal -->
+  <script src="https://unpkg.com/@imgly/background-removal@1.4.3/dist/imgly-remove-background.umd.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="/js/utils.js"></script>
   <script src="/js/analytics.js"></script>
@@ -300,15 +294,9 @@
     const baContainer = document.getElementById('ba-container');
     const batchToggle = document.getElementById('batch-toggle');
 
-    // ── Init MediaPipe ──
+    // ── Init Imgly ──
     async function initSegmenter() {
-      updateStatus('Loading AI model...', 'processing');
-      segmenter = new SelfieSegmentation({
-        locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`
-      });
-      segmenter.setOptions({ modelSelection: 1, selfieMode: false });
-      segmenter.onResults(onSegmentationResults);
-      updateStatus('AI model ready', 'ready');
+      updateStatus('Ready (Model downloads on first image)', 'ready');
     }
 
     function updateStatus(text, state = 'ready') {
@@ -351,10 +339,9 @@
     });
 
     // Slider value displays
-    ['edge-smooth', 'brightness', 'contrast', 'saturation'].forEach(id => {
+    ['brightness', 'contrast', 'saturation'].forEach(id => {
       const el = document.getElementById(id);
-      const valEl = document.getElementById(id.replace('-smooth', '') + '-value')
-        || document.getElementById(id + '-value');
+      const valEl = document.getElementById(id + '-value');
       if (el && valEl) {
         el.addEventListener('input', () => { valEl.textContent = el.value; });
       }
@@ -373,7 +360,7 @@
 
     async function handleFiles(files) {
       if (!files.length) return;
-      if (!segmenter) await initSegmenter();
+      // segmenter check removed
 
       const fileArray = Array.from(files).slice(0, batchMode ? 10 : 1);
       batchResults = [];
@@ -394,36 +381,30 @@
       }
     }
 
+    let originalRawImage = null;
+
     async function processFile(file) {
-      updateStatus('Processing...', 'processing');
-      const dataUrl = await readFileAsDataURL(file);
-      originalImage = await loadImage(dataUrl);
-      await segmenter.send({ image: originalImage });
+      updateStatus('Downloading AI Model & Processing... (might take a moment)', 'processing');
+      try {
+        const rawDataUrl = await readFileAsDataURL(file);
+        originalRawImage = await loadImage(rawDataUrl);
+
+        const config = { publicPath: "https://unpkg.com/@imgly/background-removal@1.4.3/dist/" };
+        const bgRemovedBlob = await imglyRemoveBackground(file, config);
+        const dataUrl = await readFileAsDataURL(bgRemovedBlob);
+        originalImage = await loadImage(dataUrl); // This is now the transparent foreground
+        
+        onSegmentationResults();
+      } catch (err) {
+        console.error(err);
+        updateStatus('Error processing image. Check console.', 'error');
+      }
     }
 
     // ── Segmentation Result ──
     let currentMask = null;
 
-    function onSegmentationResults(results) {
-      const w = originalImage.naturalWidth || originalImage.width;
-      const h = originalImage.naturalHeight || originalImage.height;
-
-      // Create mask canvas
-      maskCanvas = document.createElement('canvas');
-      maskCanvas.width = w;
-      maskCanvas.height = h;
-      const maskCtx = maskCanvas.getContext('2d');
-      maskCtx.drawImage(results.segmentationMask, 0, 0, w, h);
-
-      // Apply edge smoothing
-      const edgeSmooth = parseInt(document.getElementById('edge-smooth').value) || 0;
-      if (edgeSmooth > 0) {
-        maskCtx.filter = `blur(${edgeSmooth}px)`;
-        maskCtx.drawImage(maskCanvas, 0, 0);
-        maskCtx.filter = 'none';
-      }
-
-      currentMask = maskCanvas;
+    function onSegmentationResults() {
       renderResult();
 
       // Show controls
@@ -478,27 +459,17 @@
         }
       } else if (currentBgType === 'custom' && customBgImage) {
         ctx.drawImage(customBgImage, 0, 0, w, h);
-      } else if (currentBgType === 'blur') {
+      } else if (currentBgType === 'blur' && originalRawImage) {
         const blurVal = document.getElementById('blur-intensity').value;
         ctx.filter = `blur(${blurVal}px)`;
-        ctx.drawImage(originalImage, 0, 0, w, h);
+        ctx.drawImage(originalRawImage, 0, 0, w, h);
         ctx.filter = 'none';
       }
 
-      // Draw foreground with mask
+      // Draw foreground (transparent)
       ctx.save();
       ctx.filter = `brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%)`;
-      
-      // Create temp canvas for masked foreground
-      const tempCanvas = document.createElement('canvas');
-      tempCanvas.width = w;
-      tempCanvas.height = h;
-      const tempCtx = tempCanvas.getContext('2d');
-      tempCtx.drawImage(originalImage, 0, 0, w, h);
-      tempCtx.globalCompositeOperation = 'destination-in';
-      tempCtx.drawImage(currentMask, 0, 0, w, h);
-
-      ctx.drawImage(tempCanvas, 0, 0);
+      ctx.drawImage(originalImage, 0, 0, w, h);
       ctx.restore();
 
       // Store for batch
@@ -514,7 +485,7 @@
     applyBgBtn.addEventListener('click', renderResult);
 
     // Re-render on slider changes
-    ['edge-smooth', 'brightness', 'contrast', 'saturation', 'blur-intensity'].forEach(id => {
+    ['brightness', 'contrast', 'saturation', 'blur-intensity'].forEach(id => {
       document.getElementById(id)?.addEventListener('input', debounce(renderResult, 150));
     });
 
@@ -561,7 +532,11 @@
       baBefore.width = w; baBefore.height = h;
       baAfterCanvas.width = w; baAfterCanvas.height = h;
 
-      baBefore.getContext('2d').drawImage(originalImage, 0, 0, w, h);
+      if (originalRawImage) {
+        baBefore.getContext('2d').drawImage(originalRawImage, 0, 0, w, h);
+      } else {
+        baBefore.getContext('2d').drawImage(originalImage, 0, 0, w, h);
+      }
       baAfterCanvas.getContext('2d').drawImage(resultCanvas, 0, 0, w, h);
 
       const slider = document.getElementById('ba-slider');
@@ -617,5 +592,6 @@
   })();
   </script>
 
+  <script src="/js/adsterra.js" defer></script>
 </body>
 </html>

@@ -1,86 +1,70 @@
 /* ═══════════════════════════════════════════════════════════
-   ImgAURA — Ad Manager (Adsterra)
-   When keys are configured, ads load automatically.
-   When keys start with YOUR_, nothing is rendered.
+   ImgAURA — Ad Manager (V2)
+   Implemented cleanly to preserve User Experience while maximizing earnings.
    ═══════════════════════════════════════════════════════════ */
 
-const AdsterraManager = {
-  config: {
-    bannerTop: { key: 'YOUR_BANNER_TOP_KEY', width: 728, height: 90, mobileWidth: 320, mobileHeight: 50 },
-    bannerSidebar: { key: 'YOUR_BANNER_SIDEBAR_KEY', width: 300, height: 250 },
-    bannerBottom: { key: 'YOUR_BANNER_BOTTOM_KEY', width: 728, height: 90, mobileWidth: 320, mobileHeight: 50 },
-    nativeAd: { key: 'YOUR_NATIVE_AD_KEY' },
-    popunder: { key: 'YOUR_POPUNDER_KEY', domain: 'YOUR_POPUNDER_DOMAIN' },
+const AdManager = {
+  // Global scripts (Social bar / Popunder alternatives)
+  injectGlobalScripts() {
+    const scripts = [
+      "https://pl28909652.effectivegatecpm.com/35/57/dc/3557dc9a4979db83d89e9b839c6217af.js",
+      "https://pl28909637.effectivegatecpm.com/59/ea/cd/59eacdeea647b832856e053547384824.js"
+    ];
+
+    scripts.forEach(src => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      document.body.appendChild(s);
+    });
   },
 
-  _injectBanner(containerId, key, width, height) {
+  // Responsive Banner (320x50 on mobile, 728x90 on desktop)
+  injectResponsiveBanner(containerId = 'ad-banner-bottom') {
     const container = document.getElementById(containerId);
-    if (!container || key.startsWith('YOUR_')) return;
+    if (!container) return;
+
+    const isMobile = window.innerWidth < 768;
+    const key = isMobile ? 'da5fdff00b42ecfbe23687b94a23e909' : 'f344d67710f33a71c4c46c61a29bda04';
+    const width = isMobile ? 320 : 728;
+    const height = isMobile ? 50 : 90;
+
     const atOptions = { key, format: 'iframe', height, width, params: {} };
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.innerHTML = `atOptions = ${JSON.stringify(atOptions)};`;
-    container.appendChild(script);
+    
+    const optScript = document.createElement('script');
+    optScript.type = 'text/javascript';
+    optScript.innerHTML = `atOptions = ${JSON.stringify(atOptions)};`;
+    container.appendChild(optScript);
+
     const invokeScript = document.createElement('script');
     invokeScript.type = 'text/javascript';
-    invokeScript.src = `//www.highperformanceformat.com/${key}/invoke.js`;
-    invokeScript.async = true;
+    invokeScript.src = `https://www.highperformanceformat.com/${key}/invoke.js`;
     container.appendChild(invokeScript);
   },
 
-  loadBannerTop(containerId = 'ad-top') {
-    const isMobile = window.innerWidth < 768;
-    const cfg = this.config.bannerTop;
-    this._injectBanner(containerId, cfg.key, isMobile ? cfg.mobileWidth : cfg.width, isMobile ? cfg.mobileHeight : cfg.height);
-  },
-
-  loadBannerSidebar(containerId = 'ad-sidebar') {
-    const cfg = this.config.bannerSidebar;
-    this._injectBanner(containerId, cfg.key, cfg.width, cfg.height);
-  },
-
-  loadBannerBottom(containerId = 'ad-bottom') {
-    const isMobile = window.innerWidth < 768;
-    const cfg = this.config.bannerBottom;
-    this._injectBanner(containerId, cfg.key, isMobile ? cfg.mobileWidth : cfg.width, isMobile ? cfg.mobileHeight : cfg.height);
-  },
-
-  loadNativeAd(containerId = 'ad-native') {
+  // Native Widget
+  injectNativeAd(containerId = 'ad-native-container') {
     const container = document.getElementById(containerId);
-    if (!container || this.config.nativeAd.key.startsWith('YOUR_')) return;
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `//nativeroll.elitevideo.click/${this.config.nativeAd.key}/invoke.js`;
-    container.appendChild(script);
+    if (!container) return;
+
+    const invokeScript = document.createElement('script');
+    invokeScript.async = true;
+    invokeScript.dataset.cfasync = "false";
+    invokeScript.src = "https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js";
+    container.appendChild(invokeScript);
+
+    const div = document.createElement('div');
+    div.id = "container-93473ff7b9d6e0da14ef534d15b31530";
+    container.appendChild(div);
   },
 
-  initPopunder() {
-    const key = this.config.popunder.key;
-    if (key.startsWith('YOUR_') || sessionStorage.getItem('pop_fired')) return;
-    document.addEventListener('click', (e) => {
-      if (e.target.closest('input[type="file"]')) return;
-      if (!sessionStorage.getItem('pop_fired')) {
-        sessionStorage.setItem('pop_fired', '1');
-        const s = document.createElement('script');
-        s.src = `//${this.config.popunder.domain}/invoke.js?key=${key}&t=popunder`;
-        s.async = true;
-        document.head.appendChild(s);
-      }
-    }, { once: true });
-  },
-
-  initAll(pageType = 'home') {
-    this.initPopunder();
-    this.loadBannerTop('ad-top');
-    if (pageType === 'tool') {
-      this.loadBannerSidebar('ad-sidebar');
-      this.loadNativeAd('ad-native');
-    }
-    this.loadBannerBottom('ad-bottom');
-  },
+  init() {
+    this.injectGlobalScripts();
+    this.injectResponsiveBanner('ad-banner-bottom');
+    this.injectNativeAd('ad-native-container');
+  }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const pageType = document.body.dataset.pageType || 'home';
-  AdsterraManager.initAll(pageType);
+  AdManager.init();
 });
