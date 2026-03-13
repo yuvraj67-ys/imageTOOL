@@ -43,18 +43,9 @@ const AdManager = {
 
   // Native Widget
   injectNativeAd(containerId = 'ad-native-container') {
+    // ❌ REMOVED: Native ads can sometimes trigger pop-ups and affect UX.
     const container = document.getElementById(containerId);
     if (!container) return;
-
-    const invokeScript = document.createElement('script');
-    invokeScript.async = true;
-    invokeScript.dataset.cfasync = "false";
-    invokeScript.src = "https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js";
-    container.appendChild(invokeScript);
-
-    const div = document.createElement('div');
-    div.id = "container-93473ff7b9d6e0da14ef534d15b31530";
-    container.appendChild(div);
   },
 
   init() {

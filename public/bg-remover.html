@@ -16,8 +16,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/global.css">
+  <!-- Imgly Background Removal -->
+  <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.3/dist/imgly-remove-background.umd.js" crossorigin="anonymous"></script>
 </head>
 <body data-page-type="tool">
 
@@ -255,8 +256,7 @@
     </div>
   </footer>
 
-  <!-- Imgly Background Removal -->
-  <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.3/dist/imgly-remove-background.umd.js"></script>
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <script src="/js/utils.js"></script>
   <script src="/js/analytics.js"></script>
@@ -389,7 +389,7 @@
         const rawDataUrl = await readFileAsDataURL(file);
         originalRawImage = await loadImage(rawDataUrl);
 
-        const config = { publicPath: "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.4.3/dist/" };
+        const config = { publicPath: "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.3/dist/" };
         const bgRemovedBlob = await imglyRemoveBackground(file, config);
         const dataUrl = await readFileAsDataURL(bgRemovedBlob);
         originalImage = await loadImage(dataUrl); // This is now the transparent foreground
