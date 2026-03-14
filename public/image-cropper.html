@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Image Cropper & Rotator Online | ImgAURA</title>
+  <meta name="description" content="Crop, rotate, and resize your images instantly with the ImgAURA Image Cropper. 100% free, runs in your browser, no signup required.">
+  <meta name="keywords" content="image cropper, photo crop tool, rotate image, crop picture online, ImgAURA cropper">
+  <meta property="og:title" content="ImgAURA Image Cropper - Crop & Rotate Images Free">
+  <meta property="og:description" content="Crop and rotate images effortlessly in your browser. Perfect aspect ratios, fast download.">
+  <link rel="canonical" href="https://imgaura.qzz.io/image-cropper.html">
+  <meta name="robots" content="index, follow">
+  
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"ImgAURA Image Cropper",
+    "url": "https://imgaura.qzz.io/image-cropper.html",
+    "description": "Crop, rotate, and resize images directly in your browser.",
+    "applicationCategory":"Photography",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Cropper.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+  <link rel="stylesheet" href="/css/global.css">
+
+  <style>
+    .cropper-container { max-width: 100%; max-height: 60vh; background-color: var(--surface-light); border-radius: 8px; overflow: hidden; display: none; margin: 0 auto; }
+    #image-workspace { display: block; max-width: 100%; }
+    .ratio-btn { background: var(--surface-light); border: 2px solid transparent; color: var(--text-primary); padding: 0.5rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 500; transition: border-color 0.2s; }
+    .ratio-btn.active { border-color: var(--neon-blue); }
+    .tool-controls { display: none; margin-top: 1.5rem; }
+  </style>
+</head>
+<body data-page-type="tool">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="navbar-logo">âœ¦ ImgAURA</a>
+      <ul class="navbar-links" id="nav-links">
+        <li><a href="/bg-remover.html">BG Remover</a></li>
+        <li><a href="/image-cropper.html" style="color:var(--neon-blue);">Cropper</a></li>
+        <li><a href="/watermark-adder.html">Watermark</a></li>
+        <li><a href="/image-filters.html">Filters</a></li>
+        <li><a href="/image-enhancer.html">Enhancer</a></li>
+      </ul>
+      <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">â˜°</button>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">â€º</span>
+      <a href="/#tools-grid">Tools</a> <span class="breadcrumb-sep">â€º</span>
+      <span style="color:var(--text-primary);">Image Cropper</span>
+    </nav>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <section class="section" style="padding-top:1rem;">
+    <div class="container">
+      <div style="display:flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 style="font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;">
+            <span class="neon-text">Image Cropper</span>
+          </h1>
+          <p style="color:var(--text-secondary);">Crop, rotate, and straighten your photos perfectly.</p>
+        </div>
+        
+        <!-- SMARTLINK BUTTON AD -->
+        <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" target="_blank" rel="noopener sponsored" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); text-decoration:none;">
+          ðŸ’Ž Sponsored Offers
+        </a>
+      </div>
+
+      <div class="tool-layout">
+        <!-- Main Workspace -->
+        <div class="tool-main">
+          
+          <!-- Upload Zone -->
+          <div class="upload-zone" id="upload-zone">
+            <span class="upload-zone-icon">ðŸ“¤</span>
+            <p class="upload-zone-text"><strong>Click or drag & drop</strong> an image here</p>
+            <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;">PNG, JPEG, WEBP</p>
+            <input type="file" id="file-input" accept="image/png, image/jpeg, image/webp">
+          </div>
+
+          <!-- Cropper Container -->
+          <div class="cropper-container" id="cropper-container">
+            <img id="image-workspace" src="" alt="Workspace">
+          </div>
+
+          <!-- Controls (Hidden until upload) -->
+          <div class="tool-controls" id="tool-controls">
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+              
+              <!-- Aspect Ratios -->
+              <div>
+                <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;">Aspect Ratio</h3>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
+                  <button class="ratio-btn active" data-ratio="NaN">Free</button>
+                  <button class="ratio-btn" data-ratio="1">1:1</button>
+                  <button class="ratio-btn" data-ratio="1.33333">4:3</button>
+                  <button class="ratio-btn" data-ratio="1.77777">16:9</button>
+                  <button class="ratio-btn" data-ratio="0.66666">2:3</button>
+                  <button class="ratio-btn" data-ratio="0.5625">9:16</button>
+                  <button class="ratio-btn" data-ratio="2.33333">21:9</button>
+                  <button class="btn-secondary" id="reset-btn" style="padding:0.5rem; font-size:0.85rem;">Reset</button>
+                </div>
+              </div>
+
+              <!-- Rotation & Zoom -->
+              <div>
+                <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;">Transform</h3>
+                <div style="display:flex; gap: 0.5rem; flex-wrap: wrap;">
+                  <button class="btn-secondary" id="rot-left" style="flex:1;">â†º Left</button>
+                  <button class="btn-secondary" id="rot-right" style="flex:1;">Right â†»</button>
+                  <button class="btn-secondary" id="flip-h" style="flex:1;">â†” Flip</button>
+                  <button class="btn-secondary" id="flip-v" style="flex:1;">â†• Flip</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Download Section -->
+            <div style="margin-top:2rem; padding-top: 2rem; border-top: 1px solid var(--border-color); text-align: center;">
+              <button class="btn-primary" id="download-btn" style="padding: 1rem 3rem; font-size: 1.1rem;">ðŸ“¥ Crop & Download image</button>
+            </div>
+          </div>
+
+          <!-- FAQ -->
+          <div style="margin-top:3rem;">
+            <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.25rem;font-family:var(--font-heading);">Frequently Asked Questions</h2>
+            <div class="faq-list">
+              <div class="faq-item"><button class="faq-question">Are my images uploaded to a server? <span class="faq-icon">â–¼</span></button><div class="faq-answer">No, the ImgAURA Image Cropper works entirely inside your web browser. Your images never leave your device, ensuring maximum privacy and instant speed.</div></div>
+              <div class="faq-item"><button class="faq-question">Will cropping reduce image quality? <span class="faq-icon">â–¼</span></button><div class="faq-answer">No! Our cropper extracts the exact pixels based on your selection without compressing or degrading the original image resolution.</div></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar / Ads -->
+        <div class="tool-sidebar">
+          
+          <!-- NATIVE BANNER AD (HARDCODED) -->
+          <div class="panel" style="padding:1rem; text-align:center; min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+             <span style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block;">Advertisement</span>
+             
+             <!-- Adsterra Native Banner Code -->
+             <div id="container-93473ff7b9d6e0da14ef534d15b31530"></div>
+             <script async="async" data-cfasync="false" src="https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js"></script>
+          </div>
+
+          <!-- Related Tools -->
+          <h3 style="font-size:1rem;font-weight:600;margin-top:2rem;margin-bottom:1rem;">More ImgAURA Tools</h3>
+          <div style="display:grid;gap:0.75rem;">
+            <a href="/watermark-adder.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
+              <span style="font-size:1.2rem;">ðŸ“</span>
+              <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Add Watermark</span>
+            </a>
+            <a href="/image-filters.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
+              <span style="font-size:1.2rem;">ðŸŽ¨</span>
+              <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Image Filters</span>
+            </a>
+            <a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
+              <span style="font-size:1.2rem;">âœ¨</span>
+              <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Background Remover</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>Â© 2024 ImgAURA &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a> &bull; <a href="/contact.html">Contact</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/adsterra.js" defer></script>
+
+  <script>
+    (() => {
+      const fileInput = document.getElementById('file-input');
+      const uploadZone = document.getElementById('upload-zone');
+      const cropperContainer = document.getElementById('cropper-container');
+      const imageWorkspace = document.getElementById('image-workspace');
+      const toolControls = document.getElementById('tool-controls');
+      const downloadBtn = document.getElementById('download-btn');
+      
+      let cropper = null;
+      let currentFormat = 'image/jpeg';
+      let originalFilename = 'image';
+
+      // Initialize File Upload Dropzone
+      setupDragDrop(uploadZone, handleFiles);
+      fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+      async function handleFiles(files) {
+        if (!files.length) return;
+        const file = files[0];
+        
+        // Save format and name for download
+        currentFormat = file.type || 'image/jpeg';
+        originalFilename = file.name.split('.')[0] || 'cropped';
+
+        const dataUrl = await readFileAsDataURL(file);
+        
+        // Setup Cropper
+        uploadZone.style.display = 'none';
+        cropperContainer.style.display = 'block';
+        toolControls.style.display = 'block';
+        
+        imageWorkspace.src = dataUrl;
+        
+        if (cropper) { cropper.destroy(); }
+        
+        cropper = new Cropper(imageWorkspace, {
+          viewMode: 1,
+          dragMode: 'move',
+          autoCropArea: 0.8,
+          restore: false,
+          guides: true,
+          center: true,
+          highlight: false,
+          cropBoxMovable: true,
+          cropBoxResizable: true,
+          toggleDragModeOnDblclick: false,
+        });
+        
+        trackToolUsage('cropper');
+      }
+
+      // Aspect Ratio Buttons
+      document.querySelectorAll('.ratio-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.ratio-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const ratio = parseFloat(btn.dataset.ratio);
+          cropper.setAspectRatio(isNaN(ratio) ? NaN : ratio);
+        });
+      });
+
+      // Transform Buttons
+      document.getElementById('rot-left').addEventListener('click', () => cropper.rotate(-90));
+      document.getElementById('rot-right').addEventListener('click', () => cropper.rotate(90));
+      
+      let scaleX = 1;
+      let scaleY = 1;
+      document.getElementById('flip-h').addEventListener('click', () => {
+        scaleX = scaleX === 1 ? -1 : 1;
+        cropper.scaleX(scaleX);
+      });
+      document.getElementById('flip-v').addEventListener('click', () => {
+        scaleY = scaleY === 1 ? -1 : 1;
+        cropper.scaleY(scaleY);
+      });
+
+      document.getElementById('reset-btn').addEventListener('click', () => {
+        cropper.reset();
+        document.querySelectorAll('.ratio-btn')[0].click(); // reset to free ratio
+      });
+
+      // Download
+      downloadBtn.addEventListener('click', () => {
+        if (!cropper) return;
+        
+        const canvas = cropper.getCroppedCanvas({
+          imageSmoothingEnabled: true,
+          imageSmoothingQuality: 'high',
+        });
+        
+        canvas.toBlob((blob) => {
+          const extension = currentFormat === 'image/png' ? 'png' : currentFormat === 'image/webp' ? 'webp' : 'jpg';
+          downloadBlob(blob, `${originalFilename}-imgaura-cropped.${extension}`);
+          showToast('Image cropped successfully!', 'success');
+        }, currentFormat, 0.95); // 0.95 quality for jpeg/webp
+      });
+
+    })();
+  </script>
+</body>
+</html>
+

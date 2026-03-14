@@ -1,0 +1,391 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online Image Filters & Effects | ImgAURA</title>
+  <meta name="description" content="Apply beautiful Instagram-style photo filters, color effects, and adjustments (grayscale, sepia, blur, contrast) to your images instantly for free.">
+  <meta name="keywords" content="image filters online, photo effects, add filter to photo, instagram filters online, ImgAURA filters">
+  <meta property="og:title" content="ImgAURA Image Filters - Beautiful Photo Effects Free">
+  <meta property="og:description" content="Apply professional color grading and photo filters directly in your browser. Fast, free, no signup.">
+  <link rel="canonical" href="https://imgaura.qzz.io/image-filters.html">
+  <meta name="robots" content="index, follow">
+  
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"ImgAURA Image Filters",
+    "url": "https://imgaura.qzz.io/image-filters.html",
+    "description": "Apply beautiful color filters and adjustments to photos.",
+    "applicationCategory":"Photography",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/global.css">
+
+  <style>
+    .result-container { font-size: 0; text-align: center; position: relative; margin-top: 1.5rem; display: none; background: repeating-conic-gradient(rgba(255,255,255,0.03) 0% 25%, transparent 0% 50%) 50% / 20px 20px; border-radius: 8px; padding: 1rem; }
+    #result-canvas { max-width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border-color); transition: filter 0.2s; }
+    .tool-controls { display: none; margin-top: 1.5rem; }
+    
+    .filter-btn { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; background: var(--surface-light); border: 2px solid transparent; border-radius: 8px; padding: 0.75rem; cursor: pointer; transition: all 0.2s; }
+    .filter-btn:hover { border-color: rgba(255,255,255,0.2); }
+    .filter-btn.active { border-color: var(--neon-blue); background: rgba(56, 189, 248, 0.1); }
+    .filter-thumb { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-color); }
+    .filter-name { font-size: 0.75rem; font-weight: 500; color: var(--text-primary); }
+  </style>
+</head>
+<body data-page-type="tool">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="navbar-logo">âœ¦ ImgAURA</a>
+      <ul class="navbar-links" id="nav-links">
+        <li><a href="/bg-remover.html">BG Remover</a></li>
+        <li><a href="/image-cropper.html">Cropper</a></li>
+        <li><a href="/watermark-adder.html">Watermark</a></li>
+        <li><a href="/image-filters.html" style="color:var(--neon-blue);">Filters</a></li>
+        <li><a href="/image-enhancer.html">Enhancer</a></li>
+      </ul>
+      <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">â˜°</button>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">â€º</span>
+      <a href="/#tools-grid">Tools</a> <span class="breadcrumb-sep">â€º</span>
+      <span style="color:var(--text-primary);">Image Filters</span>
+    </nav>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <section class="section" style="padding-top:1rem;">
+    <div class="container">
+      <div style="display:flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 style="font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;">
+            <span class="neon-text">Image Filters</span>
+          </h1>
+          <p style="color:var(--text-secondary);">Apply stunning presets and color effects to your photos instantly.</p>
+        </div>
+        
+        <!-- SMARTLINK BUTTON AD -->
+        <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" target="_blank" rel="noopener sponsored" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); text-decoration:none;">
+          ðŸ’Ž Sponsored Offers
+        </a>
+      </div>
+
+      <div class="tool-layout">
+        <!-- Main Workspace -->
+        <div class="tool-main">
+          
+          <!-- Upload Zone -->
+          <div class="upload-zone" id="upload-zone">
+            <span class="upload-zone-icon">ðŸ“¤</span>
+            <p class="upload-zone-text"><strong>Click or drag & drop</strong> an image here</p>
+            <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;">PNG, JPEG, WEBP</p>
+            <input type="file" id="file-input" accept="image/*">
+          </div>
+
+          <!-- Result Layout (Side-by-side on desktop) -->
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;" id="tool-workspace">
+            
+            <!-- Result -->
+            <div class="result-container" id="result-container">
+              <canvas id="result-canvas"></canvas>
+            </div>
+
+            <!-- Controls -->
+            <div class="tool-controls" id="tool-controls">
+              
+              <!-- Presets Slider -->
+              <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;">Trendy Presets</h3>
+              <div style="display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 1rem; margin-bottom: 1rem;" id="preset-container">
+                <!-- Generated via JS to use uploaded image as thumbnail -->
+              </div>
+
+              <!-- Manual Adjustments -->
+              <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;border-top:1px solid var(--border-color);padding-top:1.5rem;">Manual Adjustments</h3>
+              <div class="panel" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem;">
+                
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;flex-direction:column;gap:0.4rem;">
+                  <div style="display:flex;justify-content:space-between;">Brightness <span id="bright-val">100%</span></div>
+                  <input type="range" class="range-slider filter-slider" id="sld-brightness" min="0" max="200" value="100">
+                </label>
+                
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;flex-direction:column;gap:0.4rem;">
+                  <div style="display:flex;justify-content:space-between;">Contrast <span id="cont-val">100%</span></div>
+                  <input type="range" class="range-slider filter-slider" id="sld-contrast" min="0" max="200" value="100">
+                </label>
+
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;flex-direction:column;gap:0.4rem;">
+                  <div style="display:flex;justify-content:space-between;">Saturation <span id="sat-val">100%</span></div>
+                  <input type="range" class="range-slider filter-slider" id="sld-saturate" min="0" max="200" value="100">
+                </label>
+                
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;flex-direction:column;gap:0.4rem;">
+                  <div style="display:flex;justify-content:space-between;">Grayscale <span id="gray-val">0%</span></div>
+                  <input type="range" class="range-slider filter-slider" id="sld-grayscale" min="0" max="100" value="0">
+                </label>
+
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;flex-direction:column;gap:0.4rem;">
+                  <div style="display:flex;justify-content:space-between;">Sepia <span id="sepia-val">0%</span></div>
+                  <input type="range" class="range-slider filter-slider" id="sld-sepia" min="0" max="100" value="0">
+                </label>
+
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;flex-direction:column;gap:0.4rem;">
+                  <div style="display:flex;justify-content:space-between;">Blur <span id="blur-val">0px</span></div>
+                  <input type="range" class="range-slider filter-slider" id="sld-blur" min="0" max="20" value="0">
+                </label>
+
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;flex-direction:column;gap:0.4rem;">
+                  <div style="display:flex;justify-content:space-between;">Hue Rotate <span id="hue-val">0deg</span></div>
+                  <input type="range" class="range-slider filter-slider" id="sld-hue-rotate" min="0" max="360" value="0">
+                </label>
+
+                <div style="display:flex; align-items:flex-end;">
+                   <button class="btn-secondary" id="reset-btn" style="width:100%;">Reset All</button>
+                </div>
+              </div>
+
+              <!-- Download Section -->
+              <div style="margin-top:2rem; text-align: center;">
+                <button class="btn-primary" id="download-btn" style="padding: 1rem 3rem; font-size: 1.1rem;">ðŸ“¥ Download Image</button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FAQ -->
+          <div style="margin-top:3rem;">
+            <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.25rem;font-family:var(--font-heading);">Frequently Asked Questions</h2>
+            <div class="faq-list">
+              <div class="faq-item"><button class="faq-question">How are these filters applied? <span class="faq-icon">â–¼</span></button><div class="faq-answer">We use advanced HTML5 Canvas rendering to apply exact pixel-level color adjustments instantly within your browser. There is no server upload.</div></div>
+              <div class="faq-item"><button class="faq-question">Will this lower my image resolution? <span class="faq-icon">â–¼</span></button><div class="faq-answer">No. While the preview you see is scaled down to fit your screen, the final downloaded image contains the filters applied to the raw full-resolution image.</div></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar / Ads -->
+        <div class="tool-sidebar">
+          
+          <!-- NATIVE BANNER AD (HARDCODED) -->
+          <div class="panel" style="padding:1rem; text-align:center; min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+             <span style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block;">Sponsored</span>
+             
+             <!-- Adsterra Native Banner Code -->
+             <div id="container-93473ff7b9d6e0da14ef534d15b31530"></div>
+             <script async="async" data-cfasync="false" src="https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js"></script>
+          </div>
+
+          <!-- Related Tools -->
+          <h3 style="font-size:1rem;font-weight:600;margin-top:2rem;margin-bottom:1rem;">More ImgAURA Tools</h3>
+          <div style="display:grid;gap:0.75rem;">
+            <a href="/image-cropper.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
+              <span style="font-size:1.2rem;">âœ‚ï¸</span>
+              <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Image Cropper</span>
+            </a>
+            <a href="/watermark-adder.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
+              <span style="font-size:1.2rem;">ðŸ“</span>
+              <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Add Watermark</span>
+            </a>
+            <a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
+              <span style="font-size:1.2rem;">âœ¨</span>
+              <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Background Remover</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>Â© 2024 ImgAURA &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a> &bull; <a href="/contact.html">Contact</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/utils.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/adsterra.js" defer></script>
+
+  <script>
+    (() => {
+      let originalImage = null;
+      let currentFormat = 'image/jpeg';
+      let originalFilename = 'image';
+      let dataUrlThumb = null;
+
+      const fileInput = document.getElementById('file-input');
+      const uploadZone = document.getElementById('upload-zone');
+      const toolControls = document.getElementById('tool-controls');
+      const resultContainer = document.getElementById('result-container');
+      const resultCanvas = document.getElementById('result-canvas');
+      const presetContainer = document.getElementById('preset-container');
+      const ctx = resultCanvas.getContext('2d');
+
+      const presets = [
+        { name: 'Normal', filter: 'none', settings: { brightness:100, contrast:100, saturate:100, grayscale:0, sepia:0, blur:0, 'hue-rotate':0 } },
+        { name: 'Clarendon', filter: 'contrast(120%) saturate(125%)', settings: { brightness:100, contrast:120, saturate:125, grayscale:0, sepia:0, blur:0, 'hue-rotate':0 } },
+        { name: 'Gingham', filter: 'brightness(105%) hue-rotate(350deg)', settings: { brightness:105, contrast:100, saturate:100, grayscale:0, sepia:0, blur:0, 'hue-rotate':350 } },
+        { name: 'Moon', filter: 'grayscale(100%) contrast(110%) brightness(110%)', settings: { brightness:110, contrast:110, saturate:100, grayscale:100, sepia:0, blur:0, 'hue-rotate':0 } },
+        { name: 'Lark', filter: 'contrast(90%)', settings: { brightness:100, contrast:90, saturate:100, grayscale:0, sepia:0, blur:0, 'hue-rotate':0 } },
+        { name: 'Reyes', filter: 'sepia(22%) brightness(110%) contrast(85%) saturate(75%)', settings: { brightness:110, contrast:85, saturate:75, grayscale:0, sepia:22, blur:0, 'hue-rotate':0 } },
+        { name: 'Juno', filter: 'saturate(130%) contrast(115%)', settings: { brightness:100, contrast:115, saturate:130, grayscale:0, sepia:0, blur:0, 'hue-rotate':0 } },
+        { name: 'Slumber', filter: 'saturate(66%) brightness(105%)', settings: { brightness:105, contrast:100, saturate:66, grayscale:0, sepia:0, blur:0, 'hue-rotate':0 } },
+        { name: 'Crema', filter: 'sepia(50%) contrast(115%)', settings: { brightness:100, contrast:115, saturate:100, grayscale:0, sepia:50, blur:0, 'hue-rotate':0 } },
+        { name: 'Cyberpunk', filter: 'saturate(200%) hue-rotate(30deg) contrast(150%)', settings: { brightness:100, contrast:150, saturate:200, grayscale:0, sepia:0, blur:0, 'hue-rotate':30 } }
+      ];
+
+      // File handling
+      setupDragDrop(uploadZone, handleFiles);
+      fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+      async function handleFiles(files) {
+        if (!files.length) return;
+        const file = files[0];
+        
+        currentFormat = file.type || 'image/jpeg';
+        originalFilename = file.name.split('.')[0] || 'filtered';
+
+        const dataUrl = await readFileAsDataURL(file);
+        originalImage = await loadImage(dataUrl);
+        
+        // Create small thumbnail dataUrl for preset buttons
+        const thumbCanvas = document.createElement('canvas');
+        thumbCanvas.width = 100;
+        thumbCanvas.height = 100;
+        const tctx = thumbCanvas.getContext('2d');
+        const aspect = originalImage.naturalWidth / originalImage.naturalHeight;
+        let tw = 100, th = 100;
+        if(aspect > 1) { tw = 100 * aspect; th = 100; } else { tw = 100; th = 100 / aspect; }
+        tctx.drawImage(originalImage, -(tw-100)/2, -(th-100)/2, tw, th);
+        dataUrlThumb = thumbCanvas.toDataURL('image/jpeg', 0.5);
+
+        uploadZone.style.display = 'none';
+        toolControls.style.display = 'block';
+        resultContainer.style.display = 'block';
+        
+        initPresets();
+        updateFilterString(); // Draw standard initially
+        trackToolUsage('filters');
+      }
+
+      function initPresets() {
+        presetContainer.innerHTML = '';
+        presets.forEach((p, idx) => {
+          const btn = document.createElement('button');
+          btn.className = `filter-btn ${idx === 0 ? 'active' : ''}`;
+          btn.innerHTML = `
+            <img src="${dataUrlThumb}" class="filter-thumb" style="filter: ${p.filter};">
+            <span class="filter-name">${p.name}</span>
+          `;
+          btn.addEventListener('click', () => {
+             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+             btn.classList.add('active');
+             
+             // Apply settings to sliders
+             Object.keys(p.settings).forEach(key => {
+               const el = document.getElementById(`sld-${key}`);
+               if(el) {
+                 el.value = p.settings[key];
+                 el.dispatchEvent(new Event('input')); // trigger UI update
+               }
+             });
+          });
+          presetContainer.appendChild(btn);
+        });
+      }
+
+      function updateFilterString() {
+        if(!originalImage) return;
+
+        const b = document.getElementById('sld-brightness').value;
+        const c = document.getElementById('sld-contrast').value;
+        const s = document.getElementById('sld-saturate').value;
+        const g = document.getElementById('sld-grayscale').value;
+        const sep = document.getElementById('sld-sepia').value;
+        const bl = document.getElementById('sld-blur').value;
+        const h = document.getElementById('sld-hue-rotate').value;
+
+        const filterStr = `brightness(${b}%) contrast(${c}%) saturate(${s}%) grayscale(${g}%) sepia(${sep}%) blur(${bl}px) hue-rotate(${h}deg)`;
+        
+        // Update Canvas preview via CSS for speed
+        const w = originalImage.naturalWidth || originalImage.width;
+        const h_orig = originalImage.naturalHeight || originalImage.height;
+        resultCanvas.width = w;
+        resultCanvas.height = h_orig;
+        
+        ctx.clearRect(0, 0, w, h_orig);
+        ctx.drawImage(originalImage, 0, 0, w, h_orig);
+        
+        resultCanvas.style.filter = filterStr;
+      }
+
+      // Slider Listeners
+      document.querySelectorAll('.filter-slider').forEach(slider => {
+        slider.addEventListener('input', (e) => {
+          // Remove active preset highlight if manually tweaking
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          
+          // Update Label
+          const id = e.target.id.replace('sld-', '');
+          const labelMapping = {
+            'brightness': 'bright-val', 'contrast': 'cont-val', 'saturate': 'sat-val',
+             'grayscale': 'gray-val', 'sepia': 'sepia-val', 'blur': 'blur-val', 'hue-rotate': 'hue-val'
+          };
+          const labelId = labelMapping[id];
+          if(labelId){
+            let suffix = '%';
+            if(id === 'blur') suffix = 'px';
+            if(id === 'hue-rotate') suffix = 'deg';
+            document.getElementById(labelId).textContent = e.target.value + suffix;
+          }
+
+          updateFilterString();
+        });
+      });
+
+      // Reset
+      document.getElementById('reset-btn').addEventListener('click', () => {
+         document.querySelectorAll('.filter-btn')[0]?.click();
+      });
+
+      // Download (Hard bake filters into canvas export)
+      document.getElementById('download-btn').addEventListener('click', () => {
+        
+        // Because resultCanvas style.filter isn't included in toBlob, we must generate a new canvas
+        const exportCanvas = document.createElement('canvas');
+        exportCanvas.width = originalImage.naturalWidth;
+        exportCanvas.height = originalImage.naturalHeight;
+        const ectx = exportCanvas.getContext('2d');
+        
+        ectx.filter = resultCanvas.style.filter;
+        ectx.drawImage(originalImage, 0, 0, exportCanvas.width, exportCanvas.height);
+        
+        exportCanvas.toBlob((blob) => {
+          const extension = currentFormat === 'image/png' ? 'png' : currentFormat === 'image/webp' ? 'webp' : 'jpg';
+          downloadBlob(blob, `${originalFilename}-imgaura-filtered.${extension}`);
+          showToast('Effect applied & downloaded!', 'success');
+        }, currentFormat, 0.95);
+      });
+
+    })();
+  </script>
+</body>
+</html>
+

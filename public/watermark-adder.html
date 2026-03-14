@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Watermark to Photo Online Free | ImgAURA</title>
+  <meta name="description" content="Add text watermarks to your images online for free. Protect your photos with customizable fonts, opacity, and positioning. No registration required.">
+  <meta name="keywords" content="add watermark, watermark photo, text on image, copyright photo, ImgAURA watermark">
+  <meta property="og:title" content="ImgAURA Watermark Adder - Protect Your Photos Free">
+  <meta property="og:description" content="Add customizable text watermarks to any image securely in your browser.">
+  <link rel="canonical" href="https://imgaura.qzz.io/watermark-adder.html">
+  <meta name="robots" content="index, follow">
+  
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"ImgAURA Watermark Adder",
+    "url": "https://imgaura.qzz.io/watermark-adder.html",
+    "description": "Add text watermarks to images to protect copyright.",
+    "applicationCategory":"Photography",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&family=Pacifico&family=Anton&family=Dancing+Script&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/global.css">
+
+  <style>
+    .result-container { font-size: 0; text-align: center; position: relative; margin-top: 1.5rem; display: none; background: repeating-conic-gradient(rgba(255,255,255,0.03) 0% 25%, transparent 0% 50%) 50% / 20px 20px; border-radius: 8px; padding: 1rem; }
+    #result-canvas { max-width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border-color); }
+    .tool-controls { display: none; margin-top: 1.5rem; }
+  </style>
+</head>
+<body data-page-type="tool">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="navbar-logo">âœ¦ ImgAURA</a>
+      <ul class="navbar-links" id="nav-links">
+        <li><a href="/bg-remover.html">BG Remover</a></li>
+        <li><a href="/image-cropper.html">Cropper</a></li>
+        <li><a href="/watermark-adder.html" style="color:var(--neon-blue);">Watermark</a></li>
+        <li><a href="/image-filters.html">Filters</a></li>
+        <li><a href="/image-enhancer.html">Enhancer</a></li>
+      </ul>
+      <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">â˜°</button>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">â€º</span>
+      <a href="/#tools-grid">Tools</a> <span class="breadcrumb-sep">â€º</span>
+      <span style="color:var(--text-primary);">Watermark Adder</span>
+    </nav>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <section class="section" style="padding-top:1rem;">
+    <div class="container">
+      <div style="display:flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 style="font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;">
+            <span class="neon-text">Add Watermark</span>
+          </h1>
+          <p style="color:var(--text-secondary);">Protect your images with custom text watermarks.</p>
+        </div>
+        
+        <!-- SMARTLINK BUTTON AD -->
+        <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" target="_blank" rel="noopener sponsored" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); text-decoration:none;">
+          ðŸ’Ž Sponsored Offers
+        </a>
+      </div>
+
+      <div class="tool-layout">
+        <!-- Main Workspace -->
+        <div class="tool-main">
+          
+          <!-- Upload Zone -->
+          <div class="upload-zone" id="upload-zone">
+            <span class="upload-zone-icon">ðŸ“¤</span>
+            <p class="upload-zone-text"><strong>Click or drag & drop</strong> an image here</p>
+            <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;">PNG, JPEG, WEBP</p>
+            <input type="file" id="file-input" accept="image/*">
+          </div>
+
+          <!-- Controls -->
+          <div class="tool-controls" id="tool-controls">
+            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;">Watermark Settings</h3>
+            
+            <div class="panel" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+              
+              <!-- Text -->
+              <div>
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:block;margin-bottom:0.4rem;">Text</label>
+                <input type="text" id="wm-text" value="Â© ImgAURA" style="width:100%; padding:0.6rem; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-primary);">
+              </div>
+
+              <!-- Font Family -->
+              <div>
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:block;margin-bottom:0.4rem;">Font</label>
+                <select id="wm-font" style="width:100%; padding:0.6rem; border-radius:6px; border:1px solid var(--border-color); background:var(--bg-color); color:var(--text-primary);">
+                  <option value="Inter">Inter (Clean)</option>
+                  <option value="Orbitron">Orbitron (Tech)</option>
+                  <option value="Pacifico">Pacifico (Cursive)</option>
+                  <option value="Anton">Anton (Bold)</option>
+                  <option value="Dancing Script">Dancing Script (Elegant)</option>
+                  <option value="Arial">Arial</option>
+                  <option value="Times New Roman">Times New Roman</option>
+                </select>
+              </div>
+
+              <!-- Color & Opacity -->
+              <div>
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:block;margin-bottom:0.4rem;">Color</label>
+                <div style="display:flex; gap:0.5rem; align-items:center;">
+                  <input type="color" id="wm-color" value="#ffffff" style="width:40px;height:38px;border:none;border-radius:6px;cursor:pointer;padding:0;">
+                  <div style="flex:1;">
+                    <label style="font-size:0.75rem;color:var(--text-secondary);">Opacity <span id="opacity-val">70</span>%</label>
+                    <input type="range" class="range-slider" id="wm-opacity" min="5" max="100" value="70">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Size -->
+              <div>
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;justify-content:space-between;margin-bottom:0.4rem;">Size <span id="size-val">5</span>%</label>
+                <input type="range" class="range-slider" id="wm-size" min="1" max="30" value="5">
+              </div>
+
+              <!-- Position -->
+              <div style="grid-column: 1 / -1;">
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:block;margin-bottom:0.4rem;">Position</label>
+                <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                  <button class="btn-secondary pos-btn" data-pos="top-left">â†– Top Left</button>
+                  <button class="btn-secondary pos-btn" data-pos="top-right">â†— Top Right</button>
+                  <button class="btn-secondary pos-btn" data-pos="center">âœ› Center</button>
+                  <button class="btn-secondary pos-btn" data-pos="bottom-left">â†™ Bottom Left</button>
+                  <button class="btn-secondary pos-btn active" data-pos="bottom-right" style="border-color:var(--neon-blue);">â†˜ Bottom Right</button>
+                  <button class="btn-secondary pos-btn" data-pos="tile">ðŸ”² Tile All Over</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Result -->
+          <div class="result-container" id="result-container">
+            <canvas id="result-canvas"></canvas>
+            
+            <div style="margin-top:1.5rem;">
+              <button class="btn-primary" id="download-btn" style="padding: 1rem 3rem; font-size: 1.1rem;">ðŸ“¥ Download Image</button>
+            </div>
+          </div>
+
+          <!-- FAQ -->
+          <div style="margin-top:3rem;">
+            <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.25rem;font-family:var(--font-heading);">Frequently Asked Questions</h2>
+            <div class="faq-list">
+              <div class="faq-item"><button class="faq-question">What is a watermark? <span class="faq-icon">â–¼</span></button><div class="faq-answer">A watermark is text or a logo superimposed onto an image. It helps identify the creator and protects the image from being used without permission.</div></div>
+              <div class="faq-item"><button class="faq-question">Does this tool reduce my image quality? <span class="faq-icon">â–¼</span></button><div class="faq-answer">No. The text is drawn directly onto your original image at full resolution without compression.</div></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar / Ads -->
+        <div class="tool-sidebar">
+          
+          <!-- NATIVE BANNER AD (HARDCODED) -->
+          <div class="panel" style="padding:1rem; text-align:center; min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+             <span style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block;">Sponsored</span>
+             
+             <!-- Adsterra Native Banner Code -->
+             <div id="container-93473ff7b9d6e0da14ef534d15b31530"></div>
+             <script async="async" data-cfasync="false" src="https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js"></script>
+          </div>
+
+          <!-- Related Tools -->
+          <h3 style="font-size:1rem;font-weight:600;margin-top:2rem;margin-bottom:1rem;">More ImgAURA Tools</h3>
+          <div style="display:grid;gap:0.75rem;">
+            <a href="/image-cropper.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
+              <span style="font-size:1.2rem;">âœ‚ï¸</span>
+              <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Image Cropper</span>
+            </a>
+            <a href="/image-filters.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
+              <span style="font-size:1.2rem;">ðŸŽ¨</span>
+              <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Image Filters</span>
+            </a>
+            <a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
+              <span style="font-size:1.2rem;">âœ¨</span>
+              <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Background Remover</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>Â© 2024 ImgAURA &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a> &bull; <a href="/contact.html">Contact</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/utils.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/adsterra.js" defer></script>
+
+  <script>
+    (() => {
+      let originalImage = null;
+      let currentFormat = 'image/jpeg';
+      let originalFilename = 'image';
+      let position = 'bottom-right';
+
+      const fileInput = document.getElementById('file-input');
+      const uploadZone = document.getElementById('upload-zone');
+      const toolControls = document.getElementById('tool-controls');
+      const resultContainer = document.getElementById('result-container');
+      const resultCanvas = document.getElementById('result-canvas');
+      const ctx = resultCanvas.getContext('2d');
+
+      // Inputs
+      const wmText = document.getElementById('wm-text');
+      const wmFont = document.getElementById('wm-font');
+      const wmColor = document.getElementById('wm-color');
+      const wmOpacity = document.getElementById('wm-opacity');
+      const wmSize = document.getElementById('wm-size');
+
+      // File handling
+      setupDragDrop(uploadZone, handleFiles);
+      fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+      async function handleFiles(files) {
+        if (!files.length) return;
+        const file = files[0];
+        
+        currentFormat = file.type || 'image/jpeg';
+        originalFilename = file.name.split('.')[0] || 'watermarked';
+
+        const dataUrl = await readFileAsDataURL(file);
+        originalImage = await loadImage(dataUrl);
+        
+        uploadZone.style.display = 'none';
+        toolControls.style.display = 'block';
+        resultContainer.style.display = 'block';
+        
+        renderWatermark();
+        trackToolUsage('watermark');
+      }
+
+      function hexToRgba(hex, alpha) {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r}, ${g}, ${b}, ${alpha / 100})`;
+      }
+
+      function renderWatermark() {
+        if (!originalImage) return;
+
+        const w = originalImage.naturalWidth || originalImage.width;
+        const h = originalImage.naturalHeight || originalImage.height;
+
+        resultCanvas.width = w;
+        resultCanvas.height = h;
+
+        // Draw original image
+        ctx.clearRect(0, 0, w, h);
+        ctx.drawImage(originalImage, 0, 0, w, h);
+
+        const text = wmText.value;
+        if (!text.trim()) return;
+
+        const font = wmFont.value;
+        const color = wmColor.value;
+        const opacity = wmOpacity.value;
+        const sizePct = wmSize.value;
+
+        // Calculate font size relative to image diagonal
+        const diag = Math.sqrt(w*w + h*h);
+        const fontSize = (diag * (sizePct / 100));
+
+        ctx.font = `600 ${fontSize}px "${font}"`;
+        ctx.fillStyle = hexToRgba(color, opacity);
+        ctx.textBaseline = 'top';
+
+        // Add subtle shadow for visibility on light/dark backgrounds
+        ctx.shadowColor = `rgba(0,0,0,${opacity/200})`;
+        ctx.shadowBlur = Math.max(2, fontSize / 10);
+        ctx.shadowOffsetX = 1;
+        ctx.shadowOffsetY = 1;
+
+        const textMetrics = ctx.measureText(text);
+        const textW = textMetrics.width;
+        const textH = fontSize; // Approximate height
+
+        const padding = fontSize * 0.5;
+
+        if (position === 'tile') {
+          // Tiling logic
+          const stepX = textW * 1.5;
+          const stepY = textH * 2.5;
+          ctx.translate(w/2, h/2);
+          ctx.rotate(-Math.PI / 4); // Rotate -45 deg
+          
+          for (let x = -w*1.5; x < w*1.5; x += stepX) {
+            for (let y = -h*1.5; y < h*1.5; y += stepY) {
+              ctx.fillText(text, x, y);
+            }
+          }
+          ctx.rotate(Math.PI / 4);
+          ctx.translate(-w/2, -h/2);
+        } else {
+          // Fixed positions
+          let x = 0, y = 0;
+          
+          if (position.includes('left')) x = padding;
+          if (position.includes('right')) x = w - textW - padding;
+          if (position.includes('top')) y = padding;
+          if (position.includes('bottom')) y = h - textH - padding;
+          if (position === 'center') {
+            x = (w - textW) / 2;
+            y = (h - textH) / 2;
+          }
+
+          ctx.fillText(text, x, y);
+        }
+      }
+
+      // Event Listeners for Live Preview
+      wmText.addEventListener('input', debounce(renderWatermark, 100));
+      wmFont.addEventListener('change', renderWatermark);
+      wmColor.addEventListener('input', debounce(renderWatermark, 50));
+      
+      wmOpacity.addEventListener('input', (e) => {
+        document.getElementById('opacity-val').textContent = e.target.value;
+        debounce(renderWatermark, 50)();
+      });
+      
+      wmSize.addEventListener('input', (e) => {
+        document.getElementById('size-val').textContent = e.target.value;
+        debounce(renderWatermark, 50)();
+      });
+
+      // Position Buttons
+      document.querySelectorAll('.pos-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.pos-btn').forEach(b => {
+             b.style.borderColor = 'transparent';
+             b.classList.remove('active');
+          });
+          btn.style.borderColor = 'var(--neon-blue)';
+          btn.classList.add('active');
+          position = btn.dataset.pos;
+          renderWatermark();
+        });
+      });
+
+      // Download
+      document.getElementById('download-btn').addEventListener('click', () => {
+        resultCanvas.toBlob((blob) => {
+          const extension = currentFormat === 'image/png' ? 'png' : currentFormat === 'image/webp' ? 'webp' : 'jpg';
+          downloadBlob(blob, `${originalFilename}-imgaura-watermarked.${extension}`);
+          showToast('Image watermarked automatically!', 'success');
+        }, currentFormat, 0.95);
+      });
+
+    })();
+  </script>
+</body>
+</html>
+
