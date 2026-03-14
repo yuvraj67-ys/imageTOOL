@@ -7,16 +7,12 @@
       "config": {
         "includeFiles": "public/**"
       }
-    },
-    {
-      "src": "api/*.py",
-      "use": "@vercel/python"
     }
   ],
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "destination": "/server.js"
     },
     {
       "source": "/(.*)",
