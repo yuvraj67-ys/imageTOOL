@@ -233,7 +233,7 @@
           <div style="margin-top:2.5rem;">
             <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.25rem;font-family:var(--font-heading);">FAQ</h2>
             <div class="faq-list">
-              <div class="faq-item"><button class="faq-question">How does the background removal work? <span class="faq-icon">▼</span></button><div class="faq-answer">We use a high-quality AI model (@imgly) that runs entirely in your browser. It performs professional-grade alpha matting without uploading your images to any server.</div></div>
+              <div class="faq-item"><button class="faq-question">How does the background removal work? <span class="faq-icon">▼</span></button><div class="faq-answer">We use Google's MediaPipe Selfie Segmentation model which runs entirely in your browser. It creates a pixel-level segmentation mask to separate the foreground from the background.</div></div>
               <div class="faq-item"><button class="faq-question">Can I process multiple images at once? <span class="faq-icon">▼</span></button><div class="faq-answer">Yes! Enable "Batch Mode" to process up to 10 images at once. You can download all results as a ZIP file.</div></div>
               <div class="faq-item"><button class="faq-question">What background options are available? <span class="faq-icon">▼</span></button><div class="faq-answer">You can choose transparent, solid color, gradient (12 presets), custom image, or blurred original background.</div></div>
               <div class="faq-item"><button class="faq-question">Are my images uploaded anywhere? <span class="faq-icon">▼</span></button><div class="faq-answer">No. All processing happens locally in your browser. Your images never leave your device.</div></div>
@@ -243,7 +243,8 @@
 
 
         </div>
-        <div class="tool-sidebar"><div id="ad-native-container" style="margin-top:2rem;"></div></div>
+
+
       </div>
     </div>
   </section>
@@ -251,7 +252,6 @@
 
 
   <!-- FOOTER -->
-    <div id="ad-banner-bottom" style="margin: 2rem auto; max-width: 728px; text-align: center; display: flex; justify-content: center; overflow: hidden;"></div>
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
@@ -416,7 +416,7 @@
       maskCtx.drawImage(results.segmentationMask, 0, 0, w, h);
 
       // Apply edge smoothing
-      const edgeSmooth = parseInt(document.getElementById('edge-smooth')?.value) || 0;
+      const edgeSmooth = parseInt(document.getElementById('edge-smooth').value) || 0;
       if (edgeSmooth > 0) {
         maskCtx.filter = `blur(${edgeSmooth}px)`;
         maskCtx.drawImage(maskCanvas, 0, 0);
@@ -617,6 +617,5 @@
   })();
   </script>
 
-  <script src="/js/adsterra.js" defer></script>
 </body>
 </html>
