@@ -378,37 +378,41 @@
       }
     }
 
-    // ── Process File via Python API ──
+    // ── Process File via Client-Side AI (esm.sh CDN) ──
+    let _removeBackground = null;
+
+    async function loadBgRemovalLib() {
+      if (_removeBackground) return _removeBackground;
+      updateStatus('Loading AI model... (first use takes ~15 seconds)', 'processing');
+      const module = await import('https://esm.sh/@imgly/background-removal@1.4.3');
+      _removeBackground = module.removeBackground;
+      return _removeBackground;
+    }
+
     async function processFile(file) {
-      updateStatus('Removing background with AI... (may take 10-20 seconds)', 'processing');
+      updateStatus('Removing background with AI...', 'processing');
       try {
         // Keep the original raw image for before/after and blur BG
         const rawDataUrl = await readFileAsDataURL(file);
         originalRawImage = await loadImage(rawDataUrl);
 
-        // Send image to Python rembg API
-        const formData = new FormData();
-        formData.append('image', file);
+        // Load the BG removal library (cached after first call)
+        const removeBg = await loadBgRemovalLib();
 
-        const response = await fetch('/api/remove-bg', {
-          method: 'POST',
-          body: formData
-        });
+        // Create a blob from the file
+        const imageBlob = new Blob([await file.arrayBuffer()], { type: file.type });
 
-        if (!response.ok) {
-          const err = await response.json().catch(() => ({ error: 'Server error' }));
-          throw new Error(err.error || `Server returned ${response.status}`);
-        }
+        // Remove background client-side
+        updateStatus('Processing image... (may take 10-30 seconds)', 'processing');
+        const resultBlob = await removeBg(imageBlob);
 
-        // Get the transparent PNG blob from server
-        const bgRemovedBlob = await response.blob();
-        const dataUrl = await readFileAsDataURL(bgRemovedBlob);
+        const dataUrl = await readFileAsDataURL(resultBlob);
         originalImage = await loadImage(dataUrl);
         
         onSegmentationResults();
       } catch (err) {
         console.error('BG Removal Error:', err);
-        updateStatus('Error: ' + err.message, 'error');
+        updateStatus('Error: ' + (err.message || 'Processing failed'), 'error');
       }
     }
 
