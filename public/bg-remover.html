@@ -16,9 +16,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/global.css">
-  <!-- Imgly Background Removal -->
-  <script src="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.3/dist/imgly-remove-background.umd.js" crossorigin="anonymous"></script>
 </head>
 <body data-page-type="tool">
 
@@ -265,15 +264,14 @@
   <script>
   (() => {
     // ── State ──
-    let segmenter = null;
     let originalImage = null;
-    let maskCanvas = null;
     let currentBgType = 'transparent';
     let customBgImage = null;
     let selectedGradient = null;
     let batchMode = false;
     let batchResults = [];
     const history = [];
+    let originalRawImage = null;
 
     // ── DOM Refs ──
     const fileInput = document.getElementById('file-input');
@@ -294,9 +292,9 @@
     const baContainer = document.getElementById('ba-container');
     const batchToggle = document.getElementById('batch-toggle');
 
-    // ── Init Imgly ──
-    async function initSegmenter() {
-      updateStatus('Ready (Model downloads on first image)', 'ready');
+    // ── Init ──
+    function initSegmenter() {
+      updateStatus('Ready — Upload an image to remove its background', 'ready');
     }
 
     function updateStatus(text, state = 'ready') {
@@ -360,7 +358,6 @@
 
     async function handleFiles(files) {
       if (!files.length) return;
-      // segmenter check removed
 
       const fileArray = Array.from(files).slice(0, batchMode ? 10 : 1);
       batchResults = [];
@@ -381,29 +378,41 @@
       }
     }
 
-    let originalRawImage = null;
-
+    // ── Process File via Python API ──
     async function processFile(file) {
-      updateStatus('Downloading AI Model & Processing... (might take a moment)', 'processing');
+      updateStatus('Removing background with AI... (may take 10-20 seconds)', 'processing');
       try {
+        // Keep the original raw image for before/after and blur BG
         const rawDataUrl = await readFileAsDataURL(file);
         originalRawImage = await loadImage(rawDataUrl);
 
-        const config = { publicPath: "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.3/dist/" };
-        const bgRemovedBlob = await imglyRemoveBackground(file, config);
+        // Send image to Python rembg API
+        const formData = new FormData();
+        formData.append('image', file);
+
+        const response = await fetch('/api/remove-bg', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          const err = await response.json().catch(() => ({ error: 'Server error' }));
+          throw new Error(err.error || `Server returned ${response.status}`);
+        }
+
+        // Get the transparent PNG blob from server
+        const bgRemovedBlob = await response.blob();
         const dataUrl = await readFileAsDataURL(bgRemovedBlob);
-        originalImage = await loadImage(dataUrl); // This is now the transparent foreground
+        originalImage = await loadImage(dataUrl);
         
         onSegmentationResults();
       } catch (err) {
-        console.error(err);
-        updateStatus('Error processing image. Check console.', 'error');
+        console.error('BG Removal Error:', err);
+        updateStatus('Error: ' + err.message, 'error');
       }
     }
 
     // ── Segmentation Result ──
-    let currentMask = null;
-
     function onSegmentationResults() {
       renderResult();
 
@@ -425,7 +434,7 @@
     }
 
     function renderResult() {
-      if (!originalImage || !currentMask) return;
+      if (!originalImage) return;
       const w = originalImage.naturalWidth || originalImage.width;
       const h = originalImage.naturalHeight || originalImage.height;
 
@@ -443,12 +452,6 @@
         ctx.fillStyle = document.getElementById('solid-color').value;
         ctx.fillRect(0, 0, w, h);
       } else if (currentBgType === 'gradient' && selectedGradient) {
-        // Parse gradient
-        const tempDiv = document.createElement('div');
-        tempDiv.style.background = selectedGradient;
-        tempDiv.style.width = w + 'px';
-        tempDiv.style.height = h + 'px';
-        // Draw gradient on canvas
         const match = selectedGradient.match(/#[a-f0-9]{6}/gi);
         if (match && match.length >= 2) {
           const grad = ctx.createLinearGradient(0, 0, w, h);
@@ -498,7 +501,6 @@
       if (quality === 'hd') {
         downloadCanvas(resultCanvas, 'bg-removed-hd.png');
       } else {
-        // Compressed
         resultCanvas.toBlob((blob) => {
           downloadBlob(blob, 'bg-removed.png');
         }, 'image/png');

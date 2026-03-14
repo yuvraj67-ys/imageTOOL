@@ -1,24 +1,11 @@
 /* ═══════════════════════════════════════════════════════════
-   ImgAURA — Ad Manager (V2)
-   Implemented cleanly to preserve User Experience while maximizing earnings.
+   ImgAURA — Ad Manager (V3)
+   Clean banners only. No pop-ups, no overlays, no click hijacking.
    ═══════════════════════════════════════════════════════════ */
 
 const AdManager = {
-  // Global scripts (Social bar / Popunder alternatives)
-  injectGlobalScripts() {
-    // ❌ REMOVED: These scripts were causing aggressive pop-unders and invisible overlays 
-    // that hijack user clicks. Removing them to dramatically improve user experience.
-    const scripts = [];
-
-    scripts.forEach(src => {
-      const s = document.createElement('script');
-      s.src = src;
-      s.async = true;
-      document.body.appendChild(s);
-    });
-  },
-
   // Responsive Banner (320x50 on mobile, 728x90 on desktop)
+  // Clean, non-intrusive — sits at the bottom of the page
   injectResponsiveBanner(containerId = 'ad-banner-bottom') {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -41,17 +28,9 @@ const AdManager = {
     container.appendChild(invokeScript);
   },
 
-  // Native Widget
-  injectNativeAd(containerId = 'ad-native-container') {
-    // ❌ REMOVED: Native ads can sometimes trigger pop-ups and affect UX.
-    const container = document.getElementById(containerId);
-    if (!container) return;
-  },
-
   init() {
-    this.injectGlobalScripts();
+    // Only clean banner ads — no pop-ups, no native widgets, no overlays
     this.injectResponsiveBanner('ad-banner-bottom');
-    this.injectNativeAd('ad-native-container');
   }
 };
 
