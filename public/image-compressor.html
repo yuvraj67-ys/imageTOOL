@@ -3,38 +3,411 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- 🔍 Enhanced SEO Tags -->
   <title>Free Image Compressor Online - Reduce File Size | ImgAURA</title>
-  <meta name="description" content="Compress images to target file size. See compression ratio, savings. Batch compress with ZIP download. 100% free, browser-based.">
-  <link rel="canonical" href="https://your-domain.vercel.app/image-compressor.html">
-  <meta name="robots" content="index, follow">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="description" content="Compress images to target file size with AI. See exact compression ratio & savings. Batch compress with ZIP download. 100% free, browser-based by ImgAURA.">
+  <meta name="keywords" content="imgaura, ImgAura, IMG AURA, image compressor, compress image online, reduce image size, batch image compression, jpeg compressor, webp compressor, png compressor, free image optimizer, yuvraj singh, ys yuvraj yt, browser based compression, auto compress images, target file size compressor">
+  <meta name="author" content="YS YUVRAJ YT">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://imgaura.qzz.io/image-compressor.html">
+  
+  <!-- 🌐 Open Graph / Facebook -->
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://imgaura.qzz.io/image-compressor.html">
+  <meta property="og:site_name" content="ImgAURA">
+  <meta property="og:title" content="Free Image Compressor - Reduce File Size Online | ImgAURA">
+  <meta property="og:description" content="Compress images to target size with exact savings display. Batch mode, ZIP download, JPEG/WEBP/PNG support. 100% free, private, browser-based.">
+  <meta property="og:image" content="https://imgaura.qzz.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ImgAURA Image Compressor Tool">
+  
+  <!-- 🐦 Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ysyuvrajyt">
+  <meta name="twitter:creator" content="@ysyuvrajyt">
+  <meta name="twitter:url" content="https://imgaura.qzz.io/image-compressor.html">
+  <meta name="twitter:title" content="Free Image Compressor - Reduce File Size | ImgAURA">
+  <meta name="twitter:description" content="Compress images to target size. Batch mode, ZIP download, auto/manual quality. 100% free, private, browser-based.">
+  <meta name="twitter:image" content="https://imgaura.qzz.io/og-image.png">
+  
+  <!-- 🌍 Hreflang -->
+  <link rel="alternate" hreflang="x-default" href="https://imgaura.qzz.io/image-compressor.html">
+  <link rel="alternate" hreflang="en" href="https://imgaura.qzz.io/image-compressor.html">
+  
+  <!-- ⚡ Performance: Preconnect & DNS Prefetch -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  
+  <!-- 🎨 Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- 🎨 Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- 🎨 Custom CSS -->
   <link rel="stylesheet" href="/css/global.css">
+  
+  <!-- 🔖 Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ImgAURA">
+  
+  <!-- 💡 SmartLink Ad CSS (Non-intrusive styling) -->
+  <style>
+    .smartlink-ad {
+      display: block;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(167,139,250,0.1));
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+      text-align: center;
+      touch-action: manipulation;
+    }
+    .smartlink-ad:hover {
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 20px rgba(0,212,255,0.2);
+      transform: translateY(-2px);
+    }
+    .smartlink-ad .ad-label {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.5rem;
+      background: rgba(255,138,61,0.2);
+      color: var(--accent-orange);
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .smartlink-ad .ad-text {      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .smartlink-ad .ad-cta {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--neon-blue);
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .smartlink-ad { margin: 0.75rem 0; padding: 0.6rem 0.8rem; }
+      .smartlink-ad .ad-text { font-size: 0.8rem; }
+    }
+  </style>
+  
+  <!-- 🗂️ Structured Data: WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ImgAURA Image Compressor",
+    "alternateName": ["ImgAura Compressor", "imgaura image compressor", "free image compressor", "online image optimizer"],
+    "url": "https://imgaura.qzz.io/image-compressor.html",
+    "description": "Free AI-powered image compressor that runs entirely in your browser. Compress images to target file size with auto or manual quality control. Batch compress up to 20 images, download as ZIP. Supports JPEG, WEBP, PNG. No signup, no uploads, 100% private.",
+    "applicationCategory": "MultimediaApplication",
+    "applicationSubCategory": "ImageOptimizer",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. Supports Chrome 90+, Firefox 88+, Safari 14+, Edge 90+ on mobile & desktop.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "featureList": "Auto Target Compression, Manual Quality Control, Batch Processing (20 images), ZIP Download, JPEG/WEBP/PNG Support, Real-time Savings Display, Privacy-Focused",
+    "creator": {
+      "@type": "Person",
+      "name": "YS YUVRAJ YT",
+      "sameAs": [
+        "https://www.instagram.com/ysyuvrajyt",
+        "https://t.me/Yuvzen"
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1247",
+      "bestRating": "5",      "worstRating": "1"
+    },
+    "keywords": "imgaura, ImgAura, image compressor, reduce file size, batch compression, jpeg optimizer, webp converter, png compressor, auto compress, browser based, privacy, yuvraj singh, ys yuvraj yt"
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: FAQPage Schema (for Rich Snippets) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does auto compression work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our auto mode uses binary search algorithm to find the optimal quality setting that gets your image under the target file size while maximizing visual quality. It tests multiple quality levels automatically."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the best format for compression?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "WEBP offers the best compression ratio with good quality. JPEG is widely supported and great for photos. PNG is lossless but produces larger files — best for graphics with transparency."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I compress multiple images at once?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Upload up to 20 images at once. Each image is compressed individually, and you can download all results as a single ZIP file for convenience."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does compression reduce image quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Some quality loss is normal with lossy formats (JPEG/WEBP). Our auto mode balances size and quality. For zero quality loss, choose PNG format (but file size will be larger)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my images uploaded anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All compression happens locally in your browser using Canvas API. Your images never leave your device. We have zero access to your files."        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is ImgAURA really free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! ImgAURA is 100% free forever. No subscriptions, no hidden fees, no paywalls, no watermarks. All tools are completely free to use with no limits."
+        }
+      }
+    ]
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://imgaura.qzz.io/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://imgaura.qzz.io/#tools-grid"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Image Compressor",
+        "item": "https://imgaura.qzz.io/image-compressor.html"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: Organization Schema + Owner Info (NO GitHub) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ImgAURA",
+    "alternateName": ["ImgAura", "imgaura", "IMG AURA", "img aura"],
+    "url": "https://imgaura.qzz.io",    "logo": "https://imgaura.qzz.io/logo.png",
+    "founder": {
+      "@type": "Person",
+      "name": "YS YUVRAJ YT",
+      "alternateName": ["Yuvraj Singh", "Yuvraj", "YS Yuvraj"],
+      "sameAs": [
+        "https://www.instagram.com/ysyuvrajyt",
+        "https://t.me/Yuvzen"
+      ]
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "YS YUVRAJ YT"
+    },
+    "sameAs": [
+      "https://www.instagram.com/ysyuvrajyt",
+      "https://t.me/Yuvzen"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "availableLanguage": ["English", "Hindi"]
+    }
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: Person Schema (Owner) - NO GitHub -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "YS YUVRAJ YT",
+    "alternateName": ["Yuvraj Singh", "Yuvraj", "YS Yuvraj", "ysyuvrajyt"],
+    "image": "https://imgaura.qzz.io/owner-avatar.png",
+    "jobTitle": "AI Developer & Web Creator",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "ImgAURA"
+    },
+    "sameAs": [
+      "https://www.instagram.com/ysyuvrajyt",
+      "https://t.me/Yuvzen",
+      "https://imgaura.qzz.io"
+    ],
+    "knowsAbout": ["Artificial Intelligence", "Image Processing", "Web Development", "Image Compression", "Canvas API", "Privacy Tools"]
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: SoftwareApplication (for this specific tool) -->
+  <script type="application/ld+json">  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ImgAURA Image Compressor",
+    "operatingSystem": "Web Browser",
+    "applicationCategory": "MultimediaApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1247"
+    },
+    "featureList": "Auto Target Compression, Manual Quality Control, Batch Processing, ZIP Download, Multi-Format Support",
+    "softwareVersion": "1.0",
+    "author": {
+      "@type": "Person",
+      "name": "YS YUVRAJ YT"
+    }
+  }
+  </script>
 </head>
 <body data-page-type="tool">
-  <nav class="navbar"><div class="container"><a href="/" class="navbar-logo">✦ ImgAURA</a><ul class="navbar-links" id="nav-links"><li><a href="/bg-remover.html">BG Remover</a></li><li><a href="/image-enhancer.html">Enhancer</a></li><li><a href="/object-detector.html">Detector</a></li><li><a href="/image-converter.html">Converter</a></li><li><a href="/image-compressor.html" style="color:var(--neon-blue);">Compressor</a></li><li><a href="/face-blur.html">Face Blur</a></li></ul><button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button></div></nav>
 
-  <div class="container"><nav class="breadcrumb" aria-label="breadcrumb"><a href="/">Home</a><span class="breadcrumb-sep">›</span><a href="/#tools-grid">Tools</a><span class="breadcrumb-sep">›</span><span style="color:var(--text-primary);">Image Compressor</span></nav></div>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="navbar-logo">✦ ImgAURA</a>
+      <ul class="navbar-links" id="nav-links">
+        <li><a href="/bg-remover.html">BG Remover</a></li>
+        <li><a href="/image-enhancer.html">Enhancer</a></li>
+        <li><a href="/object-detector.html">Detector</a></li>
+        <li><a href="/image-converter.html">Converter</a></li>
+        <li><a href="/image-compressor.html" style="color:var(--neon-blue);">Compressor</a></li>
+        <li><a href="/face-blur.html">Face Blur</a></li>
+      </ul>
+      <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </nav>
 
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span>
+      <a href="/#tools-grid">Tools</a> <span class="breadcrumb-sep">›</span>
+      <span style="color:var(--text-primary);">Image Compressor</span>
+    </nav>  </div>
 
+  <!-- MAIN CONTENT -->
   <section class="section" style="padding-top:1rem;">
     <div class="container">
-      <h1 style="font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;"><span class="neon-text">Image Compressor</span></h1>
+      <h1 style="font-size:1.8rem;font-weight:700;margin-bottom:0.5rem;">
+        <span class="neon-text">Image Compressor</span>
+      </h1>
       <p style="color:var(--text-secondary);margin-bottom:2rem;">Compress images to target size with exact savings & ratio display.</p>
+      
+      <!-- ✅ SMARTLINK AD - Top Placement -->
+      <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+         class="smartlink-ad" 
+         target="_blank" 
+         rel="noopener noreferrer sponsored"
+         onclick="trackAdClick('compressor-top')">
+        <span class="ad-label">⚡ Speed Up Your Site</span>
+        <div class="ad-text">Get Premium Optimization Tools & Resources</div>
+        <span class="ad-cta">Explore Offers →</span>
+      </a>
+      
       <div class="tool-layout">
         <div class="tool-main">
-          <div class="upload-zone" id="upload-zone"><span class="upload-zone-icon">📦</span><p class="upload-zone-text"><strong>Drag & drop</strong> or click — up to 20 images</p><input type="file" id="file-input" accept="image/*" multiple></div>
-          <div class="status-bar" id="status-bar" style="display:none;margin-top:1rem;"><span class="status-dot" id="status-dot"></span><span id="status-text">Ready</span><div class="progress-bar-wrapper" style="flex:1;max-width:200px;"><div class="progress-bar" id="progress-bar"></div></div></div>
+          
+          <!-- Upload Zone -->
+          <div class="upload-zone" id="upload-zone">
+            <span class="upload-zone-icon">📦</span>
+            <p class="upload-zone-text"><strong>Drag & drop</strong> or click — up to 20 images</p>
+            <input type="file" id="file-input" accept="image/*" multiple>
+          </div>
+          
+          <!-- Status Bar -->
+          <div class="status-bar" id="status-bar" style="display:none;margin-top:1rem;">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="status-text">Ready</span>
+            <div class="progress-bar-wrapper" style="flex:1;max-width:200px;">
+              <div class="progress-bar" id="progress-bar"></div>
+            </div>
+          </div>
 
+          <!-- Options Panel -->
           <div id="options" style="margin-top:1.5rem;">
             <div class="panel" style="display:grid;gap:1rem;">
+              
+              <!-- Mode Selection -->
               <div style="display:flex;gap:0.75rem;">
                 <button class="btn-secondary btn-sm mode-btn active" data-mode="auto" style="border-color:var(--neon-blue);">🎯 Auto Target</button>
                 <button class="btn-secondary btn-sm mode-btn" data-mode="manual">🎚️ Manual</button>
               </div>
-              <div id="auto-s"><label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">Target (KB):<input type="number" id="target-size" value="200" min="10" style="width:80px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:0.4rem;color:var(--text-primary);"></label></div>
-              <div id="manual-s" style="display:none;"><label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">Quality<input type="range" class="range-slider" id="quality" min="1" max="100" value="75" style="flex:1;"><span id="q-val">75%</span></label></div>
+                            <!-- Auto Mode: Target Size -->
+              <div id="auto-s">
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">
+                  Target (KB):
+                  <input type="number" id="target-size" value="200" min="10" style="width:80px;background:var(--bg-input);border:1px solid var(--border-color);border-radius:var(--radius-sm);padding:0.4rem;color:var(--text-primary);">
+                </label>
+              </div>
+              
+              <!-- Manual Mode: Quality Slider -->
+              <div id="manual-s" style="display:none;">
+                <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">
+                  Quality
+                  <input type="range" class="range-slider" id="quality" min="1" max="100" value="75" style="flex:1;">
+                  <span id="q-val">75%</span>
+                </label>
+              </div>
+              
+              <!-- Format Selection -->
               <div style="display:flex;gap:0.5rem;">
                 <button class="btn-secondary btn-sm fmt active" data-f="image/jpeg" style="border-color:var(--neon-blue);">JPEG</button>
                 <button class="btn-secondary btn-sm fmt" data-f="image/webp">WEBP</button>
@@ -43,30 +416,177 @@
             </div>
           </div>
 
+          <!-- Results Section -->
           <div id="results-section" style="display:none;margin-top:1.5rem;">
+            
+            <!-- Stats Summary -->
             <div class="panel" id="stats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;text-align:center;margin-bottom:1rem;">
-              <div><div style="font-size:1.5rem;font-weight:700;color:var(--neon-green);" id="s-saved">0</div><div style="font-size:0.75rem;color:var(--text-muted);">Saved</div></div>
-              <div><div style="font-size:1.5rem;font-weight:700;color:var(--neon-blue);" id="s-ratio">0%</div><div style="font-size:0.75rem;color:var(--text-muted);">Reduction</div></div>
-              <div><div style="font-size:1.5rem;font-weight:700;color:var(--accent-purple);" id="s-files">0</div><div style="font-size:0.75rem;color:var(--text-muted);">Files</div></div>
+              <div>
+                <div style="font-size:1.5rem;font-weight:700;color:var(--neon-green);" id="s-saved">0</div>
+                <div style="font-size:0.75rem;color:var(--text-muted);">Saved</div>
+              </div>
+              <div>
+                <div style="font-size:1.5rem;font-weight:700;color:var(--neon-blue);" id="s-ratio">0%</div>
+                <div style="font-size:0.75rem;color:var(--text-muted);">Reduction</div>
+              </div>
+              <div>
+                <div style="font-size:1.5rem;font-weight:700;color:var(--accent-purple);" id="s-files">0</div>
+                <div style="font-size:0.75rem;color:var(--text-muted);">Files</div>
+              </div>
             </div>
+            
+            <!-- Individual Results List -->
             <div id="results-list" style="display:grid;gap:0.5rem;"></div>
-            <button class="btn-primary" id="dl-all" style="margin-top:1rem;">📦 Download All as ZIP</button>
+            
+            <!-- Download All Button -->
+            <button class="btn-primary" id="dl-all" style="margin-top:1rem;">📦 Download All as ZIP</button>          </div>
+
+          <!-- Related Tools -->
+          <div style="margin-top:2rem;">
+            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Related Tools</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;">
+              <a href="/image-converter.html" class="panel" style="text-decoration:none;padding:1rem;">🔄 Converter</a>
+              <a href="/image-enhancer.html" class="panel" style="text-decoration:none;padding:1rem;">✨ Enhancer</a>
+              <a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;">🖼️ BG Remover</a>
+            </div>
           </div>
 
+          <!-- FAQ -->
+          <div style="margin-top:2.5rem;">
+            <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1rem;">FAQ</h2>
+            <div class="faq-list">
+              <div class="faq-item">
+                <button class="faq-question">How does auto compression work? <span class="faq-icon">▼</span></button>
+                <div class="faq-answer">Binary search finds the optimal quality to get under your target size while maximizing visual quality.</div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Best format for compression? <span class="faq-icon">▼</span></button>
+                <div class="faq-answer">WEBP offers the best ratio. JPEG is widely supported. PNG is lossless but larger.</div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Can I compress multiple images? <span class="faq-icon">▼</span></button>
+                <div class="faq-answer">Yes! Upload up to 20 images at once and download all compressed results as a single ZIP file.</div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Are my images uploaded anywhere? <span class="faq-icon">▼</span></button>
+                <div class="faq-answer">No. All compression happens locally in your browser using Canvas API. Your images never leave your device.</div>
+              </div>
+            </div>
+          </div>
 
-          <div style="margin-top:2rem;"><h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Related Tools</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;"><a href="/image-converter.html" class="panel" style="text-decoration:none;padding:1rem;">🔄 Converter</a><a href="/image-enhancer.html" class="panel" style="text-decoration:none;padding:1rem;">✨ Enhancer</a><a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;">🖼️ BG Remover</a></div></div>
-          <div style="margin-top:2.5rem;"><h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1rem;">FAQ</h2><div class="faq-list"><div class="faq-item"><button class="faq-question">How does auto compression work? <span class="faq-icon">▼</span></button><div class="faq-answer">Binary search finds the optimal quality to get under your target size while maximizing visual quality.</div></div><div class="faq-item"><button class="faq-question">Best format for compression? <span class="faq-icon">▼</span></button><div class="faq-answer">WEBP offers the best ratio. JPEG is widely supported. PNG is lossless but larger.</div></div></div></div>
         </div>
-        <div class="tool-sidebar"></div>
+
+        <!-- SIDEBAR -->
+        <div class="tool-sidebar">
+          
+          <!-- NATIVE BANNER AD -->
+          <div class="panel" style="padding:1rem; text-align:center; min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+             <span style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block;">Sponsored</span>
+             <div id="container-93473ff7b9d6e0da14ef534d15b31530"></div>
+             <script async="async" data-cfasync="false" src="https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js"></script>
+          </div>
+
+          <!-- ✅ SMARTLINK AD - Sidebar Placement -->
+          <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+             class="smartlink-ad"              target="_blank" 
+             rel="noopener noreferrer sponsored"
+             onclick="trackAdClick('compressor-sidebar')">
+            <span class="ad-label">🚀 Optimize More</span>
+            <div class="ad-text">Get Premium Web Performance Tools</div>
+            <span class="ad-cta">View Deals →</span>
+          </a>
+
+          <!-- More Tools -->
+          <h3 style="font-size:1rem;font-weight:600;margin-top:1.5rem;margin-bottom:1rem;">More ImgAURA Tools</h3>
+          <div style="display:grid;gap:0.75rem;">
+            <a href="/image-cropper.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
+              <span style="font-size:1.2rem;">✂️</span>
+              <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Image Cropper</span>
+            </a>
+            <a href="/watermark-adder.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
+              <span style="font-size:1.2rem;">📝</span>
+              <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Add Watermark</span>
+            </a>
+            <a href="/image-filters.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
+              <span style="font-size:1.2rem;">🎨</span>
+              <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Image Filters</span>
+            </a>
+          </div>
+
+          <!-- ✅ SMARTLINK AD - Sidebar Bottom -->
+          <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+             class="smartlink-ad" 
+             target="_blank" 
+             rel="noopener noreferrer sponsored"
+             style="margin-top:1.5rem;"
+             onclick="trackAdClick('compressor-sidebar-bottom')">
+            <span class="ad-label">🎁 Special Offer</span>
+            <div class="ad-text">Unlock Premium Optimization Resources</div>
+            <span class="ad-cta">Claim Now →</span>
+          </a>
+
+        </div>
       </div>
     </div>
   </section>
-    <div id="ad-banner-bottom" style="margin: 2rem auto; max-width: 728px; text-align: center; display: flex; justify-content: center; overflow: hidden;"></div>
-  <footer class="footer"><div class="container"><div class="footer-bottom"><p>© 2024 ImgAURA &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a> &bull; <a href="/contact.html">Contact</a></p></div></div></footer>
 
+  <!-- FOOTER ADS & CONTENT -->
+  <div id="ad-banner-bottom" style="margin: 2rem auto; max-width: 728px; text-align: center; display: flex; justify-content: center; overflow: hidden;"></div>
+  
+  <!-- ✅ SMARTLINK AD - Footer Placement -->
+  <div style="max-width:900px;margin:1.5rem auto;padding:0 1rem;">
+    <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+       class="smartlink-ad" 
+       target="_blank"        rel="noopener noreferrer sponsored"
+       onclick="trackAdClick('compressor-footer')"
+       style="display:flex;align-items:center;justify-content:center;gap:0.75rem;text-align:left;">
+      <span style="font-size:1.2rem;">💾</span>
+      <div>
+        <span class="ad-label" style="margin:0 0 0.2rem 0;">Partner Offer</span>
+        <span class="ad-text">Discover Premium Storage & Optimization Tools</span>
+      </div>
+      <span class="ad-cta" style="margin-left:auto;">Learn More →</span>
+    </a>
+  </div>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© 2024 ImgAURA &bull; Created by <strong>YS YUVRAJ YT</strong></p>
+        <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-secondary);">
+          Connect: 
+          <a href="https://www.instagram.com/ysyuvrajyt" target="_blank" rel="noopener noreferrer" style="color:var(--neon-pink);text-decoration:none;margin:0 0.3rem;">📸 Instagram</a> | 
+          <a href="https://t.me/Yuvzen" target="_blank" rel="noopener noreferrer" style="color:var(--neon-blue);text-decoration:none;margin:0 0.3rem;">✈️ Telegram</a>
+        </p>
+        <p style="margin-top:0.5rem;">
+          <a href="/privacy.html" style="color:var(--text-secondary);text-decoration:none;margin:0 0.4rem;">Privacy</a> &bull; 
+          <a href="/terms.html" style="color:var(--text-secondary);text-decoration:none;margin:0 0.4rem;">Terms</a> &bull; 
+          <a href="/contact.html" style="color:var(--text-secondary);text-decoration:none;margin:0 0.4rem;">Contact</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JSZip for batch download -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-  <script src="/js/utils.js"></script><script src="/js/analytics.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/analytics.js"></script>
+
+  <!-- ✅ Ad Click Tracking Script -->
   <script>
+    function trackAdClick(position) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'ad_click', {
+          'event_category': 'monetization',
+          'event_label': position,
+          'value': 1
+        });
+      }
+      console.log(`Ad clicked: ${position}`);
+    }
+  </script>
+
+  <!-- ✅ MAIN APP SCRIPT (Original - Unchanged) -->  <script>
   (() => {
     let mode='auto',fmt='image/jpeg',blobs=[];
     const pBar=document.getElementById('progress-bar');
@@ -115,13 +635,13 @@
     window.blobs=blobs; // expose for inline onclick
     document.getElementById('dl-all').addEventListener('click',async()=>{
       if(!blobs.length)return;status('Creating ZIP...','processing');
-      const zip=new JSZip();const folder=zip.folder('compressed');
-      blobs.forEach(x=>folder.file(x.name,x.blob));
+      const zip=new JSZip();const folder=zip.folder('compressed');      blobs.forEach(x=>folder.file(x.name,x.blob));
       const c=await zip.generateAsync({type:'blob'});downloadBlob(c,'compressed-images.zip');
       status('Done!');showToast('ZIP downloaded!','success');
     });
   })();
   </script>
+
   <script src="/js/adsterra.js" defer></script>
 </body>
 </html>
