@@ -1,6 +1,124 @@
+# 🤖 ImgAURA - robots.txt
+# Free browser-based AI image processing tools
+# All processing happens client-side. No user data is collected.
+# Last updated: March 2026
+
+# ─────────────────────────────────────────────────────────────
+# GLOBAL RULES - All crawlers
+# ─────────────────────────────────────────────────────────────
 User-agent: *
 Allow: /
-Sitemap: https://your-domain.vercel.app/sitemap.xml
 
-# AI Image Tools — Free browser-based image processing
-# All processing happens client-side. No user data is collected.
+# Sitemap location (FIXED to actual domain)
+Sitemap: https://imgaura.qzz.io/sitemap.xml
+
+# Crawl delay for respectful crawling (prevents server overload)
+Crawl-delay: 1
+
+# ─────────────────────────────────────────────────────────────
+# GOOGLE-SPECIFIC RULES - Better indexing for images & tools
+# ─────────────────────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+Allow: /*.html$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Sitemap: https://imgaura.qzz.io/sitemap.xml
+
+# ─────────────────────────────────────────────────────────────
+# GOOGLE IMAGE BOT - Optimize for image search traffic
+# ─────────────────────────────────────────────────────────────
+User-agent: Googlebot-Image
+Allow: /
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /og-image.png$
+Sitemap: https://imgaura.qzz.io/sitemap.xml
+
+# ─────────────────────────────────────────────────────────────
+# BING BOT - Secondary search engine support
+# ─────────────────────────────────────────────────────────────
+User-agent: Bingbot
+Allow: /
+Sitemap: https://imgaura.qzz.io/sitemap.xml
+Crawl-delay: 2
+
+# ─────────────────────────────────────────────────────────────# BLOCK UNWANTED AI/SCRAPER BOTS (Optional but recommended)
+# Prevents your content from being used for AI training without consent
+# ─────────────────────────────────────────────────────────────
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+# ─────────────────────────────────────────────────────────────
+# BLOCK COMMON BAD BOTS & SCRAPERS
+# ─────────────────────────────────────────────────────────────
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SeekportBot
+Disallow: /
+
+# ─────────────────────────────────────────────────────────────
+# ALLOW GOOD SEO TOOLS (Optional - remove if you prefer to block all)
+# ─────────────────────────────────────────────────────────────
+# User-agent: AhrefsSiteAudit
+# Allow: /
+# User-agent: SemrushBot-SiteAudit
+# Allow: /
+
+# ─────────────────────────────────────────────────────────────
+# BLOCK SENSITIVE/NON-PUBLIC PATHS (Good practice even if empty)
+# ─────────────────────────────────────────────────────────────
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /config/
+Disallow: /logs/
+Disallow: /tmp/
+Disallow: /*?*sessionid=
+Disallow: /*?*utm_source=
+Disallow: /search?q=
+
+# ─────────────────────────────────────────────────────────────
+# NOTES FOR DEVELOPERS
+# ─────────────────────────────────────────────────────────────
+# • All image processing happens in-browser via TensorFlow.js/MediaPipe
+# • No images are uploaded to servers - 100% client-side
+# • No user data is collected or stored
+# • This robots.txt is for SEO crawling only, not data collection
+# • Update sitemap URL if domain changes
+# • Review AI bot rules quarterly as landscape evolves
