@@ -1,68 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- 🏠 Homepage - Highest Priority -->
   <url>
     <loc>https://imgaura.qzz.io/</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://imgaura.qzz.io/og-image.png</image:loc>
+      <image:title>ImgAURA - Free AI Image Tools</image:title>
+      <image:caption>Free browser-based AI image processing tools</image:caption>
+    </image:image>
   </url>
+  
+  <!-- 🔥 Core Tools - High Priority (Most Searched) -->
   <url>
     <loc>https://imgaura.qzz.io/bg-remover.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://imgaura.qzz.io/og-image.png</image:loc>
+      <image:title>Free Background Remover - ImgAURA</image:title>
+      <image:caption>Remove image backgrounds instantly with AI</image:caption>
+    </image:image>
   </url>
+  
   <url>
     <loc>https://imgaura.qzz.io/image-cropper.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://imgaura.qzz.io/og-image.png</image:loc>
+      <image:title>Free Image Cropper - ImgAURA</image:title>
+      <image:caption>Crop and rotate images perfectly</image:caption>
+    </image:image>
   </url>
+  
   <url>
     <loc>https://imgaura.qzz.io/watermark-adder.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://imgaura.qzz.io/og-image.png</image:loc>      <image:title>Free Watermark Adder - ImgAURA</image:title>
+      <image:caption>Add text watermarks to protect your photos</image:caption>
+    </image:image>
   </url>
+  
   <url>
     <loc>https://imgaura.qzz.io/image-filters.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://imgaura.qzz.io/og-image.png</image:loc>
+      <image:title>Free Image Filters - ImgAURA</image:title>
+      <image:caption>Apply Instagram-style filters to your photos</image:caption>
+    </image:image>
   </url>
+  
+  <!-- ⚙️ Advanced Tools - Medium-High Priority -->
   <url>
     <loc>https://imgaura.qzz.io/image-enhancer.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://imgaura.qzz.io/og-image.png</image:loc>
+      <image:title>Free Image Enhancer - ImgAURA</image:title>
+      <image:caption>Upscale and enhance images with AI</image:caption>
+    </image:image>
   </url>
+  
   <url>
     <loc>https://imgaura.qzz.io/object-detector.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://imgaura.qzz.io/og-image.png</image:loc>
+      <image:title>Free Object Detector - ImgAURA</image:title>
+      <image:caption>Detect objects in images with AI</image:caption>
+    </image:image>
   </url>
+  
   <url>
     <loc>https://imgaura.qzz.io/image-converter.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://imgaura.qzz.io/og-image.png</image:loc>
+      <image:title>Free Image Converter - ImgAURA</image:title>      <image:caption>Convert images between PNG, JPEG, WEBP, BMP</image:caption>
+    </image:image>
   </url>
+  
   <url>
     <loc>https://imgaura.qzz.io/image-compressor.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://imgaura.qzz.io/og-image.png</image:loc>
+      <image:title>Free Image Compressor - ImgAURA</image:title>
+      <image:caption>Compress images without losing quality</image:caption>
+    </image:image>
   </url>
+  
   <url>
     <loc>https://imgaura.qzz.io/face-blur.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://imgaura.qzz.io/og-image.png</image:loc>
+      <image:title>Free Face Blur Tool - ImgAURA</image:title>
+      <image:caption>Blur faces automatically for privacy</image:caption>
+    </image:image>
   </url>
+  
+  <!-- 📄 Legal & Info Pages - Lower Priority -->
   <url>
     <loc>https://imgaura.qzz.io/privacy.html</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  
   <url>
     <loc>https://imgaura.qzz.io/terms.html</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+  
   <url>
     <loc>https://imgaura.qzz.io/contact.html</loc>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
-</urlset>
+  </urlset>
