@@ -188,7 +188,7 @@
   }
   </script>
   
-  <!-- 🗂️ Structured Data: Organization Schema + Owner Info (NO GitHub) -->
+  <!-- 🗂️ Structured Data: Organization Schema + Owner Info -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -221,7 +221,7 @@
   }
   </script>
   
-  <!-- 🗂️ Structured Data: Person Schema (Owner) - NO GitHub -->
+  <!-- 🗂️ Structured Data: Person Schema (Owner) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -294,8 +294,6 @@
       <span style="color:var(--text-primary);">Background Remover</span>
     </nav>  </div>
 
-
-
   <!-- MAIN CONTENT -->
   <section class="section" style="padding-top:1rem;">
     <div class="container">
@@ -341,8 +339,8 @@
               <button class="tab-btn" data-tab="tab-solid">Solid Color</button>
               <button class="tab-btn" data-tab="tab-gradient">Gradient</button>
               <button class="tab-btn" data-tab="tab-custom">Custom Image</button>
-              <button class="tab-btn" data-tab="tab-blur">Blur BG</button>            </div>
-
+              <button class="tab-btn" data-tab="tab-blur">Blur BG</button>
+            </div>
             <div class="tab-content active" id="tab-transparent">
               <p style="font-size:0.85rem;color:var(--text-secondary);">Transparent PNG — the default output.</p>
             </div>
@@ -390,9 +388,9 @@
                 Edge Smoothness
                 <input type="range" class="range-slider" id="edge-smooth" min="0" max="10" value="2" style="flex:1;">
                 <span id="edge-value" style="min-width:20px;text-align:right;">2</span>
-              </label>              <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">
-                Brightness
-                <input type="range" class="range-slider" id="brightness" min="-50" max="50" value="0" style="flex:1;">
+              </label>
+              <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">
+                Brightness                <input type="range" class="range-slider" id="brightness" min="-50" max="50" value="0" style="flex:1;">
                 <span id="brightness-value" style="min-width:20px;text-align:right;">0</span>
               </label>
               <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">
@@ -439,12 +437,10 @@
               <canvas id="result-canvas" style="max-width:100%;border-radius:8px;"></canvas>
             </div>
             <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;">
-              <button class="btn-primary" id="download-btn">📥 Download PNG</button>              <button class="btn-secondary" id="download-zip-btn" style="display:none;">📦 Download All as ZIP</button>
-              <button class="btn-secondary" id="apply-bg-btn">🎨 Apply Background</button>
-            </div>
+              <button class="btn-primary" id="download-btn">📥 Download PNG</button>
+              <button class="btn-secondary" id="download-zip-btn" style="display:none;">📦 Download All as ZIP</button>
+              <button class="btn-secondary" id="apply-bg-btn">🎨 Apply Background</button>            </div>
           </div>
-
-
 
           <!-- History Panel -->
           <div id="history-panel" style="margin-top:1.5rem;">
@@ -484,17 +480,15 @@
             </div>
           </div>
 
-
-
         </div>
         <div class="tool-sidebar">
-          <!-- NATIVE BANNER AD (HARDCODED) -->          <div class="panel" style="padding:1rem; text-align:center; min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+          <!-- NATIVE BANNER AD (HARDCODED) -->
+          <div class="panel" style="padding:1rem; text-align:center; min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
              <span style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block;">Sponsored</span>
              <div id="container-93473ff7b9d6e0da14ef534d15b31530"></div>
              <script async="async" data-cfasync="false" src="https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js"></script>
           </div>
-          <!-- Related Tools -->
-          <h3 style="font-size:1rem;font-weight:600;margin-top:2rem;margin-bottom:1rem;">More ImgAURA Tools</h3>
+          <!-- Related Tools -->          <h3 style="font-size:1rem;font-weight:600;margin-top:2rem;margin-bottom:1rem;">More ImgAURA Tools</h3>
           <div style="display:grid;gap:0.75rem;">
             <a href="/image-cropper.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
               <span style="font-size:1.2rem;">✂️</span>
@@ -514,14 +508,23 @@
     </div>
   </section>
 
-
-
   <!-- FOOTER -->
-    <div id="ad-banner-bottom" style="margin: 2rem auto; max-width: 728px; text-align: center; display: flex; justify-content: center; overflow: hidden;"></div>
+  <div id="ad-banner-bottom" style="margin: 2rem auto; max-width: 728px; text-align: center; display: flex; justify-content: center; overflow: hidden;"></div>
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
-        <p>© 2024 ImgAURA &bull; Created by <strong>YS YUVRAJ YT</strong> &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a> &bull; <a href="/contact.html">Contact</a></p>
+        <p>© 2024 ImgAURA &bull; Created by <strong>YS YUVRAJ YT</strong></p>
+        <!-- ✅ Social Links Added Here (Visible) -->
+        <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-secondary);">
+          Connect: 
+          <a href="https://www.instagram.com/ysyuvrajyt" target="_blank" rel="noopener noreferrer" style="color:var(--neon-pink);text-decoration:none;margin:0 0.3rem;">📸 Instagram</a> | 
+          <a href="https://t.me/Yuvzen" target="_blank" rel="noopener noreferrer" style="color:var(--neon-blue);text-decoration:none;margin:0 0.3rem;">✈️ Telegram</a>
+        </p>
+        <p style="margin-top:0.5rem;">
+          <a href="/privacy.html" style="color:var(--text-secondary);text-decoration:none;margin:0 0.4rem;">Privacy</a> &bull; 
+          <a href="/terms.html" style="color:var(--text-secondary);text-decoration:none;margin:0 0.4rem;">Terms</a> &bull; 
+          <a href="/contact.html" style="color:var(--text-secondary);text-decoration:none;margin:0 0.4rem;">Contact</a>
+        </p>
       </div>
     </div>
   </footer>
@@ -533,11 +536,10 @@
   <script src="/js/utils.js"></script>
   <script src="/js/analytics.js"></script>
 
-
   <script>
-  (() => {
-    // ── State ──
-    let segmenter = null;    let originalImage = null;
+  (() => {    // ── State ──
+    let segmenter = null;
+    let originalImage = null;
     let maskCanvas = null;
     let currentBgType = 'transparent';
     let customBgImage = null;
@@ -584,9 +586,9 @@
 
     // ── Tab System ──
     document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));        btn.classList.add('active');
+      btn.addEventListener('click', () => {        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
         document.getElementById(btn.dataset.tab).classList.add('active');
         currentBgType = btn.dataset.tab.replace('tab-', '');
       });
@@ -634,8 +636,8 @@
     // ── File Handling ──
     setupDragDrop(uploadZone, handleFiles);
     fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
-
-    async function handleFiles(files) {      if (!files.length) return;
+    async function handleFiles(files) {
+      if (!files.length) return;
       if (!segmenter) await initSegmenter();
 
       const fileArray = Array.from(files).slice(0, batchMode ? 10 : 1);
@@ -682,9 +684,9 @@
       const edgeSmooth = parseInt(document.getElementById('edge-smooth')?.value) || 0;
       if (edgeSmooth > 0) {
         maskCtx.filter = `blur(${edgeSmooth}px)`;
-        maskCtx.drawImage(maskCanvas, 0, 0);
-        maskCtx.filter = 'none';
+        maskCtx.drawImage(maskCanvas, 0, 0);        maskCtx.filter = 'none';
       }
+
       currentMask = maskCanvas;
       renderResult();
 
@@ -731,9 +733,9 @@
         tempDiv.style.height = h + 'px';
         // Draw gradient on canvas
         const match = selectedGradient.match(/#[a-f0-9]{6}/gi);
-        if (match && match.length >= 2) {
-          const grad = ctx.createLinearGradient(0, 0, w, h);
-          grad.addColorStop(0, match[0]);          grad.addColorStop(1, match[1]);
+        if (match && match.length >= 2) {          const grad = ctx.createLinearGradient(0, 0, w, h);
+          grad.addColorStop(0, match[0]);
+          grad.addColorStop(1, match[1]);
           ctx.fillStyle = grad;
           ctx.fillRect(0, 0, w, h);
         }
@@ -781,8 +783,8 @@
 
     // Color picker change
     document.getElementById('solid-color').addEventListener('input', debounce(renderResult, 100));
-
-    // ── Download ──    downloadBtn.addEventListener('click', () => {
+    // ── Download ──
+    downloadBtn.addEventListener('click', () => {
       const quality = document.querySelector('input[name="quality"]:checked').value;
       if (quality === 'hd') {
         downloadCanvas(resultCanvas, 'bg-removed-hd.png');
@@ -829,9 +831,9 @@
       const after = document.getElementById('ba-after');
       let dragging = false;
 
-      function updateSlider(x) {
-        const rect = slider.getBoundingClientRect();
-        const pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));        after.style.width = (pct * 100) + '%';
+      function updateSlider(x) {        const rect = slider.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+        after.style.width = (pct * 100) + '%';
         handle.style.left = (pct * 100) + '%';
       }
 
