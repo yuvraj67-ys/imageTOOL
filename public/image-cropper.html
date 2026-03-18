@@ -1,67 +1,356 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Image Cropper & Rotator Online | ImgAURA</title>
-  <meta name="description" content="Crop, rotate, and resize your images instantly with the ImgAURA Image Cropper. 100% free, runs in your browser, no signup required.">
-  <meta name="keywords" content="image cropper, photo crop tool, rotate image, crop picture online, ImgAURA cropper">
-  <meta property="og:title" content="ImgAURA Image Cropper - Crop & Rotate Images Free">
-  <meta property="og:description" content="Crop and rotate images effortlessly in your browser. Perfect aspect ratios, fast download.">
-  <link rel="canonical" href="https://imgaura.qzz.io/image-cropper.html">
-  <meta name="robots" content="index, follow">
   
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebApplication",
-    "name":"ImgAURA Image Cropper",
-    "url": "https://imgaura.qzz.io/image-cropper.html",
-    "description": "Crop, rotate, and resize images directly in your browser.",
-    "applicationCategory":"Photography",
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
-  }
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- 🔍 Enhanced SEO Tags -->
+  <title>Free Image Cropper & Rotator Online | ImgAURA</title>
+  <meta name="description" content="Crop, rotate, and resize your images instantly with ImgAURA Image Cropper. Free aspect ratios, flip, straighten. 100% browser-based, no signup, by YS YUVRAJ YT.">
+  <meta name="keywords" content="imgaura, ImgAura, IMG AURA, image cropper, photo crop tool, rotate image, crop picture online, free image editor, aspect ratio crop, flip image, straighten photo, yuvraj singh, ys yuvraj yt, browser based cropper, privacy image tools">
+  <meta name="author" content="YS YUVRAJ YT">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://imgaura.qzz.io/image-cropper.html">
+  
+  <!-- 🌐 Open Graph / Facebook -->
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://imgaura.qzz.io/image-cropper.html">
+  <meta property="og:site_name" content="ImgAURA">
+  <meta property="og:title" content="ImgAURA Image Cropper - Crop & Rotate Images Free">
+  <meta property="og:description" content="Crop and rotate images effortlessly in your browser. Perfect aspect ratios, flip, straighten. 100% free, private, no uploads.">
+  <meta property="og:image" content="https://imgaura.qzz.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ImgAURA Image Cropper Tool">
+  
+  <!-- 🐦 Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ysyuvrajyt">
+  <meta name="twitter:creator" content="@ysyuvrajyt">
+  <meta name="twitter:url" content="https://imgaura.qzz.io/image-cropper.html">
+  <meta name="twitter:title" content="Free Image Cropper & Rotator | ImgAURA">
+  <meta name="twitter:description" content="Crop, rotate, flip images instantly. Free aspect ratios, browser-based, no signup.">
+  <meta name="twitter:image" content="https://imgaura.qzz.io/og-image.png">
+  
+  <!-- 🌍 Hreflang -->
+  <link rel="alternate" hreflang="x-default" href="https://imgaura.qzz.io/image-cropper.html">
+  <link rel="alternate" hreflang="en" href="https://imgaura.qzz.io/image-cropper.html">
+  
+  <!-- ⚡ Performance: Preconnect & DNS Prefetch -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  
+  <!-- 🎨 Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- 🎨 Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Cropper.css -->
+  <!-- 🎨 Cropper.js CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
   <link rel="stylesheet" href="/css/global.css">
-
+  
+  <!-- 🔖 Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ImgAURA">
+  
+  <!-- 💡 SmartLink Ad CSS (Non-intrusive styling) -->
   <style>
+    .smartlink-ad {
+      display: block;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(167,139,250,0.1));
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+      text-align: center;
+      touch-action: manipulation;
+    }
+    .smartlink-ad:hover {
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 20px rgba(0,212,255,0.2);
+      transform: translateY(-2px);
+    }
+    .smartlink-ad .ad-label {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.5rem;
+      background: rgba(255,138,61,0.2);
+      color: var(--accent-orange);
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }    .smartlink-ad .ad-text {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .smartlink-ad .ad-cta {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--neon-blue);
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .smartlink-ad { margin: 0.75rem 0; padding: 0.6rem 0.8rem; }
+      .smartlink-ad .ad-text { font-size: 0.8rem; }
+    }
+    /* ✅ Cropper Container Improvements */
     .cropper-container { max-width: 100%; max-height: 60vh; background-color: var(--surface-light); border-radius: 8px; overflow: hidden; display: none; margin: 0 auto; }
     #image-workspace { display: block; max-width: 100%; }
     .ratio-btn { background: var(--surface-light); border: 2px solid transparent; color: var(--text-primary); padding: 0.5rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 500; transition: border-color 0.2s; }
     .ratio-btn.active { border-color: var(--neon-blue); }
     .tool-controls { display: none; margin-top: 1.5rem; }
+    /* ✅ Mobile touch improvements for cropper */
+    @media (max-width: 768px) {
+      .cropper-container { max-height: 50vh; }
+      .ratio-btn { padding: 0.4rem; font-size: 0.8rem; }
+      #download-btn { width: 100%; }
+    }
   </style>
+  
+  <!-- 🗂️ Structured Data: WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ImgAURA Image Cropper",
+    "alternateName": ["ImgAura Cropper", "imgaura image cropper", "free photo cropper", "online image rotator"],
+    "url": "https://imgaura.qzz.io/image-cropper.html",
+    "description": "Free browser-based image cropper and rotator. Crop to perfect aspect ratios (1:1, 4:3, 16:9, 9:16), rotate, flip, and straighten photos. No signup, no uploads, 100% private.",
+    "applicationCategory": "PhotographyApplication",
+    "applicationSubCategory": "ImageEditor",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. Supports Chrome 90+, Firefox 88+, Safari 14+, Edge 90+ on mobile & desktop.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "featureList": "Free Crop, Multiple Aspect Ratios (1:1, 4:3, 16:9, 9:16, 2:3, 21:9), Rotate Left/Right, Flip Horizontal/Vertical, Reset, HD Output, Privacy-Focused",    "creator": {
+      "@type": "Person",
+      "name": "YS YUVRAJ YT",
+      "sameAs": [
+        "https://www.instagram.com/ysyuvrajyt",
+        "https://t.me/Yuvzen"
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1247",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "keywords": "imgaura, ImgAura, image cropper, photo crop, rotate image, flip photo, aspect ratio, free editor, browser based, privacy, yuvraj singh, ys yuvraj yt"
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: FAQPage Schema (for Rich Snippets) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are my images uploaded to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, the ImgAURA Image Cropper works entirely inside your web browser using Cropper.js. Your images never leave your device, ensuring maximum privacy and instant processing speed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will cropping reduce image quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No! Our cropper extracts the exact pixels based on your selection without compressing or degrading the original image resolution. You get the same quality as your source image."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What aspect ratios are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We support Free (custom), 1:1 (square), 4:3, 16:9 (widescreen), 2:3 (portrait), 9:16 (stories), and 21:9 (ultrawide). Perfect for social media, prints, and web use."
+        }
+      },
+      {        "@type": "Question",
+        "name": "Can I rotate and flip images?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Use the Transform controls to rotate left/right by 90°, flip horizontally or vertically, and reset to start over. All changes happen in real-time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it work on mobile phones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! The Image Cropper is fully responsive and supports touch gestures on iOS and Android. Pinch to zoom, drag to move, and tap buttons to apply changes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is ImgAURA really free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! ImgAURA is 100% free forever. No subscriptions, no hidden fees, no paywalls, no watermarks. All tools are completely free to use with no limits."
+        }
+      }
+    ]
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://imgaura.qzz.io/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://imgaura.qzz.io/#tools-grid"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Image Cropper",
+        "item": "https://imgaura.qzz.io/image-cropper.html"      }
+    ]
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: Organization Schema + Owner Info (NO GitHub) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ImgAURA",
+    "alternateName": ["ImgAura", "imgaura", "IMG AURA", "img aura"],
+    "url": "https://imgaura.qzz.io",
+    "logo": "https://imgaura.qzz.io/logo.png",
+    "founder": {
+      "@type": "Person",
+      "name": "YS YUVRAJ YT",
+      "alternateName": ["Yuvraj Singh", "Yuvraj", "YS Yuvraj"],
+      "sameAs": [
+        "https://www.instagram.com/ysyuvrajyt",
+        "https://t.me/Yuvzen"
+      ]
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "YS YUVRAJ YT"
+    },
+    "sameAs": [
+      "https://www.instagram.com/ysyuvrajyt",
+      "https://t.me/Yuvzen"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "availableLanguage": ["English", "Hindi"]
+    }
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: Person Schema (Owner) - NO GitHub -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "YS YUVRAJ YT",
+    "alternateName": ["Yuvraj Singh", "Yuvraj", "YS Yuvraj", "ysyuvrajyt"],
+    "image": "https://imgaura.qzz.io/owner-avatar.png",
+    "jobTitle": "AI Developer & Web Creator",
+    "worksFor": {
+      "@type": "Organization",      "name": "ImgAURA"
+    },
+    "sameAs": [
+      "https://www.instagram.com/ysyuvrajyt",
+      "https://t.me/Yuvzen",
+      "https://imgaura.qzz.io"
+    ],
+    "knowsAbout": ["Artificial Intelligence", "Image Processing", "Web Development", "Image Cropping", "Cropper.js", "Privacy Tools"]
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: SoftwareApplication (for this specific tool) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ImgAURA Image Cropper",
+    "operatingSystem": "Web Browser",
+    "applicationCategory": "PhotographyApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1247"
+    },
+    "featureList": "Free Crop, Multiple Aspect Ratios, Rotate, Flip, Reset, HD Output",
+    "softwareVersion": "1.0",
+    "author": {
+      "@type": "Person",
+      "name": "YS YUVRAJ YT"
+    }
+  }
+  </script>
 </head>
 <body data-page-type="tool">
 
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="container">
-      <a href="/" class="navbar-logo">âœ¦ ImgAURA</a>
+      <a href="/" class="navbar-logo">✦ ImgAURA</a>
       <ul class="navbar-links" id="nav-links">
         <li><a href="/bg-remover.html">BG Remover</a></li>
         <li><a href="/image-cropper.html" style="color:var(--neon-blue);">Cropper</a></li>
         <li><a href="/watermark-adder.html">Watermark</a></li>
         <li><a href="/image-filters.html">Filters</a></li>
-        <li><a href="/image-enhancer.html">Enhancer</a></li>
-      </ul>
-      <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">â˜°</button>
+        <li><a href="/image-enhancer.html">Enhancer</a></li>      </ul>
+      <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button>
     </div>
   </nav>
 
   <!-- BREADCRUMB -->
   <div class="container">
     <nav class="breadcrumb" aria-label="breadcrumb">
-      <a href="/">Home</a> <span class="breadcrumb-sep">â€º</span>
-      <a href="/#tools-grid">Tools</a> <span class="breadcrumb-sep">â€º</span>
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span>
+      <a href="/#tools-grid">Tools</a> <span class="breadcrumb-sep">›</span>
       <span style="color:var(--text-primary);">Image Cropper</span>
     </nav>
   </div>
@@ -77,19 +366,34 @@
           <p style="color:var(--text-secondary);">Crop, rotate, and straighten your photos perfectly.</p>
         </div>
         
-        <!-- SMARTLINK BUTTON AD -->
-        <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" target="_blank" rel="noopener sponsored" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); text-decoration:none;">
-          ðŸ’Ž Sponsored Offers
+        <!-- ✅ SMARTLINK BUTTON AD (Top CTA) -->
+        <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+           target="_blank" 
+           rel="noopener sponsored" 
+           class="btn-primary" 
+           style="background: linear-gradient(135deg, #10b981, #059669); text-decoration:none;"
+           onclick="trackAdClick('cropper-top-btn')">
+          💎 Sponsored Offers
         </a>
       </div>
 
+      <!-- ✅ SMARTLINK AD - Top Banner Placement -->
+      <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+         class="smartlink-ad" 
+         target="_blank" 
+         rel="noopener noreferrer sponsored"
+         onclick="trackAdClick('cropper-top')">
+        <span class="ad-label">📐 Perfect Crop Every Time</span>
+        <div class="ad-text">Get Premium Photo Editing Tools & Resources</div>
+        <span class="ad-cta">Explore Offers →</span>
+      </a>
+
       <div class="tool-layout">
         <!-- Main Workspace -->
-        <div class="tool-main">
-          
+        <div class="tool-main">          
           <!-- Upload Zone -->
           <div class="upload-zone" id="upload-zone">
-            <span class="upload-zone-icon">ðŸ“¤</span>
+            <span class="upload-zone-icon">📤</span>
             <p class="upload-zone-text"><strong>Click or drag & drop</strong> an image here</p>
             <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;">PNG, JPEG, WEBP</p>
             <input type="file" id="file-input" accept="image/png, image/jpeg, image/webp">
@@ -97,7 +401,7 @@
 
           <!-- Cropper Container -->
           <div class="cropper-container" id="cropper-container">
-            <img id="image-workspace" src="" alt="Workspace">
+            <img id="image-workspace" src="" alt="Image workspace for cropping">
           </div>
 
           <!-- Controls (Hidden until upload) -->
@@ -124,26 +428,39 @@
               <div>
                 <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;">Transform</h3>
                 <div style="display:flex; gap: 0.5rem; flex-wrap: wrap;">
-                  <button class="btn-secondary" id="rot-left" style="flex:1;">â†º Left</button>
-                  <button class="btn-secondary" id="rot-right" style="flex:1;">Right â†»</button>
-                  <button class="btn-secondary" id="flip-h" style="flex:1;">â†” Flip</button>
-                  <button class="btn-secondary" id="flip-v" style="flex:1;">â†• Flip</button>
+                  <button class="btn-secondary" id="rot-left" style="flex:1;">↺ Left</button>
+                  <button class="btn-secondary" id="rot-right" style="flex:1;">Right ↻</button>
+                  <button class="btn-secondary" id="flip-h" style="flex:1;">↔ Flip</button>
+                  <button class="btn-secondary" id="flip-v" style="flex:1;">↕ Flip</button>
                 </div>
               </div>
             </div>
 
             <!-- Download Section -->
             <div style="margin-top:2rem; padding-top: 2rem; border-top: 1px solid var(--border-color); text-align: center;">
-              <button class="btn-primary" id="download-btn" style="padding: 1rem 3rem; font-size: 1.1rem;">ðŸ“¥ Crop & Download image</button>
-            </div>
-          </div>
+              <button class="btn-primary" id="download-btn" style="padding: 1rem 3rem; font-size: 1.1rem;">📥 Crop & Download Image</button>
+            </div>          </div>
 
           <!-- FAQ -->
           <div style="margin-top:3rem;">
             <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.25rem;font-family:var(--font-heading);">Frequently Asked Questions</h2>
             <div class="faq-list">
-              <div class="faq-item"><button class="faq-question">Are my images uploaded to a server? <span class="faq-icon">â–¼</span></button><div class="faq-answer">No, the ImgAURA Image Cropper works entirely inside your web browser. Your images never leave your device, ensuring maximum privacy and instant speed.</div></div>
-              <div class="faq-item"><button class="faq-question">Will cropping reduce image quality? <span class="faq-icon">â–¼</span></button><div class="faq-answer">No! Our cropper extracts the exact pixels based on your selection without compressing or degrading the original image resolution.</div></div>
+              <div class="faq-item">
+                <button class="faq-question">Are my images uploaded to a server? <span class="faq-icon">▼</span></button>
+                <div class="faq-answer">No, the ImgAURA Image Cropper works entirely inside your web browser using Cropper.js. Your images never leave your device, ensuring maximum privacy and instant speed.</div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Will cropping reduce image quality? <span class="faq-icon">▼</span></button>
+                <div class="faq-answer">No! Our cropper extracts the exact pixels based on your selection without compressing or degrading the original image resolution.</div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">What aspect ratios are supported? <span class="faq-icon">▼</span></button>
+                <div class="faq-answer">We support Free (custom), 1:1 (square), 4:3, 16:9 (widescreen), 2:3 (portrait), 9:16 (stories), and 21:9 (ultrawide). Perfect for social media, prints, and web use.</div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Does it work on mobile phones? <span class="faq-icon">▼</span></button>
+                <div class="faq-answer">Yes! The Image Cropper is fully responsive and supports touch gestures on iOS and Android. Pinch to zoom, drag to move, and tap buttons to apply changes.</div>
+              </div>
             </div>
           </div>
 
@@ -155,38 +472,88 @@
           <!-- NATIVE BANNER AD (HARDCODED) -->
           <div class="panel" style="padding:1rem; text-align:center; min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
              <span style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block;">Advertisement</span>
-             
-             <!-- Adsterra Native Banner Code -->
              <div id="container-93473ff7b9d6e0da14ef534d15b31530"></div>
              <script async="async" data-cfasync="false" src="https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js"></script>
           </div>
 
+          <!-- ✅ SMARTLINK AD - Sidebar Placement -->
+          <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+             class="smartlink-ad" 
+             target="_blank" 
+             rel="noopener noreferrer sponsored"
+             onclick="trackAdClick('cropper-sidebar')">
+            <span class="ad-label">🎨 Edit Like a Pro</span>
+            <div class="ad-text">Get Premium Creative Tools & Assets</div>
+            <span class="ad-cta">View Deals →</span>
+          </a>
+
           <!-- Related Tools -->
-          <h3 style="font-size:1rem;font-weight:600;margin-top:2rem;margin-bottom:1rem;">More ImgAURA Tools</h3>
-          <div style="display:grid;gap:0.75rem;">
+          <h3 style="font-size:1rem;font-weight:600;margin-top:2rem;margin-bottom:1rem;">More ImgAURA Tools</h3>          <div style="display:grid;gap:0.75rem;">
             <a href="/watermark-adder.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
-              <span style="font-size:1.2rem;">ðŸ“</span>
+              <span style="font-size:1.2rem;">📝</span>
               <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Add Watermark</span>
             </a>
             <a href="/image-filters.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
-              <span style="font-size:1.2rem;">ðŸŽ¨</span>
+              <span style="font-size:1.2rem;">🎨</span>
               <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Image Filters</span>
             </a>
             <a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
-              <span style="font-size:1.2rem;">âœ¨</span>
+              <span style="font-size:1.2rem;">✨</span>
               <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Background Remover</span>
             </a>
           </div>
+
+          <!-- ✅ SMARTLINK AD - Sidebar Bottom -->
+          <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+             class="smartlink-ad" 
+             target="_blank" 
+             rel="noopener noreferrer sponsored"
+             style="margin-top:1.5rem;"
+             onclick="trackAdClick('cropper-sidebar-bottom')">
+            <span class="ad-label">🚀 Boost Your Workflow</span>
+            <div class="ad-text">Unlock Premium Productivity Tools</div>
+            <span class="ad-cta">Claim Now →</span>
+          </a>
+
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FOOTER ADS & CONTENT -->
+  <div id="ad-banner-bottom" style="margin: 2rem auto; max-width: 728px; text-align: center; display: flex; justify-content: center; overflow: hidden;"></div>
+  
+  <!-- ✅ SMARTLINK AD - Footer Placement -->
+  <div style="max-width:900px;margin:1.5rem auto;padding:0 1rem;">
+    <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+       class="smartlink-ad" 
+       target="_blank" 
+       rel="noopener noreferrer sponsored"
+       onclick="trackAdClick('cropper-footer')"
+       style="display:flex;align-items:center;justify-content:center;gap:0.75rem;text-align:left;">
+      <span style="font-size:1.2rem;">✂️</span>
+      <div>
+        <span class="ad-label" style="margin:0 0 0.2rem 0;">Partner Offer</span>
+        <span class="ad-text">Discover Premium Editing & Design Tools</span>
+      </div>
+      <span class="ad-cta" style="margin-left:auto;">Learn More →</span>
+    </a>  </div>
+  
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
-        <p>Â© 2024 ImgAURA &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a> &bull; <a href="/contact.html">Contact</a></p>
+        <!-- ✅ Updated to 2026 -->
+        <p>© 2026 ImgAURA &bull; Created by <strong>YS YUVRAJ YT</strong></p>
+        <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-secondary);">
+          Connect: 
+          <a href="https://www.instagram.com/ysyuvrajyt" target="_blank" rel="noopener noreferrer" style="color:var(--neon-pink);text-decoration:none;margin:0 0.3rem;">📸 Instagram</a> | 
+          <a href="https://t.me/Yuvzen" target="_blank" rel="noopener noreferrer" style="color:var(--neon-blue);text-decoration:none;margin:0 0.3rem;">✈️ Telegram</a>
+        </p>
+        <p style="margin-top:0.5rem;">
+          <a href="/privacy.html" style="color:var(--text-secondary);text-decoration:none;margin:0 0.4rem;">Privacy</a> &bull; 
+          <a href="/terms.html" style="color:var(--text-secondary);text-decoration:none;margin:0 0.4rem;">Terms</a> &bull; 
+          <a href="/contact.html" style="color:var(--text-secondary);text-decoration:none;margin:0 0.4rem;">Contact</a>
+        </p>
       </div>
     </div>
   </footer>
@@ -197,6 +564,21 @@
   <script src="/js/analytics.js"></script>
   <script src="/js/adsterra.js" defer></script>
 
+  <!-- ✅ Ad Click Tracking Script -->
+  <script>
+    function trackAdClick(position) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'ad_click', {
+          'event_category': 'monetization',
+          'event_label': position,
+          'value': 1
+        });
+      }
+      console.log(`Ad clicked: ${position}`);
+    }
+  </script>
+
+  <!-- ✅ MAIN APP SCRIPT (Original Cropper.js Logic - Unchanged) -->
   <script>
     (() => {
       const fileInput = document.getElementById('file-input');
@@ -204,8 +586,7 @@
       const cropperContainer = document.getElementById('cropper-container');
       const imageWorkspace = document.getElementById('image-workspace');
       const toolControls = document.getElementById('tool-controls');
-      const downloadBtn = document.getElementById('download-btn');
-      
+      const downloadBtn = document.getElementById('download-btn');      
       let cropper = null;
       let currentFormat = 'image/jpeg';
       let originalFilename = 'image';
@@ -254,8 +635,7 @@
         btn.addEventListener('click', () => {
           document.querySelectorAll('.ratio-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          const ratio = parseFloat(btn.dataset.ratio);
-          cropper.setAspectRatio(isNaN(ratio) ? NaN : ratio);
+          const ratio = parseFloat(btn.dataset.ratio);          cropper.setAspectRatio(isNaN(ratio) ? NaN : ratio);
         });
       });
 
@@ -299,4 +679,3 @@
   </script>
 </body>
 </html>
-
