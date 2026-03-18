@@ -395,9 +395,10 @@
           <div style="margin-top:1rem;">
             <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">
               Min Confidence
-              <input type="range" class="range-slider" id="confidence" min="30" max="95" value="50" style="flex:1;">
-              <span id="confidence-val" style="min-width:35px;text-align:right;">50%</span>
+              <input type="range" class="range-slider" id="confidence" min="10" max="95" value="30" style="flex:1;">
+              <span id="confidence-val" style="min-width:35px;text-align:right;">30%</span>
             </label>
+            <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.25rem;">Lower = more detections (but less accurate)</p>
           </div>
 
           <!-- Result -->
@@ -438,8 +439,8 @@
                 <span style="font-size:1.2rem;">😶</span>
                 <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">Face Blur</span>
               </a>
-              <a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;">
-                <span style="font-size:1.2rem;">🖼️</span>                <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">BG Remover</span>
+              <a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;">                <span style="font-size:1.2rem;">🖼️</span>
+                <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">BG Remover</span>
               </a>
               <a href="/image-enhancer.html" class="panel" style="text-decoration:none;padding:1rem;">
                 <span style="font-size:1.2rem;">✨</span>
@@ -487,8 +488,8 @@
           <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
              class="smartlink-ad" 
              target="_blank" 
-             rel="noopener noreferrer sponsored"
-             onclick="trackAdClick('detector-sidebar')">            <span class="ad-label">🤖 AI Vision Tools</span>
+             rel="noopener noreferrer sponsored"             onclick="trackAdClick('detector-sidebar')">
+            <span class="ad-label">🤖 AI Vision Tools</span>
             <div class="ad-text">Get Premium Computer Vision Resources</div>
             <span class="ad-cta">View Deals →</span>
           </a>
@@ -536,8 +537,8 @@
        class="smartlink-ad" 
        target="_blank" 
        rel="noopener noreferrer sponsored"
-       onclick="trackAdClick('detector-footer')"
-       style="display:flex;align-items:center;justify-content:center;gap:0.75rem;text-align:left;">      <span style="font-size:1.2rem;">🔍</span>
+       onclick="trackAdClick('detector-footer')"       style="display:flex;align-items:center;justify-content:center;gap:0.75rem;text-align:left;">
+      <span style="font-size:1.2rem;">🔍</span>
       <div>
         <span class="ad-label" style="margin:0 0 0.2rem 0;">Partner Offer</span>
         <span class="ad-text">Discover Premium AI & Vision Tools</span>
@@ -585,8 +586,8 @@
       console.log(`Ad clicked: ${position}`);
     }
   </script>
-
-  <!-- ✅ MAIN APP SCRIPT (Original - Unchanged) -->  <script>
+  <!-- ✅ MAIN APP SCRIPT (FIXED) -->
+  <script>
   (() => {
     let model = null;
     let currentDetections = [];
@@ -602,11 +603,31 @@
       statusDot.className = 'status-dot' + (state === 'processing' ? ' processing' : '');
     }
 
-    // Load model
+    // Load model with better error handling
     async function loadModel() {
-      updateStatus('Loading AI model (first time may take a moment)...', 'processing');
-      model = await cocoSsd.load();
-      updateStatus('AI model ready', 'ready');
+      try {
+        updateStatus('Loading AI model (first time may take a moment)...', 'processing');
+        console.log('Loading COCO-SSD model...');
+        
+        // Check if cocoSsd is loaded
+        if (typeof cocoSsd === 'undefined') {
+          throw new Error('COCO-SSD library not loaded. Please check your internet connection.');
+        }
+        
+        model = await cocoSsd.load();
+        console.log('COCO-SSD model loaded successfully!');
+        updateStatus('✅ AI model ready! Upload an image to detect objects.', 'ready');
+        
+        // Show success message
+        setTimeout(() => {
+          showToast('AI Model loaded successfully!', 'success');
+        }, 500);
+        
+      } catch (error) {
+        console.error('Error loading model:', error);
+        updateStatus('❌ Error loading model. Please refresh the page.', 'error');
+        showToast('Failed to load AI model. Please refresh.', 'error');
+      }
     }
 
     // Confidence slider
@@ -614,65 +635,95 @@
     confSlider.addEventListener('input', () => {
       document.getElementById('confidence-val').textContent = confSlider.value + '%';
     });
-
     // File upload
     setupDragDrop(document.getElementById('upload-zone'), (files) => handleFile(files[0]));
     document.getElementById('file-input').addEventListener('change', (e) => { if (e.target.files[0]) handleFile(e.target.files[0]); });
 
     async function handleFile(file) {
-      if (!model) await loadModel();
+      if (!model) {
+        showToast('Model not loaded yet. Please wait...', 'error');
+        await loadModel();
+      }
+      
       updateStatus('Detecting objects...', 'processing');
-      const dataUrl = await readFileAsDataURL(file);
-      const img = await loadImage(dataUrl);
-      await detectObjects(img);
+      
+      try {
+        const dataUrl = await readFileAsDataURL(file);
+        const img = await loadImage(dataUrl);
+        await detectObjects(img);
+      } catch (error) {
+        console.error('Error processing image:', error);
+        updateStatus('Error processing image', 'error');
+        showToast('Failed to process image', 'error');
+      }
     }
 
     async function detectObjects(img) {
-      const minConf = parseInt(confSlider.value) / 100;
-      const predictions = await model.detect(img);
-      currentDetections = predictions.filter(p => p.score >= minConf);
+      try {
+        const minConf = parseInt(confSlider.value) / 100;
+        console.log(`Detecting objects with min confidence: ${minConf}`);
+        
+        // Run detection
+        const predictions = await model.detect(img);
+        console.log('Raw predictions:', predictions);
+        
+        currentDetections = predictions.filter(p => p.score >= minConf);
+        console.log(`Filtered detections: ${currentDetections.length}`);
 
-      const w = img.naturalWidth || img.width;
-      const h = img.naturalHeight || img.height;
-      resultCanvas.width = w;
-      resultCanvas.height = h;      const ctx = resultCanvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, w, h);
+        const w = img.naturalWidth || img.width;
+        const h = img.naturalHeight || img.height;
+        resultCanvas.width = w;
+        resultCanvas.height = h;
+        const ctx = resultCanvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, w, h);
 
-      // Color palette for different classes
-      const colors = ['#00d4ff', '#00ff88', '#ff006e', '#ffe066', '#a78bfa', '#ff8a3d', '#f472b6', '#34d399', '#60a5fa', '#fbbf24'];
-      const classColors = {};
-      let colorIndex = 0;
+        // Color palette for different classes
+        const colors = ['#00d4ff', '#00ff88', '#ff006e', '#ffe066', '#a78bfa', '#ff8a3d', '#f472b6', '#34d399', '#60a5fa', '#fbbf24'];
+        const classColors = {};
+        let colorIndex = 0;
 
-      currentDetections.forEach(det => {
-        if (!classColors[det.class]) {
-          classColors[det.class] = colors[colorIndex % colors.length];
-          colorIndex++;
+        currentDetections.forEach(det => {
+          if (!classColors[det.class]) {
+            classColors[det.class] = colors[colorIndex % colors.length];            colorIndex++;
+          }
+          const color = classColors[det.class];
+          const [x, y, bw, bh] = det.bbox;
+
+          // Draw box
+          ctx.strokeStyle = color;
+          ctx.lineWidth = Math.max(2, w / 400);
+          ctx.strokeRect(x, y, bw, bh);
+
+          // Label background
+          const label = `${det.class} ${Math.round(det.score * 100)}%`;
+          ctx.font = `bold ${Math.max(14, w / 50)}px Inter, sans-serif`;
+          const textWidth = ctx.measureText(label).width;
+          ctx.fillStyle = color;
+          ctx.fillRect(x, y - Math.max(20, w / 40), textWidth + 10, Math.max(20, w / 40));
+
+          // Label text
+          ctx.fillStyle = '#000';
+          ctx.fillText(label, x + 5, y - 5);
+        });
+
+        // Update table
+        updateTable();
+        document.getElementById('result-section').style.display = 'block';
+        trackToolUsage('object-detector');
+        
+        if (currentDetections.length > 0) {
+          updateStatus(`✅ Detected ${currentDetections.length} object(s)`, 'ready');
+          showToast(`Found ${currentDetections.length} object(s)!`, 'success');
+        } else {
+          updateStatus('No objects detected. Try lowering confidence.', 'ready');
+          showToast('No objects found. Try lowering confidence threshold.', 'info');
         }
-        const color = classColors[det.class];
-        const [x, y, bw, bh] = det.bbox;
-
-        // Draw box
-        ctx.strokeStyle = color;
-        ctx.lineWidth = Math.max(2, w / 400);
-        ctx.strokeRect(x, y, bw, bh);
-
-        // Label background
-        const label = `${det.class} ${Math.round(det.score * 100)}%`;
-        ctx.font = `bold ${Math.max(14, w / 50)}px Inter, sans-serif`;
-        const textWidth = ctx.measureText(label).width;
-        ctx.fillStyle = color;
-        ctx.fillRect(x, y - Math.max(20, w / 40), textWidth + 10, Math.max(20, w / 40));
-
-        // Label text
-        ctx.fillStyle = '#000';
-        ctx.fillText(label, x + 5, y - 5);
-      });
-
-      // Update table
-      updateTable();
-      document.getElementById('result-section').style.display = 'block';
-      trackToolUsage('object-detector');
-      updateStatus(`Detected ${currentDetections.length} objects`, 'ready');
+        
+      } catch (error) {
+        console.error('Detection error:', error);
+        updateStatus('Error during detection', 'error');
+        showToast('Detection failed. Please try again.', 'error');
+      }
     }
 
     function updateTable() {
@@ -682,9 +733,9 @@
       
       body.innerHTML = '';
       const seen = {};
-      currentDetections.forEach(d => {
-        if (seen[d.class]) return;
-        seen[d.class] = true;        const tr = document.createElement('tr');
+      currentDetections.forEach(d => {        if (seen[d.class]) return;
+        seen[d.class] = true;
+        const tr = document.createElement('tr');
         tr.style.borderBottom = '1px solid var(--border-color)';
         tr.innerHTML = `<td style="padding:0.5rem;color:var(--text-primary);">${d.class}</td><td style="padding:0.5rem;color:var(--neon-green);">${Math.round(d.score * 100)}%</td><td style="padding:0.5rem;color:var(--text-primary);">${counts[d.class]}</td>`;
         body.appendChild(tr);
@@ -703,6 +754,7 @@
         webcamStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
         document.getElementById('webcam').srcObject = webcamStream;
       } catch (err) {
+        console.error('Camera error:', err);
         showToast('Camera access denied', 'error');
       }
     });
@@ -730,10 +782,10 @@
       document.getElementById('webcam-section').style.display = 'none';
     });
 
-    function stopWebcam() {
-      if (webcamStream) {
+    function stopWebcam() {      if (webcamStream) {
         webcamStream.getTracks().forEach(t => t.stop());
-        webcamStream = null;      }
+        webcamStream = null;
+      }
     }
 
     // Download
@@ -752,8 +804,11 @@
       copyToClipboard(json);
     });
 
-    // Pre-load model
-    loadModel();
+    // Pre-load model on page load
+    window.addEventListener('load', () => {
+      console.log('Page loaded, initializing model...');
+      loadModel();
+    });
   })();
   </script>
 </body>
