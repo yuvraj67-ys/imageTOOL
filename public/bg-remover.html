@@ -268,6 +268,54 @@
     }
   }
   </script>
+
+  <!-- 💡 SmartLink Ad CSS (Non-intrusive styling) -->
+  <style>
+    .smartlink-ad {
+      display: block;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(167,139,250,0.1));
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    .smartlink-ad:hover {
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 20px rgba(0,212,255,0.2);
+      transform: translateY(-2px);
+    }
+    .smartlink-ad .ad-label {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.5rem;
+      background: rgba(255,138,61,0.2);      color: var(--accent-orange);
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .smartlink-ad .ad-text {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .smartlink-ad .ad-cta {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--neon-blue);
+      font-weight: 600;
+    }
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .smartlink-ad { margin: 0.75rem 0; padding: 0.6rem 0.8rem; }
+      .smartlink-ad .ad-text { font-size: 0.8rem; }
+    }
+  </style>
 </head>
 <body data-page-type="tool">
 
@@ -292,8 +340,8 @@
       <a href="/">Home</a> <span class="breadcrumb-sep">›</span>
       <a href="/#tools-grid">Tools</a> <span class="breadcrumb-sep">›</span>
       <span style="color:var(--text-primary);">Background Remover</span>
-    </nav>  </div>
-
+    </nav>
+  </div>
   <!-- MAIN CONTENT -->
   <section class="section" style="padding-top:1rem;">
     <div class="container">
@@ -341,8 +389,8 @@
               <button class="tab-btn" data-tab="tab-custom">Custom Image</button>
               <button class="tab-btn" data-tab="tab-blur">Blur BG</button>
             </div>
-            <div class="tab-content active" id="tab-transparent">
-              <p style="font-size:0.85rem;color:var(--text-secondary);">Transparent PNG — the default output.</p>
+
+            <div class="tab-content active" id="tab-transparent">              <p style="font-size:0.85rem;color:var(--text-secondary);">Transparent PNG — the default output.</p>
             </div>
             <div class="tab-content" id="tab-solid">
               <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">
@@ -390,8 +438,8 @@
                 <span id="edge-value" style="min-width:20px;text-align:right;">2</span>
               </label>
               <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">
-                Brightness                <input type="range" class="range-slider" id="brightness" min="-50" max="50" value="0" style="flex:1;">
-                <span id="brightness-value" style="min-width:20px;text-align:right;">0</span>
+                Brightness
+                <input type="range" class="range-slider" id="brightness" min="-50" max="50" value="0" style="flex:1;">                <span id="brightness-value" style="min-width:20px;text-align:right;">0</span>
               </label>
               <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.75rem;">
                 Contrast
@@ -439,8 +487,8 @@
             <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;">
               <button class="btn-primary" id="download-btn">📥 Download PNG</button>
               <button class="btn-secondary" id="download-zip-btn" style="display:none;">📦 Download All as ZIP</button>
-              <button class="btn-secondary" id="apply-bg-btn">🎨 Apply Background</button>            </div>
-          </div>
+              <button class="btn-secondary" id="apply-bg-btn">🎨 Apply Background</button>
+            </div>          </div>
 
           <!-- History Panel -->
           <div id="history-panel" style="margin-top:1.5rem;">
@@ -481,14 +529,29 @@
           </div>
 
         </div>
+
+        <!-- SIDEBAR -->
         <div class="tool-sidebar">
+          
           <!-- NATIVE BANNER AD (HARDCODED) -->
           <div class="panel" style="padding:1rem; text-align:center; min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
              <span style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block;">Sponsored</span>
              <div id="container-93473ff7b9d6e0da14ef534d15b31530"></div>
-             <script async="async" data-cfasync="false" src="https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js"></script>
-          </div>
-          <!-- Related Tools -->          <h3 style="font-size:1rem;font-weight:600;margin-top:2rem;margin-bottom:1rem;">More ImgAURA Tools</h3>
+             <script async="async" data-cfasync="false" src="https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js"></script>          </div>
+
+          <!-- ✅ SMARTLINK AD (UX-Friendly Placement) -->
+          <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+             class="smartlink-ad" 
+             target="_blank" 
+             rel="noopener noreferrer sponsored"
+             onclick="trackAdClick('smartlink-sidebar')">
+            <span class="ad-label">✨ Premium Offer</span>
+            <div class="ad-text">Unlock Pro AI Tools & Exclusive Deals</div>
+            <span class="ad-cta">Explore Now →</span>
+          </a>
+
+          <!-- Related Tools -->
+          <h3 style="font-size:1rem;font-weight:600;margin-top:1.5rem;margin-bottom:1rem;">More ImgAURA Tools</h3>
           <div style="display:grid;gap:0.75rem;">
             <a href="/image-cropper.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
               <span style="font-size:1.2rem;">✂️</span>
@@ -503,6 +566,19 @@
               <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Image Filters</span>
             </a>
           </div>
+
+          <!-- ✅ SMARTLINK AD - Footer of Sidebar (Secondary Placement) -->
+          <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+             class="smartlink-ad" 
+             target="_blank" 
+             rel="noopener noreferrer sponsored"
+             style="margin-top:1.5rem;"
+             onclick="trackAdClick('smartlink-sidebar-bottom')">
+            <span class="ad-label">🎁 Special Deal</span>
+            <div class="ad-text">Get Premium Resources & Tools</div>
+            <span class="ad-cta">Check Offers →</span>
+          </a>
+
         </div>
       </div>
     </div>
@@ -510,6 +586,23 @@
 
   <!-- FOOTER -->
   <div id="ad-banner-bottom" style="margin: 2rem auto; max-width: 728px; text-align: center; display: flex; justify-content: center; overflow: hidden;"></div>
+    <!-- ✅ SMARTLINK AD - Footer Placement (Low Intrusion) -->
+  <div style="max-width:900px;margin:1.5rem auto;padding:0 1rem;">
+    <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+       class="smartlink-ad" 
+       target="_blank" 
+       rel="noopener noreferrer sponsored"
+       onclick="trackAdClick('smartlink-footer')"
+       style="display:flex;align-items:center;justify-content:center;gap:0.75rem;text-align:left;">
+      <span style="font-size:1.2rem;">🚀</span>
+      <div>
+        <span class="ad-label" style="margin:0 0 0.2rem 0;">Partner Offer</span>
+        <span class="ad-text">Discover Premium AI Tools & Exclusive Content</span>
+      </div>
+      <span class="ad-cta" style="margin-left:auto;">Learn More →</span>
+    </a>
+  </div>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
@@ -536,8 +629,23 @@
   <script src="/js/utils.js"></script>
   <script src="/js/analytics.js"></script>
 
+  <!-- ✅ Ad Click Tracking Script (Optional - for analytics) -->
   <script>
-  (() => {    // ── State ──
+    function trackAdClick(position) {
+      // Optional: Send to your analytics
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'ad_click', {
+          'event_category': 'monetization',          'event_label': position,
+          'value': 1
+        });
+      }
+      console.log(`Ad clicked: ${position}`);
+    }
+  </script>
+
+  <script>
+  (() => {
+    // ── State ──
     let segmenter = null;
     let originalImage = null;
     let maskCanvas = null;
@@ -577,7 +685,6 @@
       segmenter.onResults(onSegmentationResults);
       updateStatus('AI model ready', 'ready');
     }
-
     function updateStatus(text, state = 'ready') {
       statusBar.style.display = 'flex';
       statusText.textContent = text;
@@ -586,7 +693,8 @@
 
     // ── Tab System ──
     document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         btn.classList.add('active');
         document.getElementById(btn.dataset.tab).classList.add('active');
@@ -625,7 +733,6 @@
         el.addEventListener('input', () => { valEl.textContent = el.value; });
       }
     });
-
     // Batch toggle
     batchToggle.addEventListener('change', () => {
       batchMode = batchToggle.checked;
@@ -636,6 +743,7 @@
     // ── File Handling ──
     setupDragDrop(uploadZone, handleFiles);
     fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
     async function handleFiles(files) {
       if (!files.length) return;
       if (!segmenter) await initSegmenter();
@@ -674,8 +782,7 @@
       const h = originalImage.naturalHeight || originalImage.height;
 
       // Create mask canvas
-      maskCanvas = document.createElement('canvas');
-      maskCanvas.width = w;
+      maskCanvas = document.createElement('canvas');      maskCanvas.width = w;
       maskCanvas.height = h;
       const maskCtx = maskCanvas.getContext('2d');
       maskCtx.drawImage(results.segmentationMask, 0, 0, w, h);
@@ -684,7 +791,8 @@
       const edgeSmooth = parseInt(document.getElementById('edge-smooth')?.value) || 0;
       if (edgeSmooth > 0) {
         maskCtx.filter = `blur(${edgeSmooth}px)`;
-        maskCtx.drawImage(maskCanvas, 0, 0);        maskCtx.filter = 'none';
+        maskCtx.drawImage(maskCanvas, 0, 0);
+        maskCtx.filter = 'none';
       }
 
       currentMask = maskCanvas;
@@ -723,8 +831,7 @@
       const saturate = 100 + parseInt(document.getElementById('saturation').value);
 
       if (currentBgType === 'solid') {
-        ctx.fillStyle = document.getElementById('solid-color').value;
-        ctx.fillRect(0, 0, w, h);
+        ctx.fillStyle = document.getElementById('solid-color').value;        ctx.fillRect(0, 0, w, h);
       } else if (currentBgType === 'gradient' && selectedGradient) {
         // Parse gradient
         const tempDiv = document.createElement('div');
@@ -733,7 +840,8 @@
         tempDiv.style.height = h + 'px';
         // Draw gradient on canvas
         const match = selectedGradient.match(/#[a-f0-9]{6}/gi);
-        if (match && match.length >= 2) {          const grad = ctx.createLinearGradient(0, 0, w, h);
+        if (match && match.length >= 2) {
+          const grad = ctx.createLinearGradient(0, 0, w, h);
           grad.addColorStop(0, match[0]);
           grad.addColorStop(1, match[1]);
           ctx.fillStyle = grad;
@@ -772,7 +880,6 @@
         batchResults.push(c);
       }
     }
-
     // Apply BG button
     applyBgBtn.addEventListener('click', renderResult);
 
@@ -783,6 +890,7 @@
 
     // Color picker change
     document.getElementById('solid-color').addEventListener('input', debounce(renderResult, 100));
+
     // ── Download ──
     downloadBtn.addEventListener('click', () => {
       const quality = document.querySelector('input[name="quality"]:checked').value;
@@ -822,7 +930,6 @@
 
       baBefore.width = w; baBefore.height = h;
       baAfterCanvas.width = w; baAfterCanvas.height = h;
-
       baBefore.getContext('2d').drawImage(originalImage, 0, 0, w, h);
       baAfterCanvas.getContext('2d').drawImage(resultCanvas, 0, 0, w, h);
 
@@ -831,7 +938,8 @@
       const after = document.getElementById('ba-after');
       let dragging = false;
 
-      function updateSlider(x) {        const rect = slider.getBoundingClientRect();
+      function updateSlider(x) {
+        const rect = slider.getBoundingClientRect();
         const pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
         after.style.width = (pct * 100) + '%';
         handle.style.left = (pct * 100) + '%';
@@ -870,8 +978,7 @@
           });
         });
         list.appendChild(img);
-      });
-    }
+      });    }
 
     // Init on load
     initSegmenter();
