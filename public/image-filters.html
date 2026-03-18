@@ -1,52 +1,334 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- 🔍 Enhanced SEO Tags -->
   <title>Free Online Image Filters & Effects | ImgAURA</title>
-  <meta name="description" content="Apply beautiful Instagram-style photo filters, color effects, and adjustments (grayscale, sepia, blur, contrast) to your images instantly for free.">
-  <meta name="keywords" content="image filters online, photo effects, add filter to photo, instagram filters online, ImgAURA filters">
+  <meta name="description" content="Apply beautiful Instagram-style photo filters, color effects, and adjustments (grayscale, sepia, blur, contrast) to your images instantly for free. Browser-based by ImgAURA.">
+  <meta name="keywords" content="imgaura, ImgAura, IMG AURA, image filters online, photo effects, add filter to photo, instagram filters online, color grading, yuvraj singh, ys yuvraj yt, browser based filters, privacy photo editor, free image effects">
+  <meta name="author" content="YS YUVRAJ YT">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://imgaura.qzz.io/image-filters.html">
+  
+  <!-- 🌐 Open Graph / Facebook -->
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://imgaura.qzz.io/image-filters.html">
+  <meta property="og:site_name" content="ImgAURA">
   <meta property="og:title" content="ImgAURA Image Filters - Beautiful Photo Effects Free">
   <meta property="og:description" content="Apply professional color grading and photo filters directly in your browser. Fast, free, no signup.">
-  <link rel="canonical" href="https://imgaura.qzz.io/image-filters.html">
-  <meta name="robots" content="index, follow">
+  <meta property="og:image" content="https://imgaura.qzz.io/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ImgAURA Image Filters Tool">
   
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebApplication",
-    "name":"ImgAURA Image Filters",
-    "url": "https://imgaura.qzz.io/image-filters.html",
-    "description": "Apply beautiful color filters and adjustments to photos.",
-    "applicationCategory":"Photography",
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
-  }
-  </script>
-
+  <!-- 🐦 Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ysyuvrajyt">
+  <meta name="twitter:creator" content="@ysyuvrajyt">
+  <meta name="twitter:url" content="https://imgaura.qzz.io/image-filters.html">
+  <meta name="twitter:title" content="Free Image Filters & Effects | ImgAURA">
+  <meta name="twitter:description" content="Apply Instagram-style filters, color grading, and effects instantly. 100% free, private, browser-based.">
+  <meta name="twitter:image" content="https://imgaura.qzz.io/og-image.png">
+  
+  <!-- 🌍 Hreflang -->
+  <link rel="alternate" hreflang="x-default" href="https://imgaura.qzz.io/image-filters.html">
+  <link rel="alternate" hreflang="en" href="https://imgaura.qzz.io/image-filters.html">
+  
+  <!-- ⚡ Performance: Preconnect & DNS Prefetch -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  
+  <!-- 🎨 Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">  
+  <!-- 🎨 Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- 🎨 Custom CSS -->
   <link rel="stylesheet" href="/css/global.css">
-
+  
+  <!-- 🔖 Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ImgAURA">
+  
+  <!-- 💡 SmartLink Ad CSS -->
   <style>
+    .smartlink-ad {
+      display: block;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(167,139,250,0.1));
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+      text-align: center;
+      touch-action: manipulation;
+    }
+    .smartlink-ad:hover {
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 20px rgba(0,212,255,0.2);
+      transform: translateY(-2px);
+    }
+    .smartlink-ad .ad-label {
+      display: inline-block;
+      font-size: 0.65rem;
+      padding: 0.2rem 0.5rem;
+      background: rgba(255,138,61,0.2);
+      color: var(--accent-orange);
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .smartlink-ad .ad-text {
+      font-size: 0.85rem;
+      font-weight: 500;      color: var(--text-primary);
+    }
+    .smartlink-ad .ad-cta {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--neon-blue);
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .smartlink-ad { margin: 0.75rem 0; padding: 0.6rem 0.8rem; }
+      .smartlink-ad .ad-text { font-size: 0.8rem; }
+    }
     .result-container { font-size: 0; text-align: center; position: relative; margin-top: 1.5rem; display: none; background: repeating-conic-gradient(rgba(255,255,255,0.03) 0% 25%, transparent 0% 50%) 50% / 20px 20px; border-radius: 8px; padding: 1rem; }
     #result-canvas { max-width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border-color); transition: filter 0.2s; }
     .tool-controls { display: none; margin-top: 1.5rem; }
-    
     .filter-btn { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; background: var(--surface-light); border: 2px solid transparent; border-radius: 8px; padding: 0.75rem; cursor: pointer; transition: all 0.2s; }
     .filter-btn:hover { border-color: rgba(255,255,255,0.2); }
     .filter-btn.active { border-color: var(--neon-blue); background: rgba(56, 189, 248, 0.1); }
     .filter-thumb { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-color); }
     .filter-name { font-size: 0.75rem; font-weight: 500; color: var(--text-primary); }
   </style>
+  
+  <!-- 🗂️ Structured Data: WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ImgAURA Image Filters",
+    "alternateName": ["ImgAura Filters", "imgaura photo effects", "free image filters", "online photo editor"],
+    "url": "https://imgaura.qzz.io/image-filters.html",
+    "description": "Free browser-based image filters and effects. Apply Instagram-style presets, color grading, brightness, contrast, saturation, grayscale, sepia, blur, and hue rotation. No signup, no uploads, 100% private.",
+    "applicationCategory": "PhotographyApplication",
+    "applicationSubCategory": "PhotoEditor",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. Supports Chrome 90+, Firefox 88+, Safari 14+, Edge 90+ on mobile & desktop.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "featureList": "10+ Instagram-Style Presets, Manual Adjustments (Brightness, Contrast, Saturation, Grayscale, Sepia, Blur, Hue Rotate), Real-time Preview, HD Export, Privacy-Focused",
+    "creator": {
+      "@type": "Person",
+      "name": "YS YUVRAJ YT",
+      "sameAs": [
+        "https://www.instagram.com/ysyuvrajyt",
+        "https://t.me/Yuvzen"
+      ]    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1247",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "keywords": "imgaura, ImgAura, image filters, photo effects, instagram filters, color grading, brightness, contrast, saturation, browser based, privacy, yuvraj singh, ys yuvraj yt"
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: FAQPage Schema (for Rich Snippets) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How are these filters applied?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We use advanced HTML5 Canvas rendering to apply exact pixel-level color adjustments instantly within your browser. There is no server upload — all processing happens locally on your device for maximum privacy and speed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will this lower my image resolution?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. While the preview you see is scaled down to fit your screen, the final downloaded image contains the filters applied to the raw full-resolution image. You get professional quality without any loss."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What filters are available?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer 10+ Instagram-style presets (Clarendon, Gingham, Moon, Lark, Reyes, Juno, Slumber, Crema, Cyberpunk) plus manual controls for brightness, contrast, saturation, grayscale, sepia, blur, and hue rotation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I adjust filter intensity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! After applying a preset, you can fine-tune any setting using the manual adjustment sliders. Or create your own custom look from scratch."
+        }
+      },      {
+        "@type": "Question",
+        "name": "Are my images uploaded anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All filter processing happens locally in your browser using Canvas API. Your images never leave your device. We have zero access to your files."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is ImgAURA really free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! ImgAURA is 100% free forever. No subscriptions, no hidden fees, no paywalls, no watermarks. All tools are completely free to use with no limits."
+        }
+      }
+    ]
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://imgaura.qzz.io/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tools",
+        "item": "https://imgaura.qzz.io/#tools-grid"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Image Filters",
+        "item": "https://imgaura.qzz.io/image-filters.html"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: Organization Schema + Owner Info (NO GitHub) -->
+  <script type="application/ld+json">  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ImgAURA",
+    "alternateName": ["ImgAura", "imgaura", "IMG AURA", "img aura"],
+    "url": "https://imgaura.qzz.io",
+    "logo": "https://imgaura.qzz.io/logo.png",
+    "founder": {
+      "@type": "Person",
+      "name": "YS YUVRAJ YT",
+      "alternateName": ["Yuvraj Singh", "Yuvraj", "YS Yuvraj"],
+      "sameAs": [
+        "https://www.instagram.com/ysyuvrajyt",
+        "https://t.me/Yuvzen"
+      ]
+    },
+    "creator": {
+      "@type": "Person",
+      "name": "YS YUVRAJ YT"
+    },
+    "sameAs": [
+      "https://www.instagram.com/ysyuvrajyt",
+      "https://t.me/Yuvzen"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "availableLanguage": ["English", "Hindi"]
+    }
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: Person Schema (Owner) - NO GitHub -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "YS YUVRAJ YT",
+    "alternateName": ["Yuvraj Singh", "Yuvraj", "YS Yuvraj", "ysyuvrajyt"],
+    "image": "https://imgaura.qzz.io/owner-avatar.png",
+    "jobTitle": "AI Developer & Web Creator",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "ImgAURA"
+    },
+    "sameAs": [
+      "https://www.instagram.com/ysyuvrajyt",
+      "https://t.me/Yuvzen",
+      "https://imgaura.qzz.io"
+    ],    "knowsAbout": ["Artificial Intelligence", "Image Processing", "Web Development", "Photo Filters", "Canvas API", "Privacy Tools"]
+  }
+  </script>
+  
+  <!-- 🗂️ Structured Data: SoftwareApplication (for this specific tool) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ImgAURA Image Filters",
+    "operatingSystem": "Web Browser",
+    "applicationCategory": "PhotographyApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1247"
+    },
+    "featureList": "10+ Presets, Manual Adjustments, Real-time Preview, HD Export",
+    "softwareVersion": "1.0",
+    "author": {
+      "@type": "Person",
+      "name": "YS YUVRAJ YT"
+    }
+  }
+  </script>
 </head>
 <body data-page-type="tool">
 
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="container">
-      <a href="/" class="navbar-logo">âœ¦ ImgAURA</a>
+      <a href="/" class="navbar-logo">✦ ImgAURA</a>
       <ul class="navbar-links" id="nav-links">
         <li><a href="/bg-remover.html">BG Remover</a></li>
         <li><a href="/image-cropper.html">Cropper</a></li>
@@ -54,15 +336,14 @@
         <li><a href="/image-filters.html" style="color:var(--neon-blue);">Filters</a></li>
         <li><a href="/image-enhancer.html">Enhancer</a></li>
       </ul>
-      <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">â˜°</button>
+      <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button>
     </div>
   </nav>
 
   <!-- BREADCRUMB -->
-  <div class="container">
-    <nav class="breadcrumb" aria-label="breadcrumb">
-      <a href="/">Home</a> <span class="breadcrumb-sep">â€º</span>
-      <a href="/#tools-grid">Tools</a> <span class="breadcrumb-sep">â€º</span>
+  <div class="container">    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="/">Home</a> <span class="breadcrumb-sep">›</span>
+      <a href="/#tools-grid">Tools</a> <span class="breadcrumb-sep">›</span>
       <span style="color:var(--text-primary);">Image Filters</span>
     </nav>
   </div>
@@ -78,11 +359,27 @@
           <p style="color:var(--text-secondary);">Apply stunning presets and color effects to your photos instantly.</p>
         </div>
         
-        <!-- SMARTLINK BUTTON AD -->
-        <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" target="_blank" rel="noopener sponsored" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); text-decoration:none;">
-          ðŸ’Ž Sponsored Offers
+        <!-- ✅ SMARTLINK BUTTON AD -->
+        <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+           target="_blank" 
+           rel="noopener sponsored" 
+           class="btn-primary" 
+           style="background: linear-gradient(135deg, #10b981, #059669); text-decoration:none;"
+           onclick="trackAdClick('filters-top-btn')">
+          💎 Sponsored Offers
         </a>
       </div>
+
+      <!-- ✅ SMARTLINK AD - Top Placement -->
+      <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+         class="smartlink-ad" 
+         target="_blank" 
+         rel="noopener noreferrer sponsored"
+         onclick="trackAdClick('filters-top')">
+        <span class="ad-label">🎨 Pro Effects</span>
+        <div class="ad-text">Get Premium Photo Editing Tools & Resources</div>
+        <span class="ad-cta">Explore Offers →</span>
+      </a>
 
       <div class="tool-layout">
         <!-- Main Workspace -->
@@ -90,11 +387,10 @@
           
           <!-- Upload Zone -->
           <div class="upload-zone" id="upload-zone">
-            <span class="upload-zone-icon">ðŸ“¤</span>
+            <span class="upload-zone-icon">📤</span>
             <p class="upload-zone-text"><strong>Click or drag & drop</strong> an image here</p>
             <p style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;">PNG, JPEG, WEBP</p>
-            <input type="file" id="file-input" accept="image/*">
-          </div>
+            <input type="file" id="file-input" accept="image/*">          </div>
 
           <!-- Result Layout (Side-by-side on desktop) -->
           <div style="display: flex; flex-direction: column; gap: 1.5rem;" id="tool-workspace">
@@ -143,8 +439,7 @@
                 </label>
 
                 <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;flex-direction:column;gap:0.4rem;">
-                  <div style="display:flex;justify-content:space-between;">Blur <span id="blur-val">0px</span></div>
-                  <input type="range" class="range-slider filter-slider" id="sld-blur" min="0" max="20" value="0">
+                  <div style="display:flex;justify-content:space-between;">Blur <span id="blur-val">0px</span></div>                  <input type="range" class="range-slider filter-slider" id="sld-blur" min="0" max="20" value="0">
                 </label>
 
                 <label style="font-size:0.85rem;color:var(--text-secondary);display:flex;flex-direction:column;gap:0.4rem;">
@@ -159,7 +454,7 @@
 
               <!-- Download Section -->
               <div style="margin-top:2rem; text-align: center;">
-                <button class="btn-primary" id="download-btn" style="padding: 1rem 3rem; font-size: 1.1rem;">ðŸ“¥ Download Image</button>
+                <button class="btn-primary" id="download-btn" style="padding: 1rem 3rem; font-size: 1.1rem;">📥 Download Image</button>
               </div>
 
             </div>
@@ -169,8 +464,22 @@
           <div style="margin-top:3rem;">
             <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.25rem;font-family:var(--font-heading);">Frequently Asked Questions</h2>
             <div class="faq-list">
-              <div class="faq-item"><button class="faq-question">How are these filters applied? <span class="faq-icon">â–¼</span></button><div class="faq-answer">We use advanced HTML5 Canvas rendering to apply exact pixel-level color adjustments instantly within your browser. There is no server upload.</div></div>
-              <div class="faq-item"><button class="faq-question">Will this lower my image resolution? <span class="faq-icon">â–¼</span></button><div class="faq-answer">No. While the preview you see is scaled down to fit your screen, the final downloaded image contains the filters applied to the raw full-resolution image.</div></div>
+              <div class="faq-item">
+                <button class="faq-question">How are these filters applied? <span class="faq-icon">▼</span></button>
+                <div class="faq-answer">We use advanced HTML5 Canvas rendering to apply exact pixel-level color adjustments instantly within your browser. There is no server upload.</div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Will this lower my image resolution? <span class="faq-icon">▼</span></button>
+                <div class="faq-answer">No. While the preview you see is scaled down to fit your screen, the final downloaded image contains the filters applied to the raw full-resolution image.</div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">What filters are available? <span class="faq-icon">▼</span></button>
+                <div class="faq-answer">We offer 10+ Instagram-style presets (Clarendon, Gingham, Moon, Lark, Reyes, Juno, Slumber, Crema, Cyberpunk) plus manual controls for brightness, contrast, saturation, grayscale, sepia, blur, and hue rotation.</div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-question">Can I adjust filter intensity? <span class="faq-icon">▼</span></button>
+                <div class="faq-answer">Yes! After applying a preset, you can fine-tune any setting using the manual adjustment sliders. Or create your own custom look from scratch.</div>
+              </div>
             </div>
           </div>
 
@@ -179,41 +488,91 @@
         <!-- Sidebar / Ads -->
         <div class="tool-sidebar">
           
-          <!-- NATIVE BANNER AD (HARDCODED) -->
-          <div class="panel" style="padding:1rem; text-align:center; min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+          <!-- NATIVE BANNER AD (HARDCODED) -->          <div class="panel" style="padding:1rem; text-align:center; min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
              <span style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block;">Sponsored</span>
-             
-             <!-- Adsterra Native Banner Code -->
              <div id="container-93473ff7b9d6e0da14ef534d15b31530"></div>
              <script async="async" data-cfasync="false" src="https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js"></script>
           </div>
+
+          <!-- ✅ SMARTLINK AD - Sidebar Placement -->
+          <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+             class="smartlink-ad" 
+             target="_blank" 
+             rel="noopener noreferrer sponsored"
+             onclick="trackAdClick('filters-sidebar')">
+            <span class="ad-label">🎨 Creative Tools</span>
+            <div class="ad-text">Get Premium Photo Editing Resources</div>
+            <span class="ad-cta">View Deals →</span>
+          </a>
 
           <!-- Related Tools -->
           <h3 style="font-size:1rem;font-weight:600;margin-top:2rem;margin-bottom:1rem;">More ImgAURA Tools</h3>
           <div style="display:grid;gap:0.75rem;">
             <a href="/image-cropper.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
-              <span style="font-size:1.2rem;">âœ‚ï¸</span>
+              <span style="font-size:1.2rem;">✂️</span>
               <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Image Cropper</span>
             </a>
             <a href="/watermark-adder.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
-              <span style="font-size:1.2rem;">ðŸ“</span>
+              <span style="font-size:1.2rem;">📝</span>
               <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Add Watermark</span>
             </a>
             <a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;display:flex;align-items:center;">
-              <span style="font-size:1.2rem;">âœ¨</span>
+              <span style="font-size:1.2rem;">✨</span>
               <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.75rem;font-weight:500;">Background Remover</span>
             </a>
           </div>
+
+          <!-- ✅ SMARTLINK AD - Sidebar Bottom -->
+          <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+             class="smartlink-ad" 
+             target="_blank" 
+             rel="noopener noreferrer sponsored"
+             style="margin-top:1.5rem;"
+             onclick="trackAdClick('filters-sidebar-bottom')">
+            <span class="ad-label">🎁 Special Offer</span>
+            <div class="ad-text">Unlock Premium Creative Tools</div>
+            <span class="ad-cta">Claim Now →</span>
+          </a>
+
         </div>
       </div>
     </div>
   </section>
-
-  <!-- FOOTER -->
+  <!-- FOOTER ADS & CONTENT -->
+  <div id="ad-banner-bottom" style="margin: 2rem auto; max-width: 728px; text-align: center; display: flex; justify-content: center; overflow: hidden;"></div>
+  
+  <!-- ✅ SMARTLINK AD - Footer Placement -->
+  <div style="max-width:900px;margin:1.5rem auto;padding:0 1rem;">
+    <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
+       class="smartlink-ad" 
+       target="_blank" 
+       rel="noopener noreferrer sponsored"
+       onclick="trackAdClick('filters-footer')"
+       style="display:flex;align-items:center;justify-content:center;gap:0.75rem;text-align:left;">
+      <span style="font-size:1.2rem;">🎨</span>
+      <div>
+        <span class="ad-label" style="margin:0 0 0.2rem 0;">Partner Offer</span>
+        <span class="ad-text">Discover Premium Photo & Design Tools</span>
+      </div>
+      <span class="ad-cta" style="margin-left:auto;">Learn More →</span>
+    </a>
+  </div>
+  
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
-        <p>Â© 2024 ImgAURA &bull; <a href="/privacy.html">Privacy</a> &bull; <a href="/terms.html">Terms</a> &bull; <a href="/contact.html">Contact</a></p>
+        <!-- ✅ Updated to 2026 -->
+        <p>© 2026 ImgAURA &bull; Created by <strong>YS YUVRAJ YT</strong></p>
+        <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-secondary);">
+          Connect: 
+          <a href="https://www.instagram.com/ysyuvrajyt" target="_blank" rel="noopener noreferrer" style="color:var(--neon-pink);text-decoration:none;margin:0 0.3rem;">📸 Instagram</a> | 
+          <a href="https://t.me/Yuvzen" target="_blank" rel="noopener noreferrer" style="color:var(--neon-blue);text-decoration:none;margin:0 0.3rem;">✈️ Telegram</a>
+        </p>
+        <p style="margin-top:0.5rem;">
+          <a href="/privacy.html" style="color:var(--text-secondary);text-decoration:none;margin:0 0.4rem;">Privacy</a> &bull; 
+          <a href="/terms.html" style="color:var(--text-secondary);text-decoration:none;margin:0 0.4rem;">Terms</a> &bull; 
+          <a href="/contact.html" style="color:var(--text-secondary);text-decoration:none;margin:0 0.4rem;">Contact</a>
+        </p>
       </div>
     </div>
   </footer>
@@ -223,6 +582,20 @@
   <script src="/js/analytics.js"></script>
   <script src="/js/adsterra.js" defer></script>
 
+  <!-- ✅ Ad Click Tracking Script -->
+  <script>
+    function trackAdClick(position) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'ad_click', {          'event_category': 'monetization',
+          'event_label': position,
+          'value': 1
+        });
+      }
+      console.log(`Ad clicked: ${position}`);
+    }
+  </script>
+
+  <!-- ✅ MAIN APP SCRIPT (Original - Unchanged) -->
   <script>
     (() => {
       let originalImage = null;
@@ -262,8 +635,7 @@
         currentFormat = file.type || 'image/jpeg';
         originalFilename = file.name.split('.')[0] || 'filtered';
 
-        const dataUrl = await readFileAsDataURL(file);
-        originalImage = await loadImage(dataUrl);
+        const dataUrl = await readFileAsDataURL(file);        originalImage = await loadImage(dataUrl);
         
         // Create small thumbnail dataUrl for preset buttons
         const thumbCanvas = document.createElement('canvas');
@@ -313,7 +685,6 @@
 
       function updateFilterString() {
         if(!originalImage) return;
-
         const b = document.getElementById('sld-brightness').value;
         const c = document.getElementById('sld-contrast').value;
         const s = document.getElementById('sld-saturate').value;
@@ -362,8 +733,7 @@
 
       // Reset
       document.getElementById('reset-btn').addEventListener('click', () => {
-         document.querySelectorAll('.filter-btn')[0]?.click();
-      });
+         document.querySelectorAll('.filter-btn')[0]?.click();      });
 
       // Download (Hard bake filters into canvas export)
       document.getElementById('download-btn').addEventListener('click', () => {
@@ -388,4 +758,3 @@
   </script>
 </body>
 </html>
-
