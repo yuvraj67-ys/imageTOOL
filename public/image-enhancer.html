@@ -47,8 +47,7 @@
   <!-- 🎨 Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">  
-  <!-- 🎨 Tailwind CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">    <!-- 🎨 Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- 🎨 Custom CSS -->
@@ -96,8 +95,8 @@
     }
     .smartlink-ad .ad-text {
       font-size: 0.85rem;
-      font-weight: 500;      color: var(--text-primary);
-    }
+      font-weight: 500;
+      color: var(--text-primary);    }
     .smartlink-ad .ad-cta {
       display: inline-block;
       margin-top: 0.5rem;
@@ -145,8 +144,8 @@
       z-index: 2;
       /* ✅ KEY: Dynamic clip-path for premium effect */
       clip-path: inset(0 50% 0 0);
-      transition: clip-path 0.05s ease-out;    }
-    .image-after {
+      transition: clip-path 0.05s ease-out;
+    }    .image-after {
       width: 100%;
       height: 100%;
       object-fit: contain;
@@ -165,7 +164,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      pointer-events: none;
+      pointer-events: auto;
     }
     .slider-handle::before {
       content: '';
@@ -187,16 +186,15 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 0 20px rgba(0,212,255,0.5);
-      pointer-events: auto;
       cursor: grab;
     }
     .handle-circle:active {
       cursor: grabbing;
     }
     .handle-circle::after {
-      content: '⇄';      color: var(--neon-blue);
-      font-size: 1.2rem;
-      font-weight: 700;
+      content: '⇄';
+      color: var(--neon-blue);
+      font-size: 1.2rem;      font-weight: 700;
     }
     /* Labels */
     .ba-label {
@@ -243,9 +241,9 @@
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"    },
-    "featureList": "2x/4x Upscaling, Bicubic Interpolation, Unsharp Mask Sharpening, Noise Reduction, Auto-Enhance, Before/After Slider, HD Output, Privacy-Focused",
-    "creator": {
+      "availability": "https://schema.org/InStock"
+    },
+    "featureList": "2x/4x Upscaling, Bicubic Interpolation, Unsharp Mask Sharpening, Noise Reduction, Auto-Enhance, Before/After Slider, HD Output, Privacy-Focused",    "creator": {
       "@type": "Person",
       "name": "YS YUVRAJ YT",
       "sameAs": [
@@ -292,9 +290,9 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "No. Our bicubic interpolation algorithm produces smooth upscales without blocky artifacts. The sharpening filter further improves perceived quality. You can also adjust sharpness, denoise, brightness, and contrast manually."
-        }      },
-      {
-        "@type": "Question",
+        }
+      },
+      {        "@type": "Question",
         "name": "Can I download as JPEG?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -341,9 +339,9 @@
       },
       {
         "@type": "ListItem",
-        "position": 3,        "name": "Image Enhancer",
-        "item": "https://imgaura.qzz.io/image-enhancer.html"
-      }
+        "position": 3,
+        "name": "Image Enhancer",
+        "item": "https://imgaura.qzz.io/image-enhancer.html"      }
     ]
   }
   </script>
@@ -390,9 +388,9 @@
     "name": "YS YUVRAJ YT",
     "alternateName": ["Yuvraj Singh", "Yuvraj", "YS Yuvraj", "ysyuvrajyt"],
     "image": "https://imgaura.qzz.io/owner-avatar.png",
-    "jobTitle": "AI Developer & Web Creator",    "worksFor": {
-      "@type": "Organization",
-      "name": "ImgAURA"
+    "jobTitle": "AI Developer & Web Creator",
+    "worksFor": {
+      "@type": "Organization",      "name": "ImgAURA"
     },
     "sameAs": [
       "https://www.instagram.com/ysyuvrajyt",
@@ -439,9 +437,9 @@
       <ul class="navbar-links" id="nav-links">
         <li><a href="/bg-remover.html">BG Remover</a></li>
         <li><a href="/image-cropper.html">Cropper</a></li>
-        <li><a href="/watermark-adder.html">Watermark</a></li>        <li><a href="/image-filters.html">Filters</a></li>
-        <li><a href="/image-enhancer.html" style="color:var(--neon-blue);">Enhancer</a></li>
-      </ul>
+        <li><a href="/watermark-adder.html">Watermark</a></li>
+        <li><a href="/image-filters.html">Filters</a></li>
+        <li><a href="/image-enhancer.html" style="color:var(--neon-blue);">Enhancer</a></li>      </ul>
       <button class="navbar-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button>
     </div>
   </nav>
@@ -488,8 +486,8 @@
           <!-- Status -->
           <div class="status-bar" id="status-bar" style="display:none;margin-top:1rem;">
             <span class="status-dot" id="status-dot"></span>
-            <span id="status-text">Ready</span>          </div>
-
+            <span id="status-text">Ready</span>
+          </div>
           <!-- Controls -->
           <div id="controls" style="display:none;margin-top:1.5rem;">
             <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Enhancement Options</h3>
@@ -537,9 +535,9 @@
 
           <!-- ✅ PREMIUM BEFORE/AFTER SLIDER (Fixed) -->
           <div id="ba-container" style="display:none;margin-top:1.5rem;">
-            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Before / After</h3>            <div class="comparison-container" id="comparison-container">
-              <!-- Labels -->
-              <span class="ba-label before">Before</span>
+            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Before / After</h3>
+            <div class="comparison-container" id="comparison-container">
+              <!-- Labels -->              <span class="ba-label before">Before</span>
               <span class="ba-label after">After</span>
               
               <!-- Bottom Layer: Original Image -->
@@ -586,9 +584,9 @@
             </div>
           </div>
 
-          <!-- Related Tools -->          <div style="margin-top:2rem;">
-            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Related Tools</h3>
-            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;">
+          <!-- Related Tools -->
+          <div style="margin-top:2rem;">
+            <h3 style="font-size:0.95rem;font-weight:600;margin-bottom:0.75rem;font-family:var(--font-heading);">Related Tools</h3>            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;">
               <a href="/bg-remover.html" class="panel" style="text-decoration:none;padding:1rem;">
                 <span style="font-size:1.2rem;">🖼️</span>
                 <span style="font-size:0.85rem;color:var(--text-primary);margin-left:0.5rem;">BG Remover</span>
@@ -635,9 +633,9 @@
           <!-- NATIVE BANNER AD -->
           <div class="panel" style="padding:1rem; text-align:center; min-height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
              <span style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; display:block;">Sponsored</span>
-             <div id="container-93473ff7b9d6e0da14ef534d15b31530"></div>             <script async="async" data-cfasync="false" src="https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js"></script>
+             <div id="container-93473ff7b9d6e0da14ef534d15b31530"></div>
+             <script async="async" data-cfasync="false" src="https://pl28909645.effectivegatecpm.com/93473ff7b9d6e0da14ef534d15b31530/invoke.js"></script>
           </div>
-
           <!-- ✅ SMARTLINK AD - Sidebar Placement -->
           <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
              class="smartlink-ad" 
@@ -684,9 +682,9 @@
   </section>
 
   <!-- FOOTER ADS & CONTENT -->
-  <div id="ad-banner-bottom" style="margin: 2rem auto; max-width: 728px; text-align: center; display: flex; justify-content: center; overflow: hidden;"></div>  
-  <!-- ✅ SMARTLINK AD - Footer Placement -->
-  <div style="max-width:900px;margin:1.5rem auto;padding:0 1rem;">
+  <div id="ad-banner-bottom" style="margin: 2rem auto; max-width: 728px; text-align: center; display: flex; justify-content: center; overflow: hidden;"></div>
+  
+  <!-- ✅ SMARTLINK AD - Footer Placement -->  <div style="max-width:900px;margin:1.5rem auto;padding:0 1rem;">
     <a href="https://www.effectivegatecpm.com/szqdx4yn?key=c8d3c63b22aca39c625ad99bbf99d20e" 
        class="smartlink-ad" 
        target="_blank" 
@@ -733,12 +731,12 @@
           'event_category': 'monetization',
           'event_label': position,
           'value': 1
-        });      }
-      console.log(`Ad clicked: ${position}`);
-    }
+        });
+      }
+      console.log(`Ad clicked: ${position}`);    }
   </script>
 
-  <!-- ✅ MAIN APP SCRIPT + PREMIUM SLIDER LOGIC -->
+  <!-- ✅ MAIN APP SCRIPT + FIXED SLIDER & STATUS -->
   <script>
   (() => {
     let originalImage = null;
@@ -782,9 +780,9 @@
 
     // Slider displays
     ['sharpness', 'denoise', 'brightness', 'contrast'].forEach(id => {
-      const el = document.getElementById(id);      const val = document.getElementById(id + '-val');
-      el.addEventListener('input', () => { val.textContent = el.value; debounce(processImage, 200)(); });
-    });
+      const el = document.getElementById(id);
+      const val = document.getElementById(id + '-val');
+      el.addEventListener('input', () => { val.textContent = el.value; debounce(processImage, 200)(); });    });
 
     document.getElementById('jpeg-quality').addEventListener('input', (e) => {
       document.getElementById('jpeg-quality-val').textContent = e.target.value + '%';
@@ -831,8 +829,8 @@
 
       const brightness = 100 + parseInt(document.getElementById('brightness').value);
       const contrast = 100 + parseInt(document.getElementById('contrast').value);
-      const sharpness = parseInt(document.getElementById('sharpness').value);      const denoise = parseInt(document.getElementById('denoise').value);
-
+      const sharpness = parseInt(document.getElementById('sharpness').value);
+      const denoise = parseInt(document.getElementById('denoise').value);
       // Apply brightness/contrast
       ctx.filter = `brightness(${brightness}%) contrast(${contrast}%)`;
       ctx.drawImage(originalImage, 0, 0, nw, nh);
@@ -864,7 +862,10 @@
       initPremiumSlider(nw, nh);
 
       trackToolUsage('image-enhancer');
-      updateStatus(`Enhanced to ${nw}×${nh}`, 'ready');
+      // ✅ FIX: Update status to "ready" after processing is complete
+      setTimeout(() => {
+        updateStatus(`Enhanced to ${nw}×${nh}`, 'ready');
+      }, 100);
     }
 
     function applyUnsharpMask(ctx, w, h, amount) {
@@ -879,8 +880,8 @@
           data[idx] = Math.min(255, Math.max(0, data[idx] + diff * amount * 3));
         }
       }
-
-      // Simple kernel-based sharpening      const kernel = [0, -amount, 0, -amount, 1 + 4 * amount, -amount, 0, -amount, 0];
+      // Simple kernel-based sharpening
+      const kernel = [0, -amount, 0, -amount, 1 + 4 * amount, -amount, 0, -amount, 0];
       const side = Math.round(Math.sqrt(kernel.length));
       const halfSide = Math.floor(side / 2);
 
@@ -902,7 +903,7 @@
       ctx.putImageData(imageData, 0, 0);
     }
 
-    // ✅ PREMIUM BEFORE/AFTER SLIDER LOGIC (Fixed per user request)
+    // ✅ PREMIUM BEFORE/AFTER SLIDER LOGIC (Fixed)
     function initPremiumSlider(w, h) {
       const container = document.getElementById('comparison-container');
       const afterWrapper = document.getElementById('image-after-wrapper');
@@ -928,8 +929,8 @@
       let lastInteraction = 0;
       
       // Update clip-path using CSS variable for smooth performance
-      function updateSlider(newPos) {
-        position = Math.max(0, Math.min(100, newPos));        // ✅ KEY: clip-path: inset(0 0 0 calc(100% - var(--position)))
+      function updateSlider(newPos) {        position = Math.max(0, Math.min(100, newPos));
+        // ✅ KEY: clip-path: inset(0 0 0 calc(100% - var(--position)))
         afterWrapper.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
         handle.style.left = `${position}%`;
       }
@@ -977,8 +978,8 @@
       // Get position from mouse/touch event
       function updateFromEvent(e) {
         const rect = container.getBoundingClientRect();
-        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-        const x = clientX - rect.left;        const pct = (x / rect.width) * 100;
+        const clientX = e.clientX || (e.touches && e.touches[0].clientX);        const x = clientX - rect.left;
+        const pct = (x / rect.width) * 100;
         smoothUpdate(pct);
       }
       
